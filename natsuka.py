@@ -4,6 +4,8 @@ import aiohttp
 import asyncio
 import calendar
 import re
+import mutagen
+
 
 print("""
 Welcome to the Natsuka downloader!
@@ -65,6 +67,8 @@ Enter the track's URL
 
                     trackAlbum = trackData['album']['name']
 
+                    trackNumber = trackData['number']
+
                     artistName = trackData['album']['artist'][0]['name']
 
                     albumRelease = trackData['album']['date']
@@ -75,7 +79,7 @@ Enter the track's URL
 
                     print(f"Artist Name: {artistName}")
 
-                    print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}th, {albumRelease['year']}")
+                    print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}")
 
 
             async with session.get(f"http://joshuadoes.com:8080/download/{UID}?pass=hFUhqM9n") as resp:
@@ -93,6 +97,20 @@ Enter the track's URL
                                 break
 
                             fd.write(chunk)
+
+                            file = mutagen.File(f"{fileName}.ogg")
+
+                            file['title'] = trackName
+                            
+                            file['album'] = trackAlbum
+                            
+                            file['tracknumber'] = str(trackNumber)
+                            
+                            file['artist'] = artistName
+
+                            file['year'] = str(albumRelease['year'])
+
+                            file.save()
                             
                     
     loop = asyncio.get_event_loop()
