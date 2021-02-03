@@ -29,12 +29,28 @@ Enter the track's URL
 
 :"""
           )
-      
-    list = UID.split("/")
 
-    id = list[len(list) - 1]
+    query = "?"
+    
+    if query in UID:
+        
+        UID = UID.split(query)
+
+        list = UID[0].split("/")
+
+        id = list[len(list) - 1]
+
+        UID = id
+
+        print(UID)    
+        
+    else:
+
+        list = UID.split("/")
+
+        id = list[len(list) - 1]
       
-    UID = id
+        UID = id
     
     
     async def main():
