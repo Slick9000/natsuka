@@ -1,6 +1,7 @@
 import aiohttp
 import asyncio
 import calendar
+import re
 
 print("""
 Welcome to the Natsuka downloader!
@@ -54,19 +55,23 @@ Enter the track's URI
 
                     print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}th, {albumRelease['year']}")
 
+
             async with session.get(f"http://joshuadoes.com:8080/download/{UID}?pass=hFUhqM9n") as resp:
 
-                with open(f"{trackName}.ogg", "wb") as fd:
+                    fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
-                    while True:
+                    with open(f"{fileName}.ogg", "wb") as fd:
 
-                        chunk = await resp.content.read()
+                        while True:
 
-                        if not chunk:
+                            chunk = await resp.content.read()
 
-                            break
+                            if not chunk:
 
-                        fd.write(chunk)
+                                break
+
+                            fd.write(chunk)
+                            
                     
     loop = asyncio.get_event_loop()
     
@@ -76,5 +81,10 @@ if option == "2":
 
     pass
 
+if option == "3":
+
+    pass
+
 else:
+    
     pass
