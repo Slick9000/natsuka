@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import aiohttp
 import asyncio
 import calendar
@@ -23,10 +25,14 @@ Option 3 - Search for track/album
 if option == "1":
     
     UID = input("""
-Enter the track's URI
+Enter the track's URL
 
 :"""
           )
+    list = UID.split("/")
+    id = list[len(list) - 1]
+    UID = "spotify:track:" + id
+
 
     UID = UID.replace("spotify:track:", "")
     
