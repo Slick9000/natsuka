@@ -29,14 +29,14 @@ Enter the track's URL
 
 :"""
           )
+      
     list = UID.split("/")
+
     id = list[len(list) - 1]
-    UID = "spotify:track:" + id
-
-
-    UID = UID.replace("spotify:track:", "")
+      
+    UID = id
     
-            
+    
     async def main():
 
         async with aiohttp.ClientSession() as session:
