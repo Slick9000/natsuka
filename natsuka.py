@@ -1,4 +1,3 @@
-import os
 import aiohttp
 import asyncio
 import calendar
@@ -39,8 +38,6 @@ Enter the track's URI
 
                     trackData = await resp.json()
 
-                    # print(trackData)
-
                     trackName = trackData['name']
 
                     trackAlbum = trackData['album']['name']
@@ -57,19 +54,24 @@ Enter the track's URI
 
                     print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}th, {albumRelease['year']}")
 
-        async with session.get(f"http://joshuadoes.com:8080/download/{UID}?pass=hFUhqM9n") as resp:
+            async with session.get(f"http://joshuadoes.com:8080/download/{UID}?pass=hFUhqM9n") as resp:
 
-            trackAudio =  await resp.content.read()
+                with open(f"{trackName}.ogg", "wb") as fd:
 
-            print(trackAudio)
+                    while True:
 
+                        chunk = await resp.content.read()
+
+                        if not chunk:
+
+                            break
+
+                        fd.write(chunk)
                     
     loop = asyncio.get_event_loop()
     
     loop.run_until_complete(main())
     
-    # os.system(f"curl http://joshuadoes.com:8080/download/{trackID}?pass=hFUhqM9n --output file.ogg")
-
 if option == "2":
 
     pass
