@@ -8,8 +8,7 @@ import mutagen
 
 
 print("""
-Welcome to the Natsuka downloader!
-This is where you are able to download high quality audio from Spotify.
+natsuka - wip spotify downloader and possibly music stream application
 
 Thanks to JoshuaDoes for making this possible."""
       )
@@ -18,8 +17,9 @@ option = input("""
 What would you like to do today?
 
 Option 1 - Download a single track
-Option 2 - Download Album
-Option 3 - Search for track/album
+Option 2 - Download Album          (Doesn't currently work)
+Option 3 - Download Playlist       (Doesn't currently work)
+Option 4 - Stream music            (Doesn't currently work)
 
 :"""
                )
