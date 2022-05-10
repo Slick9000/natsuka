@@ -5,7 +5,7 @@ JoshuaDoes (for the API endpoint)
 
 Skylar Bleed (for helping with several initial changes)
 
-## goals / idea list
+## goals
 add album art to tracks.
 
 add functionality to download multiple songs, in a manner somewhat like this:
