@@ -1,6 +1,10 @@
 ## natsuka
 a single file application giving you the ability to download music from spotify with id3 data
 
+### credits
+JoshuaDoes (for the API endpoint)
+Skylar Bleed (for helping with several initial changes)
+
 ### goals / idea list
 add album art to tracks.
 
