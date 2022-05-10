@@ -8,6 +8,4 @@ add functionality to download multiple songs in async, by separating each link b
 
 add the ability to download albums and playlists in async
 
-add the ability to stream music (this option will most likely have skip and rewind functions, but will most likely not have the ability to shuffle or seek to a position in the song.)
-
 these goals may change in the future but are the current goals, in descending order in terms of priority.
