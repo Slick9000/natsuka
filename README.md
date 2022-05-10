@@ -84,3 +84,5 @@ Press enter to continue.
 add album art to tracks.
 
 add the ability to download albums and playlists
+
+add the ability to search for a song and download it
