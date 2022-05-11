@@ -30,7 +30,7 @@ Song Downloaded!
 Metadata Applied!
 
 
-Press enter to continue.
+Press enter to exit.
 ```
 
 **2: multiple song download support**
@@ -76,7 +76,7 @@ Metadata Applied!
 
 Download time: 0:00:10.344000
 
-Press enter to continue.
+Press enter to exit.
 
 ```
 
