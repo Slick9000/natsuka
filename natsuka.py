@@ -52,7 +52,7 @@ Option 5 - Exit
         
             pass
         
-        await main()
+        exit()
 
     if option == "2":
 
@@ -66,7 +66,7 @@ Option 5 - Exit
         
             pass
         
-        await main()
+        exit()
 
     if option == "3":
 
@@ -144,8 +144,6 @@ async def singleTrackProcess():
 
                 albumRelease = trackData['album']['date']
 
-                comment = f"{trackData['album']['label']}."
-
                 print(f"Track Name: {trackName}")
 
                 print(f"Album Name: {trackAlbum}")
@@ -186,21 +184,20 @@ async def singleTrackProcess():
                             
                         meta['artist'] = artistName
 
-                        meta['comment'] = comment
-
                         meta['year'] = str(albumRelease['year'])
 
                         try:
 
                             meta.save()
 
+                            meta.close()
+
                         #due to a bug in mutagen, an error always occurs here
                         #although the data writes to the file just fine. mutagen pls fix
                         except:
 
-                            print("Metadata Applied!")
+                            print("Metadata Applied!\n\n")
 
-                            await session.close()
 
 async def multiTrackProcess():
 
@@ -210,7 +207,7 @@ async def multiTrackProcess():
 
     while UID != "START":
 
-        UID = input(f"Enter songs (Current number of songs: {len(songList)}\n"
+        UID = input(f"Enter songs (Current number of songs: {len(songList)})\n"
                     "Type 'START' to begin download.\n: "
                     )
 
@@ -242,7 +239,7 @@ async def multiTrackProcess():
 
     start_time = time.monotonic()
 
-    print(f"Loading {len(songList)} songs...\n\n")
+    print(f"Loading {len(songList)} songs...\n")
 
     for i in songList:
 
@@ -261,8 +258,6 @@ async def multiTrackProcess():
                     artistName = trackData['album']['artist'][0]['name']
 
                     albumRelease = trackData['album']['date']
-
-                    comment = f"{trackData['album']['label']}."
 
                     print(f"Track Name: {trackName}")
 
@@ -304,26 +299,27 @@ async def multiTrackProcess():
                             
                             meta['artist'] = artistName
 
-                            meta['comment'] = comment
-
                             meta['year'] = str(albumRelease['year'])
-    
+                            
                             try:
 
                                 meta.save()
+
+                                meta.close()
 
                             #due to a bug in mutagen, an error always occurs here
                             #although the data writes to the file just fine. mutagen pls fix
                             except:
 
                                 print("Metadata Applied!\n\n")
-
-                                await session.close()
         
     end_time = time.monotonic()
 
     print(f"Download time: {timedelta(seconds=end_time - start_time)}\n")
 
+
+
 if __name__ == "__main__":
 
     asyncio.run(main())
+    
