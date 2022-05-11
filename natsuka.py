@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import aiohttp
 import asyncio
 import calendar
@@ -80,7 +82,7 @@ Option 5 - Exit
         
             pass
         
-        await main()
+        exit()
 
     if option == "4":
 
@@ -94,7 +96,7 @@ Option 5 - Exit
         
             pass
         
-        await main()
+        exit()
 
     if option == "5":
 
@@ -322,4 +324,3 @@ async def multiTrackProcess():
 if __name__ == "__main__":
 
     asyncio.run(main())
-    
