@@ -46,7 +46,7 @@ Option 5 - Exit
 
         try:
         
-            input("Press enter to continue.\n")
+            input("Press enter to exit.\n")
         
         except SyntaxError:
         
@@ -60,7 +60,7 @@ Option 5 - Exit
 
         try:
         
-            input("Press enter to continue.\n")
+            input("Press enter to exit.\n")
         
         except SyntaxError:
         
@@ -74,7 +74,7 @@ Option 5 - Exit
 
         try:
         
-            input("Press enter to continue.\n")
+            input("Press enter to exit.\n")
         
         except SyntaxError:
         
@@ -88,7 +88,7 @@ Option 5 - Exit
 
         try:
         
-            input("Press enter to continue.\n")
+            input("Press enter to exit.\n")
         
         except SyntaxError:
         
