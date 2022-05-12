@@ -50,13 +50,13 @@ Option 6 - Exit
 
         try:
         
-            input("Press enter to exit.\n")
+            input("Press enter to continue.\n")
         
         except SyntaxError:
         
             pass
         
-        exit()
+        await main()
 
     if option == "2":
 
@@ -64,13 +64,13 @@ Option 6 - Exit
 
         try:
         
-            input("Press enter to exit.\n")
+            input("Press enter to continue.\n")
         
         except SyntaxError:
         
             pass
         
-        exit()
+        await main()
 
     if option == "3":
 
@@ -84,7 +84,7 @@ Option 6 - Exit
         
             pass
         
-        exit()
+        await main()
 
     if option == "4":
 
@@ -92,13 +92,13 @@ Option 6 - Exit
 
         try:
         
-            input("Press enter to exit.\n")
+            input("Press enter to continue.\n")
         
         except SyntaxError:
         
             pass
         
-        exit()
+        await main()
 
     if option == "5":
 
@@ -106,13 +106,13 @@ Option 6 - Exit
 
         try:
         
-            input("Press enter to exit.\n")
+            input("Press enter to continue.\n")
         
         except SyntaxError:
         
             pass
         
-        exit()
+        await main()
 
     if option == "6":
 
@@ -201,7 +201,7 @@ async def singleTrackProcess():
                             
                     meta['artist'] = artistName
 
-                    meta['year'] = str(albumRelease['year'])
+                    meta['year'] = str(albumRelease['year']) 
 
                     try:
 
@@ -489,6 +489,14 @@ async def songSearch():
 
         results = await resp.json()
 
+        if len(results['object']) == 1:
+
+            print("No results for query. Try being more specific with your search!")
+
+            await session.close()
+
+            return
+
         searchData = results['object']['streams']
 
         songURIList = []
@@ -518,8 +526,6 @@ async def songSearch():
             print(f"Song creator: {songCreator}")
 
             print(f"Song Album: {songAlbum}")
-
-            print(f"Song Album URI: {songAlbumURI}\n")
 
 
     chosenSong = input("Select a song (1-5)\n: ")
