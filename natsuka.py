@@ -10,7 +10,7 @@ import time
 
 
 async def main():
-    print("natsuka - wip spotify downloader\n"
+    print("natsuka - spotify downloader\n"
           "Thanks to JoshuaDoes for making this possible."
           )
 
