@@ -319,6 +319,141 @@ async def multiTrackProcess():
 
     print(f"Download time: {timedelta(seconds=end_time - start_time)}\n")
 
+    
+async def albumProcess():
+
+    UID = input("Enter the album's URL\n: ")
+
+    while len(re.findall(r'(https?://[^\s]+)', UID)) == 0:
+
+        print("Invalid URL!")
+
+        UID = input("Enter the albums's URL\n: ")
+
+    query = "?"
+    
+    if query in UID:
+        
+        UID = UID.split(query)
+
+        group = UID[0].split("/")
+
+        UID = group[len(group) - 1]
+        
+    else:
+
+        group = UID.split("/")
+
+        UID = group[len(group) - 1]
+
+    print(UID)
+
+    async with aiohttp.ClientSession() as session:
+
+        async with session.get(f"https://music.joshuadoes.com/album/spotify:album:{UID}?pass=pleasesparemyendpoints&stream&quality=2") as albumData:
+
+            album = await albumData.json()
+
+            allTracks = album['disc']
+
+            trackList = []
+            
+            trackUIDS = []
+
+            for i in allTracks:
+
+                trackList += (i['track'])
+
+            for i in range(len(trackList)):
+
+                GID = trackList[i]['gid']
+
+                async with session.get(f"https://music.joshuadoes.com/util/gid2id/?gid={GID}") as trackData:
+
+                    trackID = await trackData.json()
+
+                    trackUIDS.append(trackID['id'])
+
+
+    start_time = time.monotonic()
+
+    print(f"Loading {len(trackUIDS)} songs...\n")
+
+    for i in trackUIDS:
+
+        async with aiohttp.ClientSession() as session:
+
+            async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as trackJSON:
+
+                    trackData = await trackJSON.json()
+                    
+                    trackName = trackData['name']
+
+                    trackAlbum = trackData['album']['name']
+
+                    trackNumber = trackData['number']
+
+                    artistName = trackData['album']['artist'][0]['name']
+
+                    albumRelease = trackData['album']['date']
+
+                    print(f"Track Name: {trackName}")
+
+                    print(f"Album Name: {trackAlbum}")
+
+                    print(f"Artist Name: {artistName}")
+
+                    print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}")
+
+            async with session.get(f"https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as audioData:
+
+                    fileName = re.sub('[\/:*?"<>|]', '', trackName)
+
+                    with open(f"{fileName}.ogg", "wb") as fd:
+
+                        while True:
+
+                            chunk = await audioData.content.read()
+
+                            if not chunk:
+
+                                break
+
+                            fd.write(chunk)
+
+                            print("Song Downloaded!")
+
+                            meta = mutagen.File(fd.name)
+
+                            if meta.tags is None:
+
+                                meta.tags = mutagen.id3.ID3()
+
+                            meta['title'] = trackName
+                            
+                            meta['album'] = trackAlbum
+                            
+                            meta['tracknumber'] = str(trackNumber)
+                            
+                            meta['artist'] = artistName
+
+                            meta['year'] = str(albumRelease['year'])
+    
+                            try:
+
+                                meta.save()
+
+                                meta.close()
+
+                            #due to a bug in mutagen, an error always occurs here
+                            #although the data writes to the file just fine. mutagen pls fix
+                            except:
+
+                                print("Metadata Applied!\n\n")
+        
+    end_time = time.monotonic()
+
+    print(f"Download time: {timedelta(seconds=end_time - start_time)}\n")
 
 
 if __name__ == "__main__":
