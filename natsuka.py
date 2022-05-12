@@ -346,8 +346,6 @@ async def albumProcess():
 
         UID = group[len(group) - 1]
 
-    print(UID)
-
     async with aiohttp.ClientSession() as session:
 
         async with session.get(f"https://music.joshuadoes.com/album/spotify:album:{UID}?pass=pleasesparemyendpoints&stream&quality=2") as albumData:
