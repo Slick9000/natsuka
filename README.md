@@ -8,7 +8,7 @@ Skylar Bleed (for helping with several initial changes)
 ## current features:
 **1: single song download support**
 ```
-natsuka - wip spotify downloader
+natsuka - spotify downloader
 Thanks to JoshuaDoes for making this possible.
 
 What would you like to do today?
@@ -38,7 +38,7 @@ Press enter to continue.
 
 **2: multiple song download support**
 ```
-natsuka - wip spotify downloader
+natsuka - spotify downloader
 Thanks to JoshuaDoes for making this possible.
 
 What would you like to do today?
@@ -88,7 +88,7 @@ Press enter to continue.
 
 **3: album download support** (**NOTE: can download multi disc albums**)
 ```
-natsuka - wip spotify downloader
+natsuka - spotify downloader
 Thanks to JoshuaDoes for making this possible.
 
 What would you like to do today?
@@ -159,7 +159,7 @@ Press enter to continue.
 **5: downloading song/album by search query**
 #### option 1: download song by query
 ```
-natsuka - wip spotify downloader
+natsuka - spotify downloader
 Thanks to JoshuaDoes for making this possible.
 
 What would you like to do today?
@@ -226,7 +226,7 @@ Press enter to continue.
 
 #### option 2: download album by query
 ```
-natsuka - wip spotify downloader
+natsuka - spotify downloader
 Thanks to JoshuaDoes for making this possible.
 
 What would you like to do today?
@@ -416,7 +416,7 @@ Press enter to continue.
 
 **note: the more specific your search query is, the better the chance of finding the song**
 ```
-natsuka - wip spotify downloader
+natsuka - spotify downloader
 Thanks to JoshuaDoes for making this possible.
 
 What would you like to do today?
