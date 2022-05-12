@@ -80,7 +80,7 @@ Press enter to exit.
 
 ```
 
-**3: album download support**
+**3: album download support** (**NOTE: can download multi disc albums**)
 ```
 natsuka - wip spotify downloader
 Thanks to JoshuaDoes for making this possible.
