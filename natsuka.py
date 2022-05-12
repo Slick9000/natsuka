@@ -17,11 +17,11 @@ async def main():
     option = input("""
 What would you like to do today?
 
-Option 1 - Download a single track
-Option 2 - Download multiple tracks
-Option 3 - Download Album
-Option 4 - Download Playlist           (Doesn't currently work)
-Option 5 - Search for Song/Album By Name
+Option 1 - Download a single track by URL
+Option 2 - Download multiple tracks by URL
+Option 3 - Download Album by URL
+Option 4 - Download Playlist by URL        (Doesn't currently work)
+Option 5 - Search for Song/Album by Name
 Option 6 - Exit
 
 : """
@@ -34,11 +34,11 @@ Option 6 - Exit
         option = input("""
 What would you like to do today?
 
-Option 1 - Download a single track
-Option 2 - Download multiple tracks
-Option 3 - Download Album
-Option 4 - Download Playlist           (Doesn't currently work)
-Option 5 - Search for Song/Album By Name
+Option 1 - Download a single track by URL
+Option 2 - Download multiple tracks by URL
+Option 3 - Download Album by URL
+Option 4 - Download Playlist by URL        (Doesn't currently work)
+Option 5 - Search for Song/Album by Name
 Option 6 - Exit
 
 : """
@@ -121,7 +121,13 @@ Option 6 - Exit
     
 async def singleTrackProcess():
 
-    URI = input("Enter the track's URL\n: ")
+    URI = input("Enter the track's URL\n\n"
+                "Type 'RETURN' to return to main menu\n: "
+                )
+
+    if URI == "RETURN":
+
+        return
 
     while len(re.findall(r'(https?://[^\s]+)', URI)) == 0:
 
@@ -201,7 +207,7 @@ async def singleTrackProcess():
                             
                     meta['artist'] = artistName
 
-                    meta['year'] = str(albumRelease['year']) 
+                    meta['year'] = str(albumRelease['year'])
 
                     try:
 
@@ -227,8 +233,13 @@ async def multiTrackProcess():
     while URI != "START":
 
         URI = input(f"Enter songs (Current number of songs: {len(songList)})\n"
-                    "Type 'START' to begin download.\n: "
+                    "Type 'START' to begin download.\n\n"
+                    "Type 'RETURN' to return to main menu\n: "
                     )
+
+        if URI == "RETURN":
+
+            return
 
         while len(re.findall(r'(https?://[^\s]+)', URI)) == 0 and URI != "START":
 
@@ -341,7 +352,13 @@ async def multiTrackProcess():
 
 async def albumProcess():
 
-    URI = input("Enter the album's URL\n: ")
+    URI = input("Enter the album's URL\n\n"
+                "Type 'RETURN' to return to main menu\n: "
+                )
+
+    if URI == "RETURN":
+
+        return
 
     while len(re.findall(r'(https?://[^\s]+)', URI)) == 0:
 
@@ -475,7 +492,13 @@ async def albumProcess():
 
 async def songSearch():
 
-    query = input("Input song name\n: ")
+    query = input("Input song name\n\n"
+                  "Type 'RETURN' to return to main menu\n: "
+                  )
+
+    if query == "RETURN":
+
+        return
 
     while query == "":
 
