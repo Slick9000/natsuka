@@ -519,7 +519,7 @@ async def songSearch():
 
             albumURIList.append(songAlbumURI)
 
-            print(f"Result number: {index+1}")
+            print(f"\nResult number: {index+1}")
 
             print(f"Song: {songName}")
 
