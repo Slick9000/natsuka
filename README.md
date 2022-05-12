@@ -96,7 +96,6 @@ Option 5 - Exit
 : 3
 Enter the album's URL
 : https://open.spotify.com/album/5k1geNqLd4yHzyg5L6XF2z?si=i18yaK1cTESTw1zg3uBoqA
-5k1geNqLd4yHzyg5L6XF2z
 Loading 5 songs...
 
 Track Name: HAZARD DUTY PAY!
