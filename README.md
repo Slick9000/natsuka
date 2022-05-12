@@ -18,7 +18,7 @@ Option 2 - Download multiple tracks
 Option 3 - Download Album
 Option 4 - Download Playlist           (Doesn't currently work)
 Option 5 - Search for Song/Album By Name
-Option 6 - Exit
+Option 6 - continue
 
 : 1
 Enter the track's URL
@@ -31,7 +31,7 @@ Song Downloaded!
 Metadata Applied!
 
 
-Press enter to exit.
+Press enter to continue.
 ```
 
 <br/>
@@ -48,7 +48,7 @@ Option 2 - Download multiple tracks
 Option 3 - Download Album
 Option 4 - Download Playlist           (Doesn't currently work)
 Option 5 - Search for Song/Album By Name
-Option 6 - Exit
+Option 6 - continue
 
 : 2
 Enter songs (Current number of songs: 0
@@ -80,7 +80,7 @@ Metadata Applied!
 
 Download time: 0:00:10.344000
 
-Press enter to exit.
+Press enter to continue.
 
 ```
 
@@ -98,7 +98,7 @@ Option 2 - Download multiple tracks
 Option 3 - Download Album
 Option 4 - Download Playlist           (Doesn't currently work)
 Option 5 - Search for Song/Album By Name
-Option 6 - Exit
+Option 6 - continue
 
 : 3
 Enter the album's URL
@@ -147,7 +147,7 @@ Metadata Applied!
 
 Download time: 0:00:25.859000
 
-Press enter to exit.
+Press enter to continue.
 ```
 
 <br/>
@@ -169,7 +169,7 @@ Option 2 - Download multiple tracks
 Option 3 - Download Album
 Option 4 - Download Playlist           (Doesn't currently work)
 Option 5 - Search for Song/Album By Name
-Option 6 - Exit
+Option 6 - continue
 
 : 5
 Input song name
@@ -219,7 +219,7 @@ Song Downloaded!
 Metadata Applied!
 
 
-Press enter to exit.
+Press enter to continue.
 ```
 
 <br/>
@@ -236,7 +236,7 @@ Option 2 - Download multiple tracks
 Option 3 - Download Album
 Option 4 - Download Playlist           (Doesn't currently work)
 Option 5 - Search for Song/Album By Name
-Option 6 - Exit
+Option 6 - continue
 
 : 5
 Input song name
@@ -409,7 +409,7 @@ Metadata Applied!
 
 Download time: 0:01:41.765000
 
-Press enter to exit.
+Press enter to continue.
 ```
 
 <br/>
@@ -426,7 +426,7 @@ Option 2 - Download multiple tracks
 Option 3 - Download Album
 Option 4 - Download Playlist           (Doesn't currently work)
 Option 5 - Search for Song/Album By Name
-Option 6 - Exit
+Option 6 - continue
 
 : 5
 Input song name
@@ -458,7 +458,7 @@ Song Downloaded!
 Metadata Applied!
 
 
-Press enter to exit.
+Press enter to continue.
 ```
 
 <br/>
