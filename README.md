@@ -1,5 +1,5 @@
 # natsuka
-a single file application giving you the ability to download music from spotify with id3 data
+a single file application giving you the ability to download music from spotify with id3 metadata (track title, track number, artist, album, release date)
 ## credits
 JoshuaDoes (for the API endpoint)
 
@@ -33,6 +33,8 @@ Metadata Applied!
 
 Press enter to exit.
 ```
+
+<br/>
 
 **2: multiple song download support**
 ```
@@ -81,6 +83,8 @@ Download time: 0:00:10.344000
 Press enter to exit.
 
 ```
+
+<br/>
 
 **3: album download support** (**NOTE: can download multi disc albums**)
 ```
@@ -145,6 +149,8 @@ Download time: 0:00:25.859000
 
 Press enter to exit.
 ```
+
+<br/>
 
 **4: playlist download support** (currently unimplemented but planned for the future)
 
@@ -215,6 +221,8 @@ Metadata Applied!
 
 Press enter to exit.
 ```
+
+<br/>
 
 #### option 2: download album by query
 ```
@@ -404,6 +412,8 @@ Download time: 0:01:41.765000
 Press enter to exit.
 ```
 
+<br/>
+
 **note: the more specific your search query is, the better the chance of finding the song**
 ```
 natsuka - wip spotify downloader
@@ -451,6 +461,7 @@ Metadata Applied!
 Press enter to exit.
 ```
 
+<br/>
 
 ## future goals
 add album art to tracks.
