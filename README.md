@@ -80,9 +80,71 @@ Press enter to exit.
 
 ```
 
+**3: album download support**
+```
+natsuka - wip spotify downloader
+Thanks to JoshuaDoes for making this possible.
+
+What would you like to do today?
+
+Option 1 - Download a single track
+Option 2 - Download multiple tracks
+Option 3 - Download Album
+Option 4 - Download Playlist           (Doesn't currently work)
+Option 5 - Exit
+
+: 3
+Enter the album's URL
+: https://open.spotify.com/album/5k1geNqLd4yHzyg5L6XF2z?si=i18yaK1cTESTw1zg3uBoqA
+5k1geNqLd4yHzyg5L6XF2z
+Loading 5 songs...
+
+Track Name: HAZARD DUTY PAY!
+Album Name: OFFLINE!
+Artist Name: JPEGMAFIA
+Album Release: February 24, 2022
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: DIKEMBE!
+Album Name: OFFLINE!
+Artist Name: JPEGMAFIA
+Album Release: February 24, 2022
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: GOD DON'T LIKE UGLY!
+Album Name: OFFLINE!
+Artist Name: JPEGMAFIA
+Album Release: February 24, 2022
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: UNTITLED
+Album Name: OFFLINE!
+Artist Name: JPEGMAFIA
+Album Release: February 24, 2022
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: 100 EMOJI!
+Album Name: OFFLINE!
+Artist Name: JPEGMAFIA
+Album Release: February 24, 2022
+Song Downloaded!
+Metadata Applied!
+
+
+Download time: 0:00:25.859000
+
+Press enter to exit.
+```
+
 ## future goals
 add album art to tracks.
 
-add the ability to download albums and playlists
-
-add the ability to search for a song and download it
+add the ability to search for a specific song and download it
