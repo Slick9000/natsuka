@@ -5,6 +5,13 @@ JoshuaDoes (for the API endpoint)
 
 Skylar Bleed (for helping with several initial changes)
 
+## requirements
+[python 3.x](https://www.python.org/downloads/)
+
+[aiohttp](https://pypi.org/project/aiohttp/)
+
+[mutagen](https://pypi.org/project/mutagen/)
+
 ## features:
 **1: single song download support**
 ```
@@ -506,3 +513,4 @@ Press enter to continue.
 
 ## future goals
 add album art to tracks.
+add script to automatically install missing required packages (aiohttp, mutagen)
