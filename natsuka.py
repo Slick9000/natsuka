@@ -20,7 +20,7 @@ What would you like to do today?
 Option 1 - Download a single track by URL
 Option 2 - Download multiple tracks by URL
 Option 3 - Download Album by URL
-Option 4 - Download Playlist by URL        (Doesn't currently work)
+Option 4 - Download Playlist by URL
 Option 5 - Search for Song/Album by Name
 Option 6 - Exit
 
@@ -37,7 +37,7 @@ What would you like to do today?
 Option 1 - Download a single track by URL
 Option 2 - Download multiple tracks by URL
 Option 3 - Download Album by URL
-Option 4 - Download Playlist by URL        (Doesn't currently work)
+Option 4 - Download Playlist by URL
 Option 5 - Search for Song/Album by Name
 Option 6 - Exit
 
@@ -88,7 +88,7 @@ Option 6 - Exit
 
     if option == "4":
 
-        print("Currently unimplemented.\n")
+        await playlistProcess()
 
         try:
         
@@ -408,12 +408,154 @@ async def albumProcess():
 
                 trackURIS.append(trackID['id'])
 
-
     start_time = time.monotonic()
 
     print(f"Loading {len(trackURIS)} songs...\n")
 
     for i in trackURIS:
+
+            async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as trackJSON:
+
+                    trackData = await trackJSON.json()
+                    
+                    trackName = trackData['name']
+
+                    trackAlbum = trackData['album']['name']
+
+                    trackNumber = trackData['number']
+
+                    artistName = trackData['album']['artist'][0]['name']
+
+                    albumRelease = trackData['album']['date']
+
+                    print(f"Track Name: {trackName}")
+
+                    print(f"Album Name: {trackAlbum}")
+
+                    print(f"Artist Name: {artistName}")
+
+                    print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}")
+
+            async with session.get(f"https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as audioData:
+
+                    fileName = re.sub('[\/:*?"<>|]', '', trackName)
+
+                    with open(f"{fileName}.ogg", "wb") as fd:
+
+                        while True:
+
+                            chunk = await audioData.content.read()
+
+                            if not chunk:
+
+                                break
+
+                            fd.write(chunk)
+
+                            print("Song Downloaded!")
+
+                            meta = mutagen.File(fd.name)
+
+                            if meta.tags is None:
+
+                                meta.tags = mutagen.id3.ID3()
+
+                            meta['title'] = trackName
+                            
+                            meta['album'] = trackAlbum
+                            
+                            meta['tracknumber'] = str(trackNumber)
+                            
+                            meta['artist'] = artistName
+
+                            meta['year'] = str(albumRelease['year'])
+    
+                            try:
+
+                                meta.save()
+
+                                meta.close()
+
+                            #due to a bug in mutagen, an error always occurs here
+                            #although the data writes to the file just fine. mutagen pls fix
+                            except:
+
+                                print("Metadata Applied!\n\n")
+        
+    end_time = time.monotonic()
+
+    print(f"Download time: {timedelta(seconds=end_time - start_time)}\n")
+
+    await session.close()
+
+
+async def playlistProcess():
+
+    userID = input("Input user ID\n\n"
+                   "Type 'RETURN' to return to main menu\n: "
+                   )
+
+    if userID == "RETURN":
+
+        return
+
+    while userID == "":
+
+        print("User ID cannot be empty!")
+
+        userID = input("Input user ID\n\n"
+                   "Type 'RETURN' to return to main menu\n: "
+                   )
+
+    playlistID = input("Input playlist ID\n: ")
+
+    while playlistID == "":
+
+        print("Playlist ID cannot be empty!")
+
+        playlistID = input("Input playlist ID\n: ")
+
+    session = aiohttp.ClientSession()
+
+    async with session.get(f"https://music.joshuadoes.com/playlist/spotify:user:{userID}:playlist:{playlistID}?pass=pleasesparemyendpoints&stream&quality=2") as playlistData:
+
+        playlist = await playlistData.json()
+
+        playlistName = playlist['attributes']['name']
+
+        if len(playlist['attributes']) == 2:
+
+            playlistDescription = playlist['attributes']['description']
+
+        else:
+
+            playlistDescription = None
+
+        playlistLength = playlist['length']
+
+        playlistData = []
+
+        playlistURIS = []
+
+        playlistSongs = playlist['contents']['items']
+
+        print(f"Playlist Name: {playlistName}")
+
+        print(f"Description: {playlistDescription}")
+
+        print(f"Playlist Length: {playlistLength} tracks")
+
+        for index, song in enumerate(playlistSongs):
+
+            playlistData.append(song)
+
+            playlistURIS.append(playlistData[index]['uri'].split(":")[2])
+
+    start_time = time.monotonic()
+
+    print(f"Loading {len(playlistURIS)} songs...\n")
+
+    for i in playlistURIS:
 
             async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as trackJSON:
 
