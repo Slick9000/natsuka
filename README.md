@@ -11,6 +11,8 @@ JoshuaDoes (for the API endpoint)
 
 Skylar Bleed (for helping with several initial changes)
 
+## [download](https://github.com/Slick9000/natsuka/releases/latest)
+
 ## requirements
 [python 3.x](https://www.python.org/downloads/)
 
