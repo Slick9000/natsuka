@@ -5,7 +5,7 @@ JoshuaDoes (for the API endpoint)
 
 Skylar Bleed (for helping with several initial changes)
 
-## current features:
+## features:
 **1: single song download support**
 ```
 natsuka - spotify downloader
@@ -16,9 +16,9 @@ What would you like to do today?
 Option 1 - Download a single track
 Option 2 - Download multiple tracks
 Option 3 - Download Album
-Option 4 - Download Playlist           (Doesn't currently work)
+Option 4 - Download Playlist by User ID and Playlist ID
 Option 5 - Search for Song/Album By Name
-Option 6 - continue
+Option 6 - Exit
 
 : 1
 Enter the track's URL
@@ -46,9 +46,9 @@ What would you like to do today?
 Option 1 - Download a single track
 Option 2 - Download multiple tracks
 Option 3 - Download Album
-Option 4 - Download Playlist           (Doesn't currently work)
+Option 4 - Download Playlist by User ID and Playlist ID
 Option 5 - Search for Song/Album By Name
-Option 6 - continue
+Option 6 - Exit
 
 : 2
 Enter songs (Current number of songs: 0
@@ -96,9 +96,9 @@ What would you like to do today?
 Option 1 - Download a single track
 Option 2 - Download multiple tracks
 Option 3 - Download Album
-Option 4 - Download Playlist           (Doesn't currently work)
+Option 4 - Download Playlist by User ID and Playlist ID
 Option 5 - Search for Song/Album By Name
-Option 6 - continue
+Option 6 - Exit
 
 : 3
 Enter the album's URL
@@ -152,7 +152,60 @@ Press enter to continue.
 
 <br/>
 
-**4: playlist download support** (currently unimplemented but planned for the future)
+**4: playlist download support**
+```
+natsuka - spotify downloader
+Thanks to JoshuaDoes for making this possible.
+
+What would you like to do today?
+
+Option 1 - Download a single track by URL
+Option 2 - Download multiple tracks by URL
+Option 3 - Download Album by URL
+Option 4 - Download Playlist by User ID and Playlist ID
+Option 5 - Search for Song/Album by Name
+Option 6 - Exit
+
+: 4
+Input user ID
+
+Type 'RETURN' to return to main menu
+: 1xcmyijwkhfsqb1v7pxmb4dlv
+Input playlist ID
+: 2ICOuHK1jqevr075NIN4Is
+Playlist Name: Short Sample Playlist
+Description: 
+Playlist Length: 3 tracks
+Loading 3 songs...
+
+Track Name: The Heart Part 5
+Album Name: The Heart Part 5
+Artist Name: Kendrick Lamar
+Album Release: May 8, 2022
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: Therapy Music (feat. Russ)
+Album Name: Therapy Music
+Artist Name: Logic
+Album Release: May 6, 2022
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: Mental [Feat. Saul Williams & Bridget Perez]
+Album Name: Melt My Eyez See Your Future
+Artist Name: Denzel Curry
+Album Release: March 25, 2022
+Song Downloaded!
+Metadata Applied!
+
+
+Download time: 0:00:23.297000
+
+Press enter to continue.
+```
 
 <br/>
 
@@ -167,9 +220,9 @@ What would you like to do today?
 Option 1 - Download a single track
 Option 2 - Download multiple tracks
 Option 3 - Download Album
-Option 4 - Download Playlist           (Doesn't currently work)
+Option 4 - Download Playlist by User ID and Playlist ID
 Option 5 - Search for Song/Album By Name
-Option 6 - continue
+Option 6 - Exit
 
 : 5
 Input song name
@@ -178,31 +231,26 @@ Result number: 1
 Song: 16
 Song creator: Highly Suspect
 Song Album: MCID
-Song Album URI: spotify:album:16ah4zHJlxx3wjRFg3nkSl
 
 Result number: 2
 Song: 16
 Song creator: Baby Keem
 Song Album: The Melodic Blue
-Song Album URI: spotify:album:3r46DPIQeBQbjvjjV5mXGg
 
 Result number: 3
 Song: Sixteen Tons
 Song creator: Tennessee Ernie Ford
 Song Album: Vintage Collections
-Song Album URI: spotify:album:5qWqMyXJ9uOCl6vEIVKqBD
 
 Result number: 4
 Song: 16 Lines
 Song creator: Lil Peep
 Song Album: Come Over When You're Sober, Pt. 2
-Song Album URI: spotify:album:52JymrguPgkmmwLaWIusst
 
 Result number: 5
 Song: Dos Mil 16
 Song creator: Bad Bunny
 Song Album: Un Verano Sin Ti
-Song Album URI: spotify:album:3RQQmkQEvNCY4prGKE6oc5
 
 Select a song (1-5)
 : 2
@@ -234,9 +282,9 @@ What would you like to do today?
 Option 1 - Download a single track
 Option 2 - Download multiple tracks
 Option 3 - Download Album
-Option 4 - Download Playlist           (Doesn't currently work)
+Option 4 - Download Playlist by User ID and Playlist ID
 Option 5 - Search for Song/Album By Name
-Option 6 - continue
+Option 6 - Exit
 
 : 5
 Input song name
@@ -245,31 +293,26 @@ Result number: 1
 Song: 16
 Song creator: Highly Suspect
 Song Album: MCID
-Song Album URI: spotify:album:16ah4zHJlxx3wjRFg3nkSl
 
 Result number: 2
 Song: 16
 Song creator: Baby Keem
 Song Album: The Melodic Blue
-Song Album URI: spotify:album:3r46DPIQeBQbjvjjV5mXGg
 
 Result number: 3
 Song: Sixteen Tons
 Song creator: Tennessee Ernie Ford
 Song Album: Vintage Collections
-Song Album URI: spotify:album:5qWqMyXJ9uOCl6vEIVKqBD
 
 Result number: 4
 Song: 16 Lines
 Song creator: Lil Peep
 Song Album: Come Over When You're Sober, Pt. 2
-Song Album URI: spotify:album:52JymrguPgkmmwLaWIusst
 
 Result number: 5
 Song: Dos Mil 16
 Song creator: Bad Bunny
 Song Album: Un Verano Sin Ti
-Song Album URI: spotify:album:3RQQmkQEvNCY4prGKE6oc5
 
 Select a song (1-5)
 : 2
@@ -424,9 +467,9 @@ What would you like to do today?
 Option 1 - Download a single track
 Option 2 - Download multiple tracks
 Option 3 - Download Album
-Option 4 - Download Playlist           (Doesn't currently work)
+Option 4 - Download Playlist by User ID and Playlist ID
 Option 5 - Search for Song/Album By Name
-Option 6 - continue
+Option 6 - Exit
 
 : 5
 Input song name
@@ -435,13 +478,11 @@ Result number: 1
 Song: 16
 Song creator: Baby Keem
 Song Album: The Melodic Blue
-Song Album URI: spotify:album:3r46DPIQeBQbjvjjV5mXGg
 
 Result number: 2
 Song: 16
 Song creator: Baby Keem
 Song Album: The Melodic Blue
-Song Album URI: spotify:album:7n23fjZTviIUnHyvZGQjni
 
 Select a song (1-5)
 : 1
@@ -465,5 +506,3 @@ Press enter to continue.
 
 ## future goals
 add album art to tracks.
-
-implement playlist downloading
