@@ -506,3 +506,4 @@ Press enter to continue.
 
 ## future goals
 add album art to tracks.
+finish error handling (e.g avoid crash on wrong url input)
