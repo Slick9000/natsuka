@@ -156,6 +156,16 @@ async def singleTrackProcess():
     async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{URI}?pass=pleasesparemyendpoints&stream&quality=2") as trackJSON:
 
             trackData = await trackJSON.json()
+
+            while len(trackData) == 0:
+
+                print("Wrong URL input!\n"
+                      "Returning to main menu...\n"
+                      )
+
+                await session.close()
+
+                return
                     
             trackName = trackData['name']
 
@@ -278,6 +288,16 @@ async def multiTrackProcess():
         async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as trackJSON:
 
                 trackData = await trackJSON.json()
+
+                while len(trackData) == 0:
+
+                    print("Wrong URL input!\n"
+                          "Returning to main menu...\n"
+                          )
+
+                    await session.close()
+
+                    return
                     
                 trackName = trackData['name']
 
@@ -387,6 +407,16 @@ async def albumProcess():
     async with session.get(f"https://music.joshuadoes.com/album/spotify:album:{URI}?pass=pleasesparemyendpoints&stream&quality=2") as albumData:
 
         album = await albumData.json()
+
+        while len(album) == 0:
+
+            print("Wrong URL input!\n"
+                  "Returning to main menu...\n"
+                  )
+
+            await session.close()
+
+            return
 
         allTracks = album['disc']
 
@@ -520,6 +550,16 @@ async def playlistProcess():
     async with session.get(f"https://music.joshuadoes.com/playlist/spotify:user:{userID}:playlist:{playlistID}?pass=pleasesparemyendpoints&stream&quality=2") as playlistData:
 
         playlist = await playlistData.json()
+
+        while len(playlist) == 0:
+
+            print("Incorrect User ID or Playlist ID!\n"
+                  "Returning to main menu...\n"
+                  )
+
+            await session.close()
+
+            return
 
         playlistName = playlist['attributes']['name']
 
@@ -656,7 +696,7 @@ async def songSearch():
 
         if len(results['object']) == 1:
 
-            print("No results for query. Try being more specific with your search!")
+            print("No results for query. Try being more specific with your search!\n")
 
             await session.close()
 
