@@ -31,7 +31,7 @@ What would you like to do today?
 Option 1 - Download a single track
 Option 2 - Download multiple tracks
 Option 3 - Download Album
-Option 4 - Download Playlist by User ID and Playlist ID
+Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album By Name
 Option 6 - Exit
 
@@ -61,7 +61,7 @@ What would you like to do today?
 Option 1 - Download a single track
 Option 2 - Download multiple tracks
 Option 3 - Download Album
-Option 4 - Download Playlist by User ID and Playlist ID
+Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album By Name
 Option 6 - Exit
 
@@ -111,7 +111,7 @@ What would you like to do today?
 Option 1 - Download a single track
 Option 2 - Download multiple tracks
 Option 3 - Download Album
-Option 4 - Download Playlist by User ID and Playlist ID
+Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album By Name
 Option 6 - Exit
 
@@ -186,25 +186,17 @@ Input user ID
 
 Type 'RETURN' to return to main menu
 : 1xcmyijwkhfsqb1v7pxmb4dlv
-Input playlist ID
-: 2ICOuHK1jqevr075NIN4Is
+Input the playlist's URL
+: https://open.spotify.com/playlist/1CMD2NjsEPSVAzrPugTSs8?si=1b6270f97cae490e
 Playlist Name: Short Sample Playlist
-Description: 
+Description: None
 Playlist Length: 3 tracks
 Loading 3 songs...
 
-Track Name: The Heart Part 5
-Album Name: The Heart Part 5
+Track Name: Mirror
+Album Name: Mr. Morale & The Big Steppers
 Artist Name: Kendrick Lamar
-Album Release: May 8, 2022
-Song Downloaded!
-Metadata Applied!
-
-
-Track Name: Therapy Music (feat. Russ)
-Album Name: Therapy Music
-Artist Name: Logic
-Album Release: May 6, 2022
+Album Release: May 13, 2022
 Song Downloaded!
 Metadata Applied!
 
@@ -217,7 +209,15 @@ Song Downloaded!
 Metadata Applied!
 
 
-Download time: 0:00:23.297000
+Track Name: Savior
+Album Name: Mr. Morale & The Big Steppers
+Artist Name: Kendrick Lamar
+Album Release: May 13, 2022
+Song Downloaded!
+Metadata Applied!
+
+
+Download time: 0:00:20.266000
 
 Press enter to continue.
 ```
@@ -235,7 +235,7 @@ What would you like to do today?
 Option 1 - Download a single track
 Option 2 - Download multiple tracks
 Option 3 - Download Album
-Option 4 - Download Playlist by User ID and Playlist ID
+Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album By Name
 Option 6 - Exit
 
@@ -297,7 +297,7 @@ What would you like to do today?
 Option 1 - Download a single track
 Option 2 - Download multiple tracks
 Option 3 - Download Album
-Option 4 - Download Playlist by User ID and Playlist ID
+Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album By Name
 Option 6 - Exit
 
@@ -482,7 +482,7 @@ What would you like to do today?
 Option 1 - Download a single track
 Option 2 - Download multiple tracks
 Option 3 - Download Album
-Option 4 - Download Playlist by User ID and Playlist ID
+Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album By Name
 Option 6 - Exit
 
