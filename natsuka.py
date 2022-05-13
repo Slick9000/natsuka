@@ -157,7 +157,7 @@ async def singleTrackProcess():
 
             trackData = await trackJSON.json()
 
-            while len(trackData) == 0:
+            if len(trackData) == 0:
 
                 print("Wrong URL input!\n"
                       "Returning to main menu...\n"
@@ -289,7 +289,7 @@ async def multiTrackProcess():
 
                 trackData = await trackJSON.json()
 
-                while len(trackData) == 0:
+                if len(trackData) == 0:
 
                     print("Wrong URL input!\n"
                           "Returning to main menu...\n"
@@ -408,7 +408,7 @@ async def albumProcess():
 
         album = await albumData.json()
 
-        while len(album) == 0:
+        if len(album) == 0:
 
             print("Wrong URL input!\n"
                   "Returning to main menu...\n"
@@ -551,7 +551,7 @@ async def playlistProcess():
 
         playlist = await playlistData.json()
 
-        while len(playlist) == 0:
+        if len(playlist) == 0:
 
             print("Incorrect User ID or Playlist ID!\n"
                   "Returning to main menu...\n"
