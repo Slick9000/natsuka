@@ -519,4 +519,5 @@ Press enter to continue.
 
 ## future goals
 add album art to tracks.
+
 add script to automatically install missing required packages (aiohttp, mutagen)
