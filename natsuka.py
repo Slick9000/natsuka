@@ -20,7 +20,7 @@ What would you like to do today?
 Option 1 - Download a single track by URL
 Option 2 - Download multiple tracks by URL
 Option 3 - Download Album by URL
-Option 4 - Download Playlist by User ID and Playlist ID
+Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album by Name
 Option 6 - Exit
 
@@ -37,7 +37,7 @@ What would you like to do today?
 Option 1 - Download a single track by URL
 Option 2 - Download multiple tracks by URL
 Option 3 - Download Album by URL
-Option 4 - Download Playlist by User ID and Playlist ID
+Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album by Name
 Option 6 - Exit
 
@@ -537,13 +537,29 @@ async def playlistProcess():
                    "Type 'RETURN' to return to main menu\n: "
                    )
 
-    playlistID = input("Input playlist ID\n: ")
+    playlistID = input("Input the playlist's URL\n: ")
 
     while playlistID == "":
 
-        print("Playlist ID cannot be empty!")
+        print("Playlist URL cannot be empty!")
 
-        playlistID = input("Input playlist ID\n: ")
+        playlistID = input("Input the playlist's URL\n: ")
+
+    query = "?"
+    
+    if query in playlistID:
+        
+        playlistID = playlistID.split(query)
+
+        group = playlistID[0].split("/")
+
+        playlistID = group[len(group) - 1]
+        
+    else:
+
+        group = playlistID.split("/")
+
+        playlistID = group[len(group) - 1]
 
     session = aiohttp.ClientSession()
 
