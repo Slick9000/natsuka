@@ -20,7 +20,7 @@ What would you like to do today?
 Option 1 - Download a single track by URL
 Option 2 - Download multiple tracks by URL
 Option 3 - Download Album by URL
-Option 4 - Download Playlist by URL
+Option 4 - Download Playlist by User ID and Playlist ID
 Option 5 - Search for Song/Album by Name
 Option 6 - Exit
 
@@ -37,7 +37,7 @@ What would you like to do today?
 Option 1 - Download a single track by URL
 Option 2 - Download multiple tracks by URL
 Option 3 - Download Album by URL
-Option 4 - Download Playlist by URL
+Option 4 - Download Playlist by User ID and Playlist ID
 Option 5 - Search for Song/Album by Name
 Option 6 - Exit
 
