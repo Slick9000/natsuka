@@ -526,3 +526,4 @@ Press enter to continue.
 
 • downloading to other audio formats (aac, mp3, flac, for example) rather than only the option of the default ogg vorbis provided by spotify
 
+• **known issue: sometimes when trying to make a http request to spotify api an error will be thrown saying "server disconnected".** add a retry for accessing their api with a delay
