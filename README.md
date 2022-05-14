@@ -28,11 +28,11 @@ Thanks to JoshuaDoes for making this possible.
 
 What would you like to do today?
 
-Option 1 - Download a single track
-Option 2 - Download multiple tracks
-Option 3 - Download Album
+Option 1 - Download a single track by URL
+Option 2 - Download multiple tracks by URL
+Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
-Option 5 - Search for Song/Album By Name
+Option 5 - Search for Song/Album by Name
 Option 6 - Exit
 
 : 1
@@ -58,11 +58,11 @@ Thanks to JoshuaDoes for making this possible.
 
 What would you like to do today?
 
-Option 1 - Download a single track
-Option 2 - Download multiple tracks
-Option 3 - Download Album
+Option 1 - Download a single track by URL
+Option 2 - Download multiple tracks by URL
+Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
-Option 5 - Search for Song/Album By Name
+Option 5 - Search for Song/Album by Name
 Option 6 - Exit
 
 : 2
@@ -108,11 +108,11 @@ Thanks to JoshuaDoes for making this possible.
 
 What would you like to do today?
 
-Option 1 - Download a single track
-Option 2 - Download multiple tracks
-Option 3 - Download Album
+Option 1 - Download a single track by URL
+Option 2 - Download multiple tracks by URL
+Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
-Option 5 - Search for Song/Album By Name
+Option 5 - Search for Song/Album by Name
 Option 6 - Exit
 
 : 3
@@ -177,7 +177,7 @@ What would you like to do today?
 Option 1 - Download a single track by URL
 Option 2 - Download multiple tracks by URL
 Option 3 - Download Album by URL
-Option 4 - Download Playlist by User ID and Playlist ID
+Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album by Name
 Option 6 - Exit
 
@@ -232,11 +232,11 @@ Thanks to JoshuaDoes for making this possible.
 
 What would you like to do today?
 
-Option 1 - Download a single track
-Option 2 - Download multiple tracks
-Option 3 - Download Album
+Option 1 - Download a single track by URL
+Option 2 - Download multiple tracks by URL
+Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
-Option 5 - Search for Song/Album By Name
+Option 5 - Search for Song/Album by Name
 Option 6 - Exit
 
 : 5
@@ -294,11 +294,11 @@ Thanks to JoshuaDoes for making this possible.
 
 What would you like to do today?
 
-Option 1 - Download a single track
-Option 2 - Download multiple tracks
-Option 3 - Download Album
+Option 1 - Download a single track by URL
+Option 2 - Download multiple tracks by URL
+Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
-Option 5 - Search for Song/Album By Name
+Option 5 - Search for Song/Album by Name
 Option 6 - Exit
 
 : 5
@@ -479,11 +479,11 @@ Thanks to JoshuaDoes for making this possible.
 
 What would you like to do today?
 
-Option 1 - Download a single track
-Option 2 - Download multiple tracks
-Option 3 - Download Album
+Option 1 - Download a single track by URL
+Option 2 - Download multiple tracks by URL
+Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
-Option 5 - Search for Song/Album By Name
+Option 5 - Search for Song/Album by Name
 Option 6 - Exit
 
 : 5
@@ -520,6 +520,9 @@ Press enter to continue.
 <br/>
 
 ## future goals
-add album art to tracks.
+• add album art to tracks.
 
-add script to automatically install missing required packages (aiohttp, mutagen)
+• add script to automatically install missing required packages (aiohttp, mutagen etc)
+
+• downloading to other audio formats (aac, mp3, flac, for example) rather than only the option of the default ogg vorbis provided by spotify
+
