@@ -520,7 +520,7 @@ Press enter to continue.
 <br/>
 
 ## future goals
-• add album art to tracks
+• add album art to tracks (requires rewrite of downloading, to use ffmpeg to download rather than writing raw data stream to file)
 
 • add script to automatically install missing required packages (aiohttp, mutagen etc)
 
@@ -530,9 +530,9 @@ Press enter to continue.
 
 ## known issues: 
 
-• very rarely when trying to make a http request to spotify api an error will be thrown: `aiohttp.client_exceptions.ServerDisconnectedError: Server disconnected.`
+• very rarely when trying to make a http request to spotify api an error will be thrown: `aiohttp.client_exceptions.ServerDisconnectedError: Server disconnected.` and it will crash. for the time being, simply restarting the program will fix this issue.
 
-add a retry for this http session with a delay, to allow the download to attempt to continue
+in the future, except this error and add a retry for this http session with a delay, to allow the download to attempt to continue
 
 • sometimes `ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host` will be thrown as an error when the user is using natsuka for a prolonged period of time (for example, if the user took 3 minutes to input a url)
 
