@@ -1186,6 +1186,8 @@ Type 'RETURN' to return to main menu
                            )
 
         if downloadOption == "RETURN":
+            
+            await session.close()
 
             return
 
@@ -1365,7 +1367,7 @@ Would you like to proceed downloading {artistName}'s top songs?
 
             validChoice = list(range(1, len(albumURIList)+1))
                                
-            while not int(chosenAlbum) in validChoice and chosenAlbum != "RETURN":
+            while chosenAlbum != "RETURN" and not int(chosenAlbum) in validChoice:
 
                 print("Invalid option!")
 
