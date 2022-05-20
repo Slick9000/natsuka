@@ -14,15 +14,19 @@ Skylar Bleed (for helping with several initial changes)
 ## [download](https://github.com/Slick9000/natsuka/releases/latest)
 
 ## requirements
-[python 3.x](https://www.python.org/downloads/)
-
 [aiohttp](https://pypi.org/project/aiohttp/)
 
-[mutagen](https://pypi.org/project/mutagen/)
+[eyed3](https://pypi.org/project/eyed3/)
+
+(natsuka automatically installs these packages if not installed)
+
+[ffmpeg](https://ffmpeg.org), in PATH
 
 ## features:
 **1: single song download support**
 ```
+[*] Checking for required dependencies...
+
 natsuka - spotify downloader
 Thanks to JoshuaDoes for making this possible.
 
@@ -34,7 +38,8 @@ Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album by Name
 Option 6 - Search for Artist
-Option 7 - Exit
+Option 7 - Change Audio Bitrate (Selected: 320kbps)
+Option 8 - Exit
 
 : 1
 Enter the track's URL
@@ -54,6 +59,8 @@ Press enter to continue.
 
 **2: multiple song download support**
 ```
+[*] Checking for required dependencies...
+
 natsuka - spotify downloader
 Thanks to JoshuaDoes for making this possible.
 
@@ -65,7 +72,8 @@ Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album by Name
 Option 6 - Search for Artist
-Option 7 - Exit
+Option 7 - Change Audio Bitrate (Selected: 320kbps)
+Option 8 - Exit
 
 : 2
 Enter songs (Current number of songs: 0
@@ -105,6 +113,8 @@ Press enter to continue.
 
 **3: album download support** (**NOTE: can download multi disc albums**)
 ```
+[*] Checking for required dependencies...
+
 natsuka - spotify downloader
 Thanks to JoshuaDoes for making this possible.
 
@@ -116,7 +126,8 @@ Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album by Name
 Option 6 - Search for Artist
-Option 7 - Exit
+Option 7 - Change Audio Bitrate (Selected: 320kbps)
+Option 8 - Exit
 
 : 3
 Enter the album's URL
@@ -172,6 +183,8 @@ Press enter to continue.
 
 **4: playlist download support**
 ```
+[*] Checking for required dependencies...
+
 natsuka - spotify downloader
 Thanks to JoshuaDoes for making this possible.
 
@@ -183,7 +196,8 @@ Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album by Name
 Option 6 - Search for Artist
-Option 7 - Exit
+Option 7 - Change Audio Bitrate (Selected: 320kbps)
+Option 8 - Exit
 
 : 4
 Input user ID
@@ -231,6 +245,8 @@ Press enter to continue.
 **5: downloading song/album by search query**
 #### option 1: download song
 ```
+[*] Checking for required dependencies...
+
 natsuka - spotify downloader
 Thanks to JoshuaDoes for making this possible.
 
@@ -242,7 +258,8 @@ Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album by Name
 Option 6 - Search for Artist
-Option 7 - Exit
+Option 7 - Change Audio Bitrate (Selected: 320kbps)
+Option 8 - Exit
 
 : 5
 Input song name
@@ -294,6 +311,8 @@ Press enter to continue.
 
 #### option 2: download album
 ```
+[*] Checking for required dependencies...
+
 natsuka - spotify downloader
 Thanks to JoshuaDoes for making this possible.
 
@@ -305,7 +324,8 @@ Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album by Name
 Option 6 - Search for Artist
-Option 7 - Exit
+Option 7 - Change Audio Bitrate (Selected: 320kbps)
+Option 8 - Exit
 
 : 5
 Input song name
@@ -480,6 +500,8 @@ Press enter to continue.
 
 **note: the more specific your search query is, the better the chance of finding the song**
 ```
+[*] Checking for required dependencies...
+
 natsuka - spotify downloader
 Thanks to JoshuaDoes for making this possible.
 
@@ -491,7 +513,8 @@ Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album by Name
 Option 6 - Search for Artist
-Option 7 - Exit
+Option 7 - Change Audio Bitrate (Selected: 320kbps)
+Option 8 - Exit
 
 : 5
 Input song name
@@ -526,9 +549,11 @@ Press enter to continue.
 
 <br/>
 
-**5: downloading song/album by search query**
+**6: downloading artist songs by search query**
 #### option 1: download artist's top songs
 ```
+[*] Checking for required dependencies...
+
 natsuka - spotify downloader
 Thanks to JoshuaDoes for making this possible.
 
@@ -540,7 +565,8 @@ Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album by Name
 Option 6 - Search for Artist
-Option 7 - Exit
+Option 7 - Change Audio Bitrate (Selected: 320kbps)
+Option 8 - Exit
 
 : 6
 Input artist name
@@ -679,6 +705,8 @@ Press enter to continue.
 
 #### option 2: download artist's album (from list of albums in discography)
 ```
+[*] Checking for required dependencies...
+
 natsuka - spotify downloader
 Thanks to JoshuaDoes for making this possible.
 
@@ -690,7 +718,8 @@ Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album by Name
 Option 6 - Search for Artist
-Option 7 - Exit
+Option 7 - Change Audio Bitrate (Selected: 320kbps)
+Option 8 - Exit
 
 : 6
 Input artist name
@@ -867,8 +896,51 @@ Press enter to continue.
 
 <br/>
 
-## future goals
-• add album art to tracks (requires rewrite of downloading, to use ffmpeg to download and convert file to mp3 rather than writing raw data stream to file)
+**7: change bitrate of download**
+
+```
+[*] Checking for required dependencies...
+
+natsuka - spotify downloader
+Thanks to JoshuaDoes for making this possible.
+
+What would you like to do today?
+
+Option 1 - Download a single track by URL
+Option 2 - Download multiple tracks by URL
+Option 3 - Download Album by URL
+Option 4 - Download Playlist by User ID and Playlist URL
+Option 5 - Search for Song/Album by Name
+Option 6 - Search for Artist
+Option 7 - Change Audio Bitrate (Selected: 320kbps)
+Option 8 - Exit
+
+: 7
+
+Select new bitrate for download:
+1 - 96kbps
+2 - 128kbps
+3 - 192kbps
+4 - 320kbps (Highest Spotify Bitrate)
+: 1
+Press enter to continue.
+
+natsuka - spotify downloader
+Thanks to JoshuaDoes for making this possible.
+
+What would you like to do today?
+
+Option 1 - Download a single track by URL
+Option 2 - Download multiple tracks by URL
+Option 3 - Download Album by URL
+Option 4 - Download Playlist by User ID and Playlist URL
+Option 5 - Search for Song/Album by Name
+Option 6 - Search for Artist
+Option 7 - Change Audio Bitrate (Selected: 96kbps)
+Option 8 - Exit
+
+: 
+```
 
 <br/>
 
