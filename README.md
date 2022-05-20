@@ -870,8 +870,6 @@ Press enter to continue.
 ## future goals
 • add album art to tracks (requires rewrite of downloading, to use ffmpeg to download and convert file to mp3 rather than writing raw data stream to file)
 
-• add script to automatically install missing required packages (aiohttp and mutagen at the moment)
-
 <br/>
 
 ## known issues: 
