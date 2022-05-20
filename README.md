@@ -33,7 +33,8 @@ Option 2 - Download multiple tracks by URL
 Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album by Name
-Option 6 - Exit
+Option 6 - Search for Artist
+Option 7 - Exit
 
 : 1
 Enter the track's URL
@@ -63,7 +64,8 @@ Option 2 - Download multiple tracks by URL
 Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album by Name
-Option 6 - Exit
+Option 6 - Search for Artist
+Option 7 - Exit
 
 : 2
 Enter songs (Current number of songs: 0
@@ -113,7 +115,8 @@ Option 2 - Download multiple tracks by URL
 Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album by Name
-Option 6 - Exit
+Option 6 - Search for Artist
+Option 7 - Exit
 
 : 3
 Enter the album's URL
@@ -179,7 +182,8 @@ Option 2 - Download multiple tracks by URL
 Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album by Name
-Option 6 - Exit
+Option 6 - Search for Artist
+Option 7 - Exit
 
 : 4
 Input user ID
@@ -237,7 +241,8 @@ Option 2 - Download multiple tracks by URL
 Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album by Name
-Option 6 - Exit
+Option 6 - Search for Artist
+Option 7 - Exit
 
 : 5
 Input song name
@@ -299,7 +304,8 @@ Option 2 - Download multiple tracks by URL
 Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album by Name
-Option 6 - Exit
+Option 6 - Search for Artist
+Option 7 - Exit
 
 : 5
 Input song name
@@ -484,7 +490,8 @@ Option 2 - Download multiple tracks by URL
 Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album by Name
-Option 6 - Exit
+Option 6 - Search for Artist
+Option 7 - Exit
 
 : 5
 Input song name
@@ -519,12 +526,18 @@ Press enter to continue.
 
 <br/>
 
+**5: downloading song/album by search query**
+
+currently undocumented. will be eventually documented, however
+
+<br/>
+
 ## future goals
-• add album art to tracks (requires rewrite of downloading, to use ffmpeg to download rather than writing raw data stream to file)
+• add album art to tracks (requires rewrite of downloading, to use ffmpeg to download and convert file to mp3 rather than writing raw data stream to file)
 
-• add script to automatically install missing required packages (aiohttp, mutagen etc)
+• add script to automatically install missing required packages (aiohttp, mutagen, future use of ffmpeg, etc)
 
-• downloading to other audio formats (aac, mp3, flac, for example) rather than only the option of the default ogg vorbis provided by spotify
+• update readme, to include new example for artistSearch function
 
 <br/>
 
@@ -532,7 +545,7 @@ Press enter to continue.
 
 • very rarely when trying to make a http request to spotify api an error will be thrown: `aiohttp.client_exceptions.ServerDisconnectedError: Server disconnected.` and it will crash. for the time being, simply restarting the program will fix this issue.
 
-in the future, except this error and add a retry for this http session with a delay, to allow the download to attempt to continue
+in the future, except this error and add a retry for this http session with a delay, to allow the download to attempt to continue. a maximum of 3 retries will be made before ceasing download.
 
 • sometimes `ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host` will be thrown as an error when the user is using natsuka for a prolonged period of time (for example, if the user took 3 minutes to input a url)
 
