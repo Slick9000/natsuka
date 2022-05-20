@@ -28,7 +28,7 @@ Option 7 - Exit
 : """
                )
 
-    while not any(x in option for x in ["1", "2", "3", "4", "5", "6"]) or not int:
+    while not any(x in option for x in ["1", "2", "3", "4", "5", "6", "7"]) or not int:
 
         print("Invalid option!")
 
