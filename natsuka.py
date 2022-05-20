@@ -22,7 +22,8 @@ Option 2 - Download multiple tracks by URL
 Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album by Name
-Option 6 - Exit
+Option 6 - Search for Artist
+Option 7 - Exit
 
 : """
                )
@@ -38,8 +39,8 @@ Option 1 - Download a single track by URL
 Option 2 - Download multiple tracks by URL
 Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
-Option 5 - Search for Song/Album by Name
-Option 6 - Exit
+Option 6 - Search for Artist
+Option 7 - Exit
 
 : """
                )
@@ -78,7 +79,7 @@ Option 6 - Exit
 
         try:
         
-            input("Press enter to exit.\n")
+            input("Press enter to continue.\n")
         
         except SyntaxError:
         
@@ -116,6 +117,20 @@ Option 6 - Exit
 
     if option == "6":
 
+        await artistSearch()
+
+        try:
+        
+            input("Press enter to continue.\n")
+        
+        except SyntaxError:
+        
+            pass
+        
+        await main()
+
+    if option == "7":
+
         exit()
 
     
@@ -125,15 +140,17 @@ async def singleTrackProcess():
                 "Type 'RETURN' to return to main menu\n: "
                 )
 
+    while len(re.findall(r'(https?://[^\s]+)', URI)) == 0 and URI != "RETURN":
+
+        print("Invalid URL!\n")
+
+        URI = input("Enter the track's URL\n\n"
+                    "Type 'RETURN' to return to main menu\n: "
+                )
+
     if URI == "RETURN":
 
         return
-
-    while len(re.findall(r'(https?://[^\s]+)', URI)) == 0:
-
-        print("Invalid URL!")
-
-        URI = input("Enter the track's URL\n: ")
 
     query = "?"
     
@@ -247,15 +264,18 @@ async def multiTrackProcess():
                     "Type 'RETURN' to return to main menu\n: "
                     )
 
+        while len(re.findall(r'(https?://[^\s]+)', URI)) == 0 and URI != "START" and URI != "RETURN":
+
+            print("Invalid URL!\n")
+
+            URI = input(f"Enter songs (Current number of songs: {len(songList)})\n"
+                        "Type 'START' to begin download.\n\n"
+                        "Type 'RETURN' to return to main menu\n: "
+                        )
+        
         if URI == "RETURN":
 
             return
-
-        while len(re.findall(r'(https?://[^\s]+)', URI)) == 0 and URI != "START":
-
-            print("Invalid URL!")
-
-            URI = input("Enter the track's URL\n:")
 
         query = "?"
     
@@ -376,15 +396,17 @@ async def albumProcess():
                 "Type 'RETURN' to return to main menu\n: "
                 )
 
+    while len(re.findall(r'(https?://[^\s]+)', URI)) == 0 and URI != "RETURN":
+
+        print("Invalid URL!\n")
+
+        URI = input("Enter the album's URL\n\n"
+                    "Type 'RETURN' to return to main menu\n: "
+                )
+
     if URI == "RETURN":
 
         return
-
-    while len(re.findall(r'(https?://[^\s]+)', URI)) == 0:
-
-        print("Invalid URL!")
-
-        URI = input("Enter the albums's URL\n: ")
 
     query = "?"
     
@@ -525,25 +547,33 @@ async def playlistProcess():
                    "Type 'RETURN' to return to main menu\n: "
                    )
 
-    if userID == "RETURN":
-
-        return
-
     while userID == "":
 
-        print("User ID cannot be empty!")
+        print("User ID cannot be empty!\n")
 
         userID = input("Input user ID\n\n"
                    "Type 'RETURN' to return to main menu\n: "
                    )
 
-    playlistID = input("Input the playlist's URL\n: ")
+    if userID == "RETURN":
+
+        return
+
+    playlistID = input("Input the playlist's URL\n\n"
+                       "Type 'RETURN' to return to main menu\n: "
+                       )
 
     while playlistID == "":
 
-        print("Playlist URL cannot be empty!")
+        print("Playlist URL cannot be empty!\n")
 
-        playlistID = input("Input the playlist's URL\n: ")
+        playlistID = input("Input the playlist's URL\n\n"
+                           "Type 'RETURN' to return to main menu\n: "
+                           )
+
+        if playlistID == "RETURN":
+
+            return
 
     query = "?"
     
@@ -710,15 +740,17 @@ async def songSearch():
 
         results = await resp.json()
 
-        if len(results['object']) == 1:
+        try:
+
+            searchData = results['object']['streams']
+
+        except KeyError:
 
             print("No results for query. Try being more specific with your search!\n")
 
             await session.close()
 
             return
-
-        searchData = results['object']['streams']
 
         songURIList = []
 
@@ -749,37 +781,77 @@ async def songSearch():
             print(f"Song Album: {songAlbum}")
 
 
-    chosenSong = input("Select a song (1-5)\n: ")
+    chosenSong = input("Select a song (1-5)\n\n"
+                       "Type 'RETURN' to return to main menu\n: "
+                       )
 
-    while not any(x in chosenSong for x in ["1", "2", "3", "4", "5"]):
+    while not any(x in chosenSong for x in ["1", "2", "3", "4", "5", "RETURN"]):
 
         print("Invalid option!")
 
-        chosenSong = input("Select a song (1-5)\n: ")
+        chosenSong = input("Select a song (1-5)\n\n"
+                           "Type 'RETURN' to return to main menu\n: "
+                           )
+
+    if chosenSong == "RETURN":
+
+        await session.close()
+
+        return
+
+    try:
+
+        selectedSong = songURIList[int(chosenSong)-1].split(":")[2]
+
+    except IndexError:
+
+            print("Song out of range! (No Result for selection)")
+
+            await session.close()
+
+            return
 
     downloadOption = input("""
 Option 1 - Download Song
 Option 2 - Download Song's Album
-"""
+
+Type 'RETURN' to return to main menu
+: """
                            )
 
-    while not any(x in downloadOption for x in ["1", "2"]):
+    while not any(x in downloadOption for x in ["1", "2", "RETURN"]):
 
         print("Invalid option!")
 
         downloadOption = input("""
 Option 1 - Download Song
 Option 2 - Download Song's Album
-"""
+
+Type 'RETURN' to return to main menu
+: """
                            )
 
-    if downloadOption == "1":
+    if downloadOption == "RETURN":
 
-        selectedSong = songURIList[int(chosenSong)-1].split(":")[2]
+        await session.close()
+
+        return
+
+    if downloadOption == "1":
 
         async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{selectedSong}?pass=pleasesparemyendpoints&stream&quality=2") as trackJSON:
 
             trackData = await trackJSON.json()
+
+            if len(trackData) == 0:
+
+                print("Wrong URL input!\n"
+                      "Returning to main menu...\n"
+                      )
+
+                await session.close()
+
+                return
                     
             trackName = trackData['name']
 
@@ -800,7 +872,7 @@ Option 2 - Download Song's Album
             print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}")
 
         async with session.get(f"https://music.joshuadoes.com/v1/stream/spotify:track:{selectedSong}?pass=pleasesparemyendpoints&stream&quality=2") as audioData:
-            
+
             fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
             with open(f"{fileName}.ogg", "wb") as fd:
@@ -845,11 +917,21 @@ Option 2 - Download Song's Album
 
                         print("Metadata Applied!\n\n")
 
-                        await session.close()
+        await session.close()
 
     if downloadOption == "2":
 
-        selectedAlbum = albumURIList[int(chosenSong)-1].split(":")[2]
+        try:
+
+            selectedAlbum = albumURIList[int(chosenSong)-1].split(":")[2]
+
+        except IndexError:
+
+            print("Album out of range! (No Result for selection)")
+
+            await session.close()
+
+            return
         
         async with session.get(f"https://music.joshuadoes.com/album/spotify:album:{selectedAlbum}?pass=pleasesparemyendpoints&stream&quality=2") as albumData:
 
@@ -863,7 +945,7 @@ Option 2 - Download Song's Album
 
             for i in allTracks:
 
-                trackList += (i['track'])
+                trackList += i['track']
 
             for i in range(len(trackList)):
 
@@ -880,9 +962,30 @@ Option 2 - Download Song's Album
 
         print(f"Loading {len(trackURIS)} songs...\n")
 
-        for i in trackURIS:
+        cont = input(f"""
+Would you like to proceed downloading this album?
+1 - Yes
+2 - No
+: """
+                             )
 
-            async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as trackJSON:
+        while not any(x in downloadOption for x in ["1", "2"]):
+
+            print("Invalid option!")
+
+            cont = input(f"""
+Would you like to proceed downloading this album?
+1 - Yes
+2 - No
+: """
+                             )
+
+    
+        if cont == "1":
+
+            for i in trackURIS:
+
+                async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as trackJSON:
 
                     trackData = await trackJSON.json()
                     
@@ -902,9 +1005,9 @@ Option 2 - Download Song's Album
 
                     print(f"Artist Name: {artistName}")
 
-                    print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}")
+                    print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}\n")
 
-            async with session.get(f"https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as audioData:
+                async with session.get(f"https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as audioData:
 
                     fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
@@ -949,12 +1052,484 @@ Option 2 - Download Song's Album
                             except:
 
                                 print("Metadata Applied!\n\n")
+
+            end_time = time.monotonic()
+
+            print(f"Download time: {timedelta(seconds=end_time - start_time)}\n")
+
+            await session.close()
+
+        if cont == "2":
+
+            await session.close()
+
+            return
+
+
+async def artistSearch():
+
+    query = input("Input artist name\n\n"
+                  "Type 'RETURN' to return to main menu\n: "
+                  )
+
+    if query == "RETURN":
+
+        return
+
+    while query == "":
+
+        print("Search is empty!")
+
+        query = input("Input artist name\n: ")
+
+    session = aiohttp.ClientSession()
+
+    async with session.get(f"https://music.joshuadoes.com/v1/search:{query}") as resp:
+
+        results = await resp.json()
+
+        if len(results['object']) == 1:
+
+            print("No results for query. Try being more specific with your search!\n")
+
+            await session.close()
+
+            return
+
+        try:
+
+            artists = results['object']['creators']
+
+        except KeyError:
+
+            print("No artists found. Make sure you have not misspelt their name!\n")
+
+            await session.close()
+
+            return
+
+        artistURIList = []
+
+        for index in range(len(artists)):
+
+            artist = artists[index]['object']['name']
+
+            artistURI = artists[index]['object']['uri']
+
+            artistURIList.append(artistURI)
+
+            print(f"\nResult number: {index+1}")
+            
+            print(f"Artist: {artist}")
+
+        chosenArtist = input("Select a artist (1-5)\n\n"
+                             "Type 'RETURN' to return to main menu\n: "
+                             )
+
+        while not any(x in chosenArtist for x in ["1", "2", "3", "4", "5", "RETURN"]):
+
+            print("Invalid option!")
+
+            chosenArtist = input("Select an artist (1-5)\n\n"
+                               "Type 'RETURN' to return to main menu\n: "
+                               )
+
+        if chosenArtist == "RETURN":
+
+            await session.close()
+
+            return
+
+        try:
+
+            selectedArtist = artistURIList[int(chosenArtist)-1].split(":")[2]
+
+        except IndexError:
+
+            print("Artist out of range! (No Result for selection)")
+
+            await session.close()
+
+            return
+
+        async with session.get(f"https://music.joshuadoes.com/artist/{selectedArtist}?pass=pleasesparemyendpoints&stream&quality=2") as artistJSON:
+
+            artistData = await artistJSON.json()
+
+            #LATER PARSE THE RESPONSE DATA, TO BE ABLE TO DISPLAY THE ARTIST'S TOP SONGS (1)
+            #AS WELL AS ALL OF THE ARTIST'S ALBUMS (2)
+            #THEN USE THE CODE FROM THE MULTITRACK DOWNLOAD TO MAKE THE DOWNLOAD TOP SONGS OPTION (3)
+            #AND THEN USE THE CODE FROM THE ALBUM DOWNLOAD TO DOWNLOAD THE ALBUM SELECTED FROM THE LIST
+
         
-        end_time = time.monotonic()
 
-        print(f"Download time: {timedelta(seconds=end_time - start_time)}\n")
+        downloadOption = input("""
+Option 1 - Download Artist's Top Songs
+Option 2 - Download Album from Artist
 
-        await session.close()
+
+Type 'RETURN' to return to main menu
+: """
+                           )
+
+        while not any(x in downloadOption for x in ["1", "2", "3", "4", "RETURN"]):
+
+            print("Invalid option!")
+
+            downloadOption = input("""
+Option 1 - Download Artist's Top Songs
+Option 2 - Download Album from Artist
+
+
+Type 'RETURN' to return to main menu
+: """
+                           )
+
+        if downloadOption == "RETURN":
+
+            return
+
+        if downloadOption == "1":
+
+            topSongs = artistData['top_track']
+
+            trackList = []
+
+            trackURIS = []
+
+            for i in topSongs:
+
+                trackList += i['track']
+
+            for i in range(len(trackList)):
+
+                GID = trackList[i]['gid']
+
+                async with session.get(f"https://music.joshuadoes.com/util/gid2id/?gid={GID}") as trackData:
+
+                    trackID = await trackData.json()
+
+                    trackURIS.append(trackID['id'])
+
+            print(f"Loading {len(trackURIS)} songs...\n")
+
+            cont = input(f"""
+Would you like to proceed downloading {artists[int(chosenArtist)-1]['object']['name']}'s top songs?
+1 - Yes
+2 - No
+: """
+                             )
+
+            while not any(x in downloadOption for x in ["1", "2"]):
+
+                print("Invalid option!")
+
+                cont = input(f"""
+Would you like to proceed downloading {artistName}'s top songs?
+1 - Yes
+2 - No
+: """
+                             )
+
+            if cont == "1":
+
+                start_time = time.monotonic()
+
+                for i in trackURIS:
+
+                    async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as trackJSON:
+
+                        trackData = await trackJSON.json()
+                    
+                        trackName = trackData['name']
+
+                        trackAlbum = trackData['album']['name']
+
+                        trackNumber = trackData['number']
+
+                        artistName = trackData['album']['artist'][0]['name']
+
+                        albumRelease = trackData['album']['date']
+
+                        print(f"Track Name: {trackName}")
+
+                        print(f"Album Name: {trackAlbum}")
+
+                        print(f"Artist Name: {artistName}")
+
+                        print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}\n")
+
+                    async with session.get(f"https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as audioData:
+
+                        fileName = re.sub('[\/:*?"<>|]', '', trackName)
+
+                        with open(f"{fileName}.ogg", "wb") as fd:
+
+                            while True:
+
+                                chunk = await audioData.content.read()
+
+                                if not chunk:
+
+                                    break
+
+                                fd.write(chunk)
+
+                                print("Song Downloaded!")
+
+                                meta = mutagen.File(fd.name)
+
+                                if meta.tags is None:
+
+                                    meta.tags = mutagen.id3.ID3()
+
+                                meta['title'] = trackName
+                            
+                                meta['album'] = trackAlbum
+                            
+                                meta['tracknumber'] = str(trackNumber)
+                            
+                                meta['artist'] = artistName
+
+                                meta['year'] = str(albumRelease['year'])
+    
+                                try:
+
+                                    meta.save()
+
+                                    meta.close()
+
+                                #due to a bug in mutagen, an error always occurs here
+                                #although the data writes to the file just fine. mutagen pls fix
+                                except:
+
+                                    print("Metadata Applied!\n\n")
+
+                end_time = time.monotonic()
+
+                print(f"Download time: {timedelta(seconds=end_time - start_time)}\n")
+
+                await session.close()
+
+            if cont == "2":
+
+                await session.close()
+
+                return
+
+        if downloadOption == "2":
+
+            artistAlbums = artistData['album_group']
+
+            albumList = []
+
+            albumURIList = []
+
+            for album in artistAlbums:
+
+                albumList += album['album']
+
+            for i in range(len(albumList)):
+
+                GID = albumList[i]['gid']
+
+                async with session.get(f"https://music.joshuadoes.com/util/gid2id/?gid={GID}") as albumData:
+
+                    albumID = await albumData.json()
+
+                    albumURIList.append(albumID['id'])
+
+            start_time = time.monotonic()
+
+            print(f"Loading {len(albumURIList)} albums...\n")
+
+            for index, i in enumerate(albumURIList):
+
+                async with session.get(f"https://music.joshuadoes.com/album/spotify:album:{i}?pass=pleasesparemyendpoints&stream&quality=2") as albumsJSON:
+
+                    albumsData = await albumsJSON.json()
+
+                    print(f"\nResult number: {index+1}")
+
+                    albumName = albumsData['name']
+
+                    albumRelease = albumsData['date']
+
+                    print(f"Album Name: {albumName}")
+
+                    print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}\n")
+            
+            chosenAlbum = input(f"Select an album (1-{len(albumURIList)})\n\n"
+                                 "Type 'RETURN' to return to main menu\n: "
+                                )
+
+            validChoice = list(range(1, len(albumURIList)+1))
+                               
+            while not int(chosenAlbum) in validChoice and chosenAlbum != "RETURN":
+
+                print("Invalid option!")
+
+                chosenAlbum = input(f"Select an album (1-{len(albumURIList)})\n\n"
+                                     "Type 'RETURN' to return to main menu\n: "
+                                    )
+
+            if chosenAlbum == "RETURN":
+
+                await session.close()
+
+                return
+
+            try:
+
+                selectedAlbum = albumURIList[int(chosenAlbum)-1]
+
+            except IndexError:
+
+                print("Album out of range! (No Result for selection)")
+
+                await session.close()
+
+                return
+
+            async with session.get(f"https://music.joshuadoes.com/album/spotify:album:{selectedAlbum}?pass=pleasesparemyendpoints&stream&quality=2") as albumData:
+
+                album = await albumData.json()
+
+                if len(album) == 0:
+
+                    print("Wrong URL input!\n"
+                          "Returning to main menu...\n"
+                          )
+
+                    await session.close()
+
+                    return
+
+                allTracks = album['disc']
+
+                trackList = []
+            
+                trackURIS = []
+
+                for i in allTracks:
+
+                    trackList += (i['track'])
+
+                for i in range(len(trackList)):
+
+                    GID = trackList[i]['gid']
+
+                    async with session.get(f"https://music.joshuadoes.com/util/gid2id/?gid={GID}") as trackData:
+
+                        trackID = await trackData.json()
+
+                        trackURIS.append(trackID['id'])
+
+            start_time = time.monotonic()
+
+            print(f"Loading {len(trackURIS)} songs...\n")
+
+            cont = input(f"""
+Would you like to proceed downloading this album?
+1 - Yes
+2 - No
+: """
+                             )
+
+            while not any(x in downloadOption for x in ["1", "2"]):
+
+                print("Invalid option!")
+
+                cont = input(f"""
+Would you like to proceed downloading this album?
+1 - Yes
+2 - No
+: """
+                             )
+
+            if cont == "1":
+
+                for i in trackURIS:
+
+                    async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as trackJSON:
+
+                        trackData = await trackJSON.json()
+                    
+                        trackName = trackData['name']
+
+                        trackAlbum = trackData['album']['name']
+
+                        trackNumber = trackData['number']
+
+                        artistName = trackData['album']['artist'][0]['name']
+
+                        albumRelease = trackData['album']['date']
+
+                        print(f"Track Name: {trackName}")
+
+                        print(f"Album Name: {trackAlbum}")
+
+                        print(f"Artist Name: {artistName}")
+
+                        print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}")
+
+                    async with session.get(f"https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as audioData:
+
+                        fileName = re.sub('[\/:*?"<>|]', '', trackName)
+
+                        with open(f"{fileName}.ogg", "wb") as fd:
+
+                            while True:
+
+                                chunk = await audioData.content.read()
+
+                                if not chunk:
+
+                                    break
+
+                                fd.write(chunk)
+
+                                print("Song Downloaded!")
+
+                                meta = mutagen.File(fd.name)
+
+                                if meta.tags is None:
+
+                                    meta.tags = mutagen.id3.ID3()
+
+                                meta['title'] = trackName
+                            
+                                meta['album'] = trackAlbum
+                            
+                                meta['tracknumber'] = str(trackNumber)
+                            
+                                meta['artist'] = artistName
+
+                                meta['year'] = str(albumRelease['year'])
+    
+                                try:
+
+                                    meta.save()
+
+                                    meta.close()
+
+                                #due to a bug in mutagen, an error always occurs here
+                                #although the data writes to the file just fine. mutagen pls fix
+                                except:
+
+                                    print("Metadata Applied!\n\n")
+        
+                end_time = time.monotonic()
+
+                print(f"Download time: {timedelta(seconds=end_time - start_time)}\n")
+
+                await session.close()
+
+            if cont == "2":
+
+                await session.close()
+
+                return
 
 
 if __name__ == "__main__":
