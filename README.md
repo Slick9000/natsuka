@@ -229,7 +229,7 @@ Press enter to continue.
 <br/>
 
 **5: downloading song/album by search query**
-#### option 1: download song by query
+#### option 1: download song
 ```
 natsuka - spotify downloader
 Thanks to JoshuaDoes for making this possible.
@@ -292,7 +292,7 @@ Press enter to continue.
 
 <br/>
 
-#### option 2: download album by query
+#### option 2: download album
 ```
 natsuka - spotify downloader
 Thanks to JoshuaDoes for making this possible.
@@ -527,26 +527,355 @@ Press enter to continue.
 <br/>
 
 **5: downloading song/album by search query**
+#### option 1: download artist's top songs
+```
+natsuka - spotify downloader
+Thanks to JoshuaDoes for making this possible.
 
-currently undocumented. will be eventually documented, however
+What would you like to do today?
+
+Option 1 - Download a single track by URL
+Option 2 - Download multiple tracks by URL
+Option 3 - Download Album by URL
+Option 4 - Download Playlist by User ID and Playlist URL
+Option 5 - Search for Song/Album by Name
+Option 6 - Search for Artist
+Option 7 - Exit
+
+: 6
+Input artist name
+
+Type 'RETURN' to return to main menu
+: Saba
+
+Result number: 1
+Artist: Saba
+
+Result number: 2
+Artist: Sabaton
+
+Result number: 3
+Artist: Saba
+
+Result number: 4
+Artist: Saba
+
+Result number: 5
+Artist: Powerwolf
+Select a artist (1-5)
+
+Type 'RETURN' to return to main menu
+: 1
+
+Option 1 - Download Artist's Top Songs
+Option 2 - Download Album from Artist
+
+
+Type 'RETURN' to return to main menu
+: 1
+Loading 10 songs...
+
+
+Would you like to proceed downloading Saba's top songs?
+1 - Yes
+2 - No
+: 1
+Track Name: Photosynthesis
+Album Name: Bucket List Project
+Artist Name: Saba
+Album Release: October 27, 2016
+
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: Ziplock
+Album Name: Ziplock / Rich Don't Stop
+Artist Name: Saba
+Album Release: March 18, 2021
+
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: Still (feat. 6LACK and Smino)
+Album Name: Few Good Things
+Artist Name: Saba
+Album Release: February 4, 2022
+
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: an Interlude Called “Circus” (feat. Eryn Allen Kane)
+Album Name: Few Good Things
+Artist Name: Saba
+Album Release: February 4, 2022
+
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: LIFE
+Album Name: CARE FOR ME
+Artist Name: Saba
+Album Release: April 5, 2018
+
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: BUSY / SIRENS
+Album Name: CARE FOR ME
+Artist Name: Saba
+Album Release: April 5, 2018
+
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: One Way or Every N***a With a Budget
+Album Name: Few Good Things
+Artist Name: Saba
+Album Release: February 4, 2022
+
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: CALLIGRAPHY
+Album Name: CARE FOR ME
+Artist Name: Saba
+Album Release: April 5, 2018
+
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: Come My Way (feat. Krayzie Bone)
+Album Name: Few Good Things
+Artist Name: Saba
+Album Release: February 4, 2022
+
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: Lock It Up
+Album Name: Minus The Bullshit Life's Great
+Artist Name: Nascent
+Album Release: May 14, 2021
+
+Song Downloaded!
+Metadata Applied!
+
+
+Download time: 0:01:07
+
+Press enter to continue.
+```
+
+<br/>
+
+#### option 2: download artist's album (from list of albums in discography)
+```
+natsuka - spotify downloader
+Thanks to JoshuaDoes for making this possible.
+
+What would you like to do today?
+
+Option 1 - Download a single track by URL
+Option 2 - Download multiple tracks by URL
+Option 3 - Download Album by URL
+Option 4 - Download Playlist by User ID and Playlist URL
+Option 5 - Search for Song/Album by Name
+Option 6 - Search for Artist
+Option 7 - Exit
+
+: 6
+Input artist name
+
+Type 'RETURN' to return to main menu
+: Tyler the Creator
+
+Result number: 1
+Artist: Tyler, The Creator
+Select a artist (1-5)
+
+Type 'RETURN' to return to main menu
+: 1
+
+Option 1 - Download Artist's Top Songs
+Option 2 - Download Album from Artist
+
+
+Type 'RETURN' to return to main menu
+: 2
+Loading 8 albums...
+
+
+Result number: 1
+Album Name: CALL ME IF YOU GET LOST
+Album Release: June 25, 2021
+
+
+Result number: 2
+Album Name: IGOR
+Album Release: May 17, 2019
+
+
+Result number: 3
+Album Name: Flower Boy
+Album Release: July 21, 2017
+
+
+Result number: 4
+Album Name: Cherry Bomb
+Album Release: April 13, 2015
+
+
+Result number: 5
+Album Name: Cherry Bomb + Instrumentals
+Album Release: April 13, 2015
+
+
+Result number: 6
+Album Name: Wolf
+Album Release: April 1, 2013
+
+
+Result number: 7
+Album Name: Goblin
+Album Release: May 9, 2011
+
+
+Result number: 8
+Album Name: Goblin
+Album Release: May 9, 2011
+
+Select an album (1-8)
+
+Type 'RETURN' to return to main menu
+: 2
+Loading 12 songs...
+
+
+Would you like to proceed downloading this album?
+1 - Yes
+2 - No
+: 1
+Track Name: IGOR'S THEME
+Album Name: IGOR
+Artist Name: Tyler, The Creator
+Album Release: May 17, 2019
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: EARFQUAKE
+Album Name: IGOR
+Artist Name: Tyler, The Creator
+Album Release: May 17, 2019
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: I THINK
+Album Name: IGOR
+Artist Name: Tyler, The Creator
+Album Release: May 17, 2019
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: EXACTLY WHAT YOU RUN FROM YOU END UP CHASING
+Album Name: IGOR
+Artist Name: Tyler, The Creator
+Album Release: May 17, 2019
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: RUNNING OUT OF TIME
+Album Name: IGOR
+Artist Name: Tyler, The Creator
+Album Release: May 17, 2019
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: NEW MAGIC WAND
+Album Name: IGOR
+Artist Name: Tyler, The Creator
+Album Release: May 17, 2019
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: A BOY IS A GUN*
+Album Name: IGOR
+Artist Name: Tyler, The Creator
+Album Release: May 17, 2019
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: PUPPET
+Album Name: IGOR
+Artist Name: Tyler, The Creator
+Album Release: May 17, 2019
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: WHAT'S GOOD
+Album Name: IGOR
+Artist Name: Tyler, The Creator
+Album Release: May 17, 2019
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: GONE, GONE / THANK YOU
+Album Name: IGOR
+Artist Name: Tyler, The Creator
+Album Release: May 17, 2019
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: I DON'T LOVE YOU ANYMORE
+Album Name: IGOR
+Artist Name: Tyler, The Creator
+Album Release: May 17, 2019
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: ARE WE STILL FRIENDS?
+Album Name: IGOR
+Artist Name: Tyler, The Creator
+Album Release: May 17, 2019
+Song Downloaded!
+Metadata Applied!
+
+
+Download time: 0:01:22.093000
+
+Press enter to continue.
+```
 
 <br/>
 
 ## future goals
 • add album art to tracks (requires rewrite of downloading, to use ffmpeg to download and convert file to mp3 rather than writing raw data stream to file)
 
-• add script to automatically install missing required packages (aiohttp, mutagen, future use of ffmpeg, etc)
-
-• update readme, to include new example for artistSearch function
+• add script to automatically install missing required packages (aiohttp and mutagen at the moment)
 
 <br/>
 
 ## known issues: 
 
-• very rarely when trying to make a http request to spotify api an error will be thrown: `aiohttp.client_exceptions.ServerDisconnectedError: Server disconnected.` and it will crash. for the time being, simply restarting the program will fix this issue.
+• very rarely when trying to make a http request to spotify api an error will be thrown: `aiohttp.client_exceptions.ServerDisconnectedError: Server disconnected.` and it will crash. for the time being, simply restarting the program will fix this issue. in the future, except this error and add a retry for this http session with a delay, to allow the download to attempt to continue. a maximum of 3 retries will be made before ceasing download.
 
-in the future, except this error and add a retry for this http session with a delay, to allow the download to attempt to continue. a maximum of 3 retries will be made before ceasing download.
-
-• sometimes `ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host` will be thrown as an error when the user is using natsuka for a prolonged period of time (for example, if the user took 3 minutes to input a url)
-
-this does not stop the functionality of natsuka at all and in fact is a good thing, as aiohttp restored the closed session, however i still plan to except this error in the future to avoid it from being output at all
+• sometimes `ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host` will be thrown as an error when the user is using natsuka for a prolonged period of time (for example, if the user took 3 minutes to input a url). this does not stop the functionality of natsuka at all and in fact is a good thing, as aiohttp restored the closed session, however i still plan to except this error in the future to avoid it from being output at all
