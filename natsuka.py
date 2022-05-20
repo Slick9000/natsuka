@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import asyncio
 import calendar
 from datetime import timedelta
@@ -7,6 +5,8 @@ import os
 import re
 import sys
 import time
+
+bitrate = "320"
 
 python = 'python3'
 
@@ -21,7 +21,10 @@ while True:
     try:
         
         import aiohttp
-        import mutagen
+        import eyed3
+        from eyed3.id3.frames import ImageFrame
+        from eyed3.core import Date
+        
         break
     
     except ModuleNotFoundError as e:
@@ -45,11 +48,12 @@ while True:
 
 
 async def main():
+    
     print("natsuka - spotify downloader\n"
           "Thanks to JoshuaDoes for making this possible."
           )
 
-    option = input("""
+    option = input(f"""
 What would you like to do today?
 
 Option 1 - Download a single track by URL
@@ -58,24 +62,27 @@ Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album by Name
 Option 6 - Search for Artist
-Option 7 - Exit
+Option 7 - Change Audio Bitrate (Selected: {bitrate}kbps)
+Option 8 - Exit
 
 : """
                )
 
-    while not any(x in option for x in ["1", "2", "3", "4", "5", "6", "7"]) or not int:
+    while not any(x in option for x in ["1", "2", "3", "4", "5", "6", "7", "8"]) or not int:
 
         print("Invalid option!")
 
-        option = input("""
+        option = input(f"""
 What would you like to do today?
 
 Option 1 - Download a single track by URL
 Option 2 - Download multiple tracks by URL
 Option 3 - Download Album by URL
 Option 4 - Download Playlist by User ID and Playlist URL
+Option 5 - Search for Song/Album by Name
 Option 6 - Search for Artist
-Option 7 - Exit
+Option 7 - Change Audio Bitrate (Selected: {bitrate}kbps)
+Option 8 - Exit
 
 : """
                )
@@ -166,7 +173,23 @@ Option 7 - Exit
 
     if option == "7":
 
-        exit()
+        await changeBitrate()
+
+        try:
+        
+            input("Press enter to continue.\n")
+        
+        except SyntaxError:
+        
+            pass
+        
+        await main()
+
+    if option == "8":
+
+        print(bitrate)
+
+        await main()
 
     
 async def singleTrackProcess():
@@ -237,55 +260,51 @@ async def singleTrackProcess():
 
             print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}")
 
-    async with session.get(f"https://music.joshuadoes.com/v1/stream/spotify:track:{URI}?pass=pleasesparemyendpoints&stream&quality=2") as audioData:
-
             fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
             if not os.path.exists("Music"):
 
                 os.makedirs("Music")
+            
+            download = os.system(f'ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{URI}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
-            with open(f"Music/{fileName}.ogg", "wb") as fd:
+            convert_to_mp3 = os.system(f'ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
 
-                while True:
+            print("Song Downloaded!")
+            
+            async with session.get(f"https://open.spotify.com/oembed?url=spotify:track:{URI}") as embedData:
 
-                    chunk = await audioData.content.read()
+                embed = await embedData.json()
 
-                    if not chunk:
+                coverArt = embed['thumbnail_url']
 
-                        break
+                async with session.get(coverArt) as img:
 
-                    fd.write(chunk)
+                    imgData = await img.read()
 
-                    print("Song Downloaded!")
+                audioFile = eyed3.load(f"Music/{fileName}.mp3")
 
-                    meta = mutagen.File(fd.name)
+                if (audioFile.tag == None):
 
-                    if meta.tags is None:
+                    audioFile.initTag()
 
-                        meta.tags = mutagen.id3.ID3()
+                audioFile.tag.images.set(ImageFrame.FRONT_COVER, imgData, 'image/jpeg')
 
-                    meta['title'] = trackName
+                audioFile.tag.title = trackName
                             
-                    meta['album'] = trackAlbum
+                audioFile.tag.album = trackAlbum
                             
-                    meta['tracknumber'] = str(trackNumber)
+                audioFile.tag.track_num = trackNumber
                             
-                    meta['artist'] = artistName
+                audioFile.tag.artist = artistName
 
-                    meta['year'] = str(albumRelease['year'])
+                audioFile.tag.recording_date = Date(albumRelease['year'])
 
-                    try:
+                audioFile.tag.save()
 
-                        meta.save()
+                os.remove(f"Music/{fileName}.ogg")
 
-                        meta.close()
-
-                    #due to a bug in mutagen, an error always occurs here
-                    #although the data writes to the file just fine. mutagen pls fix
-                    except:
-
-                        print("Metadata Applied!\n\n")
+                print("Metadata Applied!\n\n")
 
     await session.close()
 
@@ -340,9 +359,9 @@ async def multiTrackProcess():
 
     print(f"Loading {len(songList)} songs...\n")
 
-    for i in songList:
+    session = aiohttp.ClientSession()
 
-        session = aiohttp.ClientSession()
+    for i in songList:
 
         async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as trackJSON:
 
@@ -376,61 +395,57 @@ async def multiTrackProcess():
 
                 print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}")
 
-        async with session.get(f"https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as audioData:
-
                 fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
                 if not os.path.exists("Music"):
 
                     os.makedirs("Music")
+            
+                download = os.system(f'ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
-                with open(f"Music/{fileName}.ogg", "wb") as fd:
+                convert_to_mp3 = os.system(f'ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
 
-                    while True:
+                print("Song Downloaded!")
+            
+                async with session.get(f"https://open.spotify.com/oembed?url=spotify:track:{i}") as embedData:
 
-                        chunk = await audioData.content.read()
+                    embed = await embedData.json()
 
-                        if not chunk:
+                    coverArt = embed['thumbnail_url']
 
-                            break
+                    async with session.get(coverArt) as img:
 
-                        fd.write(chunk)
+                        imgData = await img.read()
 
-                        print("Song Downloaded!")
+                    audioFile = eyed3.load(f"Music/{fileName}.mp3")
 
-                        meta = mutagen.File(fd.name)
+                    if (audioFile.tag == None):
 
-                        if meta.tags is None:
+                        audioFile.initTag()
 
-                            meta.tags = mutagen.id3.ID3()
+                    audioFile.tag.images.set(ImageFrame.FRONT_COVER, imgData, 'image/jpeg')
 
-                        meta['title'] = trackName
+                    audioFile.tag.title = trackName
                             
-                        meta['album'] = trackAlbum
+                    audioFile.tag.album = trackAlbum
                             
-                        meta['tracknumber'] = str(trackNumber)
+                    audioFile.tag.track_num = trackNumber
                             
-                        meta['artist'] = artistName
+                    audioFile.tag.artist = artistName
 
-                        meta['year'] = str(albumRelease['year'])
-    
-                        try:
+                    audioFile.tag.recording_date = Date(albumRelease['year'])
 
-                            meta.save()
+                    audioFile.tag.save()
 
-                            meta.close()
+                    os.remove(f"Music/{fileName}.ogg")
 
-                        #due to a bug in mutagen, an error always occurs here
-                        #although the data writes to the file just fine. mutagen pls fix
-                        except:
-
-                            print("Metadata Applied!\n\n")
-
-                            await session.close()
+                    print("Metadata Applied!\n\n")
         
     end_time = time.monotonic()
 
     print(f"Download time: {timedelta(seconds=end_time - start_time)}\n")
+
+    await session.close()
 
 
 async def albumProcess():
@@ -531,55 +546,51 @@ async def albumProcess():
 
                     print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}")
 
-            async with session.get(f"https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as audioData:
-
                     fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
                     if not os.path.exists("Music"):
 
                         os.makedirs("Music")
+            
+                    download = os.system(f'ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
-                    with open(f"Music/{fileName}.ogg", "wb") as fd:
+                    convert_to_mp3 = os.system(f'ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
 
-                        while True:
+                    print("Song Downloaded!")
+            
+                    async with session.get(f"https://open.spotify.com/oembed?url=spotify:track:{i}") as embedData:
 
-                            chunk = await audioData.content.read()
+                        embed = await embedData.json()
 
-                            if not chunk:
+                        coverArt = embed['thumbnail_url']
 
-                                break
+                    async with session.get(coverArt) as img:
 
-                            fd.write(chunk)
+                        imgData = await img.read()
 
-                            print("Song Downloaded!")
+                    audioFile = eyed3.load(f"Music/{fileName}.mp3")
 
-                            meta = mutagen.File(fd.name)
+                    if (audioFile.tag == None):
 
-                            if meta.tags is None:
+                        audioFile.initTag()
 
-                                meta.tags = mutagen.id3.ID3()
+                    audioFile.tag.images.set(ImageFrame.FRONT_COVER, imgData, 'image/jpeg')
 
-                            meta['title'] = trackName
+                    audioFile.tag.title = trackName
                             
-                            meta['album'] = trackAlbum
+                    audioFile.tag.album = trackAlbum
                             
-                            meta['tracknumber'] = str(trackNumber)
+                    audioFile.tag.track_num = trackNumber
                             
-                            meta['artist'] = artistName
+                    audioFile.tag.artist = artistName
 
-                            meta['year'] = str(albumRelease['year'])
-    
-                            try:
+                    audioFile.tag.recording_date = Date(albumRelease['year'])
 
-                                meta.save()
+                    audioFile.tag.save()
 
-                                meta.close()
+                    os.remove(f"Music/{fileName}.ogg")
 
-                            #due to a bug in mutagen, an error always occurs here
-                            #although the data writes to the file just fine. mutagen pls fix
-                            except:
-
-                                print("Metadata Applied!\n\n")
+                    print("Metadata Applied!\n\n")
         
     end_time = time.monotonic()
 
@@ -712,55 +723,51 @@ async def playlistProcess():
 
                     print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}")
 
-            async with session.get(f"https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as audioData:
-
                     fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
                     if not os.path.exists("Music"):
 
                         os.makedirs("Music")
+            
+                    download = os.system(f'ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
-                    with open(f"Music/{fileName}.ogg", "wb") as fd:
+                    convert_to_mp3 = os.system(f'ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
 
-                        while True:
+                    print("Song Downloaded!")
+            
+                    async with session.get(f"https://open.spotify.com/oembed?url=spotify:track:{i}") as embedData:
 
-                            chunk = await audioData.content.read()
+                        embed = await embedData.json()
 
-                            if not chunk:
+                        coverArt = embed['thumbnail_url']
 
-                                break
+                    async with session.get(coverArt) as img:
 
-                            fd.write(chunk)
+                        imgData = await img.read()
 
-                            print("Song Downloaded!")
+                    audioFile = eyed3.load(f"Music/{fileName}.mp3")
 
-                            meta = mutagen.File(fd.name)
+                    if (audioFile.tag == None):
 
-                            if meta.tags is None:
+                        audioFile.initTag()
 
-                                meta.tags = mutagen.id3.ID3()
+                    audioFile.tag.images.set(ImageFrame.FRONT_COVER, imgData, 'image/jpeg')
 
-                            meta['title'] = trackName
+                    audioFile.tag.title = trackName
                             
-                            meta['album'] = trackAlbum
+                    audioFile.tag.album = trackAlbum
                             
-                            meta['tracknumber'] = str(trackNumber)
+                    audioFile.tag.track_num = trackNumber
                             
-                            meta['artist'] = artistName
+                    audioFile.tag.artist = artistName
 
-                            meta['year'] = str(albumRelease['year'])
-    
-                            try:
+                    audioFile.tag.recording_date = Date(albumRelease['year'])
 
-                                meta.save()
+                    audioFile.tag.save()
 
-                                meta.close()
+                    os.remove(f"Music/{fileName}.ogg")
 
-                            #due to a bug in mutagen, an error always occurs here
-                            #although the data writes to the file just fine. mutagen pls fix
-                            except:
-
-                                print("Metadata Applied!\n\n")
+                    print("Metadata Applied!\n\n")
         
     end_time = time.monotonic()
 
@@ -922,55 +929,51 @@ Type 'RETURN' to return to main menu
 
             print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}")
 
-        async with session.get(f"https://music.joshuadoes.com/v1/stream/spotify:track:{selectedSong}?pass=pleasesparemyendpoints&stream&quality=2") as audioData:
-
             fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
             if not os.path.exists("Music"):
 
                 os.makedirs("Music")
+            
+            download = os.system(f'ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{selectedSong}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
-            with open(f"Music/{fileName}.ogg", "wb") as fd:
+            convert_to_mp3 = os.system(f'ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
 
-                while True:
+            print("Song Downloaded!")
+            
+            async with session.get(f"https://open.spotify.com/oembed?url=spotify:track:{selectedSong}") as embedData:
 
-                    chunk = await audioData.content.read()
+                embed = await embedData.json()
 
-                    if not chunk:
+                coverArt = embed['thumbnail_url']
 
-                        break
+            async with session.get(coverArt) as img:
 
-                    fd.write(chunk)
+                imgData = await img.read()
 
-                    print("Song Downloaded!")
+            audioFile = eyed3.load(f"Music/{fileName}.mp3")
 
-                    meta = mutagen.File(fd.name)
+            if (audioFile.tag == None):
 
-                    if meta.tags is None:
+                audioFile.initTag()
 
-                        meta.tags = mutagen.id3.ID3()
+            audioFile.tag.images.set(ImageFrame.FRONT_COVER, imgData, 'image/jpeg')
 
-                    meta['title'] = trackName
+            audioFile.tag.title = trackName
                             
-                    meta['album'] = trackAlbum
+            audioFile.tag.album = trackAlbum
                             
-                    meta['tracknumber'] = str(trackNumber)
+            audioFile.tag.track_num = trackNumber
                             
-                    meta['artist'] = artistName
+            audioFile.tag.artist = artistName
 
-                    meta['year'] = str(albumRelease['year'])
+            audioFile.tag.recording_date = Date(albumRelease['year'])
 
-                    try:
+            audioFile.tag.save()
 
-                        meta.save()
+            os.remove(f"Music/{fileName}.ogg")
 
-                        meta.close()
-
-                    #due to a bug in mutagen, an error always occurs here
-                    #although the data writes to the file just fine. mutagen pls fix
-                    except:
-
-                        print("Metadata Applied!\n\n")
+            print("Metadata Applied!\n\n")
 
         await session.close()
 
@@ -1062,55 +1065,51 @@ Would you like to proceed downloading this album?
 
                     print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}\n")
 
-                async with session.get(f"https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as audioData:
-
                     fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
                     if not os.path.exists("Music"):
 
                         os.makedirs("Music")
+            
+                    download = os.system(f'ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
-                    with open(f"Music/{fileName}.ogg", "wb") as fd:
+                    convert_to_mp3 = os.system(f'ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
 
-                        while True:
+                    print("Song Downloaded!")
+            
+                    async with session.get(f"https://open.spotify.com/oembed?url=spotify:track:{i}") as embedData:
 
-                            chunk = await audioData.content.read()
+                        embed = await embedData.json()
 
-                            if not chunk:
+                        coverArt = embed['thumbnail_url']
 
-                                break
+                    async with session.get(coverArt) as img:
 
-                            fd.write(chunk)
+                        imgData = await img.read()
 
-                            print("Song Downloaded!")
+                    audioFile = eyed3.load(f"Music/{fileName}.mp3")
 
-                            meta = mutagen.File(fd.name)
+                    if (audioFile.tag == None):
 
-                            if meta.tags is None:
+                        audioFile.initTag()
 
-                                meta.tags = mutagen.id3.ID3()
+                    audioFile.tag.images.set(ImageFrame.FRONT_COVER, imgData, 'image/jpeg')
 
-                            meta['title'] = trackName
+                    audioFile.tag.title = trackName
                             
-                            meta['album'] = trackAlbum
+                    audioFile.tag.album = trackAlbum
                             
-                            meta['tracknumber'] = str(trackNumber)
+                    audioFile.tag.track_num = trackNumber
                             
-                            meta['artist'] = artistName
+                    audioFile.tag.artist = artistName
 
-                            meta['year'] = str(albumRelease['year'])
-    
-                            try:
+                    audioFile.tag.recording_date = Date(albumRelease['year'])
 
-                                meta.save()
+                    audioFile.tag.save()
 
-                                meta.close()
+                    os.remove(f"Music/{fileName}.ogg")
 
-                            #due to a bug in mutagen, an error always occurs here
-                            #although the data writes to the file just fine. mutagen pls fix
-                            except:
-
-                                print("Metadata Applied!\n\n")
+                    print("Metadata Applied!\n\n")
 
             end_time = time.monotonic()
 
@@ -1320,55 +1319,51 @@ Would you like to proceed downloading {artistName}'s top songs?
 
                         print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}\n")
 
-                    async with session.get(f"https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as audioData:
-
                         fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
                         if not os.path.exists("Music"):
 
                             os.makedirs("Music")
+            
+                        download = os.system(f'ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
-                        with open(f"Music/{fileName}.ogg", "wb") as fd:
+                        convert_to_mp3 = os.system(f'ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
 
-                            while True:
+                        print("Song Downloaded!")
+            
+                        async with session.get(f"https://open.spotify.com/oembed?url=spotify:track:{i}") as embedData:
 
-                                chunk = await audioData.content.read()
+                            embed = await embedData.json()
 
-                                if not chunk:
+                            coverArt = embed['thumbnail_url']
 
-                                    break
+                        async with session.get(coverArt) as img:
 
-                                fd.write(chunk)
+                            imgData = await img.read()
 
-                                print("Song Downloaded!")
+                        audioFile = eyed3.load(f"Music/{fileName}.mp3")
 
-                                meta = mutagen.File(fd.name)
+                        if (audioFile.tag == None):
 
-                                if meta.tags is None:
+                            audioFile.initTag()
 
-                                    meta.tags = mutagen.id3.ID3()
+                        audioFile.tag.images.set(ImageFrame.FRONT_COVER, imgData, 'image/jpeg')
 
-                                meta['title'] = trackName
+                        audioFile.tag.title = trackName
                             
-                                meta['album'] = trackAlbum
+                        audioFile.tag.album = trackAlbum
                             
-                                meta['tracknumber'] = str(trackNumber)
+                        audioFile.tag.track_num = trackNumber
                             
-                                meta['artist'] = artistName
+                        audioFile.tag.artist = artistName
 
-                                meta['year'] = str(albumRelease['year'])
-    
-                                try:
+                        audioFile.tag.recording_date = Date(albumRelease['year'])
 
-                                    meta.save()
+                        audioFile.tag.save()
 
-                                    meta.close()
+                        os.remove(f"Music/{fileName}.ogg")
 
-                                #due to a bug in mutagen, an error always occurs here
-                                #although the data writes to the file just fine. mutagen pls fix
-                                except:
-
-                                    print("Metadata Applied!\n\n")
+                        print("Metadata Applied!\n\n")
 
                 end_time = time.monotonic()
 
@@ -1538,55 +1533,51 @@ Would you like to proceed downloading this album?
 
                         print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}")
 
-                    async with session.get(f"https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as audioData:
-
                         fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
                         if not os.path.exists("Music"):
 
                             os.makedirs("Music")
+            
+                        download = os.system(f'ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
-                        with open(f"Music/{fileName}.ogg", "wb") as fd:
+                        convert_to_mp3 = os.system(f'ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
 
-                            while True:
+                        print("Song Downloaded!")
+            
+                        async with session.get(f"https://open.spotify.com/oembed?url=spotify:track:{i}") as embedData:
 
-                                chunk = await audioData.content.read()
+                            embed = await embedData.json()
 
-                                if not chunk:
+                            coverArt = embed['thumbnail_url']
 
-                                    break
+                        async with session.get(coverArt) as img:
 
-                                fd.write(chunk)
+                            imgData = await img.read()
 
-                                print("Song Downloaded!")
+                        audioFile = eyed3.load(f"Music/{fileName}.mp3")
 
-                                meta = mutagen.File(fd.name)
+                        if (audioFile.tag == None):
 
-                                if meta.tags is None:
+                            audioFile.initTag()
 
-                                    meta.tags = mutagen.id3.ID3()
+                        audioFile.tag.images.set(ImageFrame.FRONT_COVER, imgData, 'image/jpeg')
 
-                                meta['title'] = trackName
+                        audioFile.tag.title = trackName
                             
-                                meta['album'] = trackAlbum
+                        audioFile.tag.album = trackAlbum
                             
-                                meta['tracknumber'] = str(trackNumber)
+                        audioFile.tag.track_num = trackNumber
                             
-                                meta['artist'] = artistName
+                        audioFile.tag.artist = artistName
 
-                                meta['year'] = str(albumRelease['year'])
-    
-                                try:
+                        audioFile.tag.recording_date = Date(albumRelease['year'])
 
-                                    meta.save()
+                        audioFile.tag.save()
 
-                                    meta.close()
+                        os.remove(f"Music/{fileName}.ogg")
 
-                                #due to a bug in mutagen, an error always occurs here
-                                #although the data writes to the file just fine. mutagen pls fix
-                                except:
-
-                                    print("Metadata Applied!\n\n")
+                        print("Metadata Applied!\n\n")
         
                 end_time = time.monotonic()
 
@@ -1601,7 +1592,53 @@ Would you like to proceed downloading this album?
                 return
 
 
+async def changeBitrate():
+
+    global bitrate
+
+    option = input("""
+Select new bitrate for download:
+1 - 96kbps
+2 - 128kbps
+3 - 192kbps
+4 - 320kbps (Highest Spotify Bitrate)
+: """
+                    )
+
+    while not any(x in option for x in ["1", "2", "3", "4", "RETURN"]):
+
+        print("Invalid option!")
+
+        option = input("""
+Select new bitrate for download:
+1 - 96kbps
+2 - 128kbps
+3 - 192kbps
+4 - 320kbps (Highest Spotify Bitrate)
+: """
+                        )
+
+    if option == "RETURN":
+
+        return
+
+    if option == "1":
+
+        bitrate = "96"
+
+    if option == "2":
+
+        bitrate = "128"
+
+    if option == "3":
+
+        bitrate = "192"
+
+    if option == "4":
+
+        bitrate = "320"
+
+
 if __name__ == "__main__":
 
     asyncio.run(main())
-
