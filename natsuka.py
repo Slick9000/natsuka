@@ -1,12 +1,47 @@
 #!/usr/bin/env python3
 
-import aiohttp
 import asyncio
 import calendar
 from datetime import timedelta
-import mutagen
+import os
 import re
+import sys
 import time
+
+python = 'python3'
+
+if 'win' in sys.platform:
+    
+    python = 'python'
+
+print('[*] Checking for required dependencies...\n')
+
+while True:
+    
+    try:
+        
+        import aiohttp
+        import mutagen
+        break
+    
+    except ModuleNotFoundError as e:
+        
+        module = str(e)[17:-1]
+        
+        print(f'[*] Installing {module} module for python')
+        
+        try:
+            
+            if os.system(f'{python} -m pip install {module}') != 0:
+                
+                raise error
+            
+        except Exception:
+            print(f'[!] Error installing "{module}" module. Do you have pip installed?')
+            
+            input(f'[!] Playlist generation failed. Press Ctrl+C to exit...')
+            
+            sys.exit()
 
 
 async def main():
@@ -206,7 +241,11 @@ async def singleTrackProcess():
 
             fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
-            with open(f"{fileName}.ogg", "wb") as fd:
+            if not os.path.exists("Music"):
+
+                os.makedirs("Music")
+
+            with open(f"Music/{fileName}.ogg", "wb") as fd:
 
                 while True:
 
@@ -341,7 +380,11 @@ async def multiTrackProcess():
 
                 fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
-                with open(f"{fileName}.ogg", "wb") as fd:
+                if not os.path.exists("Music"):
+
+                    os.makedirs("Music")
+
+                with open(f"Music/{fileName}.ogg", "wb") as fd:
 
                     while True:
 
@@ -492,7 +535,11 @@ async def albumProcess():
 
                     fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
-                    with open(f"{fileName}.ogg", "wb") as fd:
+                    if not os.path.exists("Music"):
+
+                        os.makedirs("Music")
+
+                    with open(f"Music/{fileName}.ogg", "wb") as fd:
 
                         while True:
 
@@ -669,7 +716,11 @@ async def playlistProcess():
 
                     fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
-                    with open(f"{fileName}.ogg", "wb") as fd:
+                    if not os.path.exists("Music"):
+
+                        os.makedirs("Music")
+
+                    with open(f"Music/{fileName}.ogg", "wb") as fd:
 
                         while True:
 
@@ -875,7 +926,11 @@ Type 'RETURN' to return to main menu
 
             fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
-            with open(f"{fileName}.ogg", "wb") as fd:
+            if not os.path.exists("Music"):
+
+                os.makedirs("Music")
+
+            with open(f"Music/{fileName}.ogg", "wb") as fd:
 
                 while True:
 
@@ -1011,7 +1066,11 @@ Would you like to proceed downloading this album?
 
                     fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
-                    with open(f"{fileName}.ogg", "wb") as fd:
+                    if not os.path.exists("Music"):
+
+                        os.makedirs("Music")
+
+                    with open(f"Music/{fileName}.ogg", "wb") as fd:
 
                         while True:
 
@@ -1186,7 +1245,7 @@ Type 'RETURN' to return to main menu
                            )
 
         if downloadOption == "RETURN":
-            
+
             await session.close()
 
             return
@@ -1265,7 +1324,11 @@ Would you like to proceed downloading {artistName}'s top songs?
 
                         fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
-                        with open(f"{fileName}.ogg", "wb") as fd:
+                        if not os.path.exists("Music"):
+
+                            os.makedirs("Music")
+
+                        with open(f"Music/{fileName}.ogg", "wb") as fd:
 
                             while True:
 
@@ -1479,7 +1542,11 @@ Would you like to proceed downloading this album?
 
                         fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
-                        with open(f"{fileName}.ogg", "wb") as fd:
+                        if not os.path.exists("Music"):
+
+                            os.makedirs("Music")
+
+                        with open(f"Music/{fileName}.ogg", "wb") as fd:
 
                             while True:
 
@@ -1537,3 +1604,4 @@ Would you like to proceed downloading this album?
 if __name__ == "__main__":
 
     asyncio.run(main())
+
