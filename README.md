@@ -897,6 +897,7 @@ Press enter to continue.
 <br/>
 
 **7: change bitrate of download**
+#### selecting a common preset bitrate
 
 ```
 [*] Checking for required dependencies...
@@ -922,6 +923,7 @@ Select new bitrate for download:
 2 - 128kbps
 3 - 192kbps
 4 - 320kbps (Highest Spotify Bitrate)
+5 - Custom
 : 1
 Press enter to continue.
 
@@ -937,6 +939,57 @@ Option 4 - Download Playlist by User ID and Playlist URL
 Option 5 - Search for Song/Album by Name
 Option 6 - Search for Artist
 Option 7 - Change Audio Bitrate (Selected: 96kbps)
+Option 8 - Exit
+
+: 
+```
+
+<br/>
+
+#### selecting a custom bitrate
+
+```
+[*] Checking for required dependencies...
+
+natsuka - spotify downloader
+Thanks to JoshuaDoes for making this possible.
+
+What would you like to do today?
+
+Option 1 - Download a single track by URL
+Option 2 - Download multiple tracks by URL
+Option 3 - Download Album by URL
+Option 4 - Download Playlist by User ID and Playlist URL
+Option 5 - Search for Song/Album by Name
+Option 6 - Search for Artist
+Option 7 - Change Audio Bitrate (Selected: 320kbps)
+Option 8 - Exit
+
+: 7
+
+Select new bitrate for download:
+1 - 96kbps
+2 - 128kbps
+3 - 192kbps
+4 - 320kbps (Highest Spotify Bitrate)
+5 - Custom
+: 5
+Input new bitrate (320kbps maximum)
+: 48
+Press enter to continue.
+
+natsuka - spotify downloader
+Thanks to JoshuaDoes for making this possible.
+
+What would you like to do today?
+
+Option 1 - Download a single track by URL
+Option 2 - Download multiple tracks by URL
+Option 3 - Download Album by URL
+Option 4 - Download Playlist by User ID and Playlist URL
+Option 5 - Search for Song/Album by Name
+Option 6 - Search for Artist
+Option 7 - Change Audio Bitrate (Selected: 48kbps)
 Option 8 - Exit
 
 : 
