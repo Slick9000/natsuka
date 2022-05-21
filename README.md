@@ -18,9 +18,11 @@ Skylar Bleed (for helping with several initial changes)
 
 [eyed3](https://pypi.org/project/eyed3/)
 
-(natsuka automatically installs these packages if not installed)
+(natsuka automatically installs these python packages if not installed)
 
-[ffmpeg](https://ffmpeg.org), in PATH
+[ffmpeg](https://ffmpeg.org), in PATH. 
+
+**NOTE: users using the natsuka.exe from the download page won't need to download anything, as everything is already included in the executable. for all other users, you will need to install ffmpeg yourself.**
 
 ## features:
 **1: single song download support**
