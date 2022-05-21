@@ -242,7 +242,7 @@ async def singleTrackProcess():
 
     session = aiohttp.ClientSession()
 
-    async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{URI}?pass=pleasesparemyendpoints&stream&quality=2") as trackJSON:
+    async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{URI}?pass=pleasesparemyendpoints&quality=2") as trackJSON:
 
             trackData = await trackJSON.json()
 
@@ -280,7 +280,7 @@ async def singleTrackProcess():
 
                 os.makedirs("Music")
             
-            download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{URI}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
+            download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{URI}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
             convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
 
@@ -390,7 +390,7 @@ async def multiTrackProcess():
 
     for i in songList:
 
-        async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as trackJSON:
+        async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{i}?pass=pleasesparemyendpoints&quality=2") as trackJSON:
 
                 trackData = await trackJSON.json()
 
@@ -428,7 +428,7 @@ async def multiTrackProcess():
 
                     os.makedirs("Music")
             
-                download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
+                download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
                 convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
 
@@ -524,7 +524,7 @@ async def albumProcess():
 
     session = aiohttp.ClientSession()
 
-    async with session.get(f"https://music.joshuadoes.com/album/spotify:album:{URI}?pass=pleasesparemyendpoints&stream&quality=2") as albumData:
+    async with session.get(f"https://music.joshuadoes.com/album/spotify:album:{URI}?pass=pleasesparemyendpoints&quality=2") as albumData:
 
         album = await albumData.json()
 
@@ -564,7 +564,7 @@ async def albumProcess():
 
     for i in trackURIS:
 
-            async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as trackJSON:
+            async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{i}?pass=pleasesparemyendpoints&quality=2") as trackJSON:
 
                     trackData = await trackJSON.json()
                     
@@ -592,7 +592,7 @@ async def albumProcess():
 
                         os.makedirs("Music")
             
-                    download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
+                    download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
                     convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
 
@@ -704,7 +704,7 @@ async def playlistProcess():
 
     session = aiohttp.ClientSession()
 
-    async with session.get(f"https://music.joshuadoes.com/playlist/spotify:user:{userID}:playlist:{playlistID}?pass=pleasesparemyendpoints&stream&quality=2") as playlistData:
+    async with session.get(f"https://music.joshuadoes.com/playlist/spotify:user:{userID}:playlist:{playlistID}?pass=pleasesparemyendpoints&quality=2") as playlistData:
 
         playlist = await playlistData.json()
 
@@ -754,7 +754,7 @@ async def playlistProcess():
 
     for i in playlistURIS:
 
-            async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as trackJSON:
+            async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{i}?pass=pleasesparemyendpoints&quality=2") as trackJSON:
 
                     trackData = await trackJSON.json()
                     
@@ -782,7 +782,7 @@ async def playlistProcess():
 
                         os.makedirs("Music")
             
-                    download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
+                    download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
                     convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
 
@@ -963,7 +963,7 @@ Type 'RETURN' to return to main menu
 
     if downloadOption == "1":
 
-        async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{selectedSong}?pass=pleasesparemyendpoints&stream&quality=2") as trackJSON:
+        async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{selectedSong}?pass=pleasesparemyendpoints&quality=2") as trackJSON:
 
             trackData = await trackJSON.json()
 
@@ -1001,7 +1001,7 @@ Type 'RETURN' to return to main menu
 
                 os.makedirs("Music")
             
-            download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{selectedSong}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
+            download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{selectedSong}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
             convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
 
@@ -1070,7 +1070,7 @@ Type 'RETURN' to return to main menu
 
             return
         
-        async with session.get(f"https://music.joshuadoes.com/album/spotify:album:{selectedAlbum}?pass=pleasesparemyendpoints&stream&quality=2") as albumData:
+        async with session.get(f"https://music.joshuadoes.com/album/spotify:album:{selectedAlbum}?pass=pleasesparemyendpoints&quality=2") as albumData:
 
             album = await albumData.json()
 
@@ -1122,7 +1122,7 @@ Would you like to proceed downloading this album?
 
             for i in trackURIS:
 
-                async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as trackJSON:
+                async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{i}?pass=pleasesparemyendpoints&quality=2") as trackJSON:
 
                     trackData = await trackJSON.json()
                     
@@ -1150,7 +1150,7 @@ Would you like to proceed downloading this album?
 
                         os.makedirs("Music")
             
-                    download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
+                    download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
                     convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
 
@@ -1302,7 +1302,7 @@ async def artistSearch():
 
             return
 
-        async with session.get(f"https://music.joshuadoes.com/artist/{selectedArtist}?pass=pleasesparemyendpoints&stream&quality=2") as artistJSON:
+        async with session.get(f"https://music.joshuadoes.com/artist/{selectedArtist}?pass=pleasesparemyendpoints&quality=2") as artistJSON:
 
             artistData = await artistJSON.json()
 
@@ -1389,7 +1389,7 @@ Would you like to proceed downloading {artistName}'s top songs?
 
                 for i in trackURIS:
 
-                    async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as trackJSON:
+                    async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{i}?pass=pleasesparemyendpoints&quality=2") as trackJSON:
 
                         trackData = await trackJSON.json()
                     
@@ -1417,7 +1417,7 @@ Would you like to proceed downloading {artistName}'s top songs?
 
                             os.makedirs("Music")
             
-                        download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
+                        download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
                         convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
 
@@ -1510,7 +1510,7 @@ Would you like to proceed downloading {artistName}'s top songs?
 
             for index, i in enumerate(albumURIList):
 
-                async with session.get(f"https://music.joshuadoes.com/album/spotify:album:{i}?pass=pleasesparemyendpoints&stream&quality=2") as albumsJSON:
+                async with session.get(f"https://music.joshuadoes.com/album/spotify:album:{i}?pass=pleasesparemyendpoints&quality=2") as albumsJSON:
 
                     albumsData = await albumsJSON.json()
 
@@ -1556,7 +1556,7 @@ Would you like to proceed downloading {artistName}'s top songs?
 
                 return
 
-            async with session.get(f"https://music.joshuadoes.com/album/spotify:album:{selectedAlbum}?pass=pleasesparemyendpoints&stream&quality=2") as albumData:
+            async with session.get(f"https://music.joshuadoes.com/album/spotify:album:{selectedAlbum}?pass=pleasesparemyendpoints&quality=2") as albumData:
 
                 album = await albumData.json()
 
@@ -1616,7 +1616,7 @@ Would you like to proceed downloading this album?
 
                 for i in trackURIS:
 
-                    async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2") as trackJSON:
+                    async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{i}?pass=pleasesparemyendpoints&quality=2") as trackJSON:
 
                         trackData = await trackJSON.json()
                     
@@ -1644,7 +1644,7 @@ Would you like to proceed downloading this album?
 
                             os.makedirs("Music")
             
-                        download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
+                        download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
                         convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
 
