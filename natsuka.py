@@ -8,6 +8,20 @@ import re
 import sys
 import time
 
+#this allows the natsuka executable to use ffmpeg embedded in it
+#for other users not using this exe, you will need to install ffmpeg yourself
+if getattr(sys, 'frozen', False):
+    
+    #temporary folder for pyinstaller
+    basedir = f"{sys._MEIPASS}/"
+    
+else:
+
+    #just don't use it, and use ffmpeg from PATH
+    basedir = ""
+
+
+
 bitrate = "320"
 
 python = 'python3'
@@ -189,7 +203,7 @@ Option 8 - Exit
 
     if option == "8":
 
-        exit()
+        sys.exit()
 
     
 async def singleTrackProcess():
@@ -266,9 +280,9 @@ async def singleTrackProcess():
 
                 os.makedirs("Music")
             
-            download = os.system(f'ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{URI}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
+            download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{URI}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
-            convert_to_mp3 = os.system(f'ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
+            convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
 
             print("Song Downloaded!")
             
@@ -401,9 +415,9 @@ async def multiTrackProcess():
 
                     os.makedirs("Music")
             
-                download = os.system(f'ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
+                download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
-                convert_to_mp3 = os.system(f'ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
+                convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
 
                 print("Song Downloaded!")
             
@@ -552,9 +566,9 @@ async def albumProcess():
 
                         os.makedirs("Music")
             
-                    download = os.system(f'ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
+                    download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
-                    convert_to_mp3 = os.system(f'ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
+                    convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
 
                     print("Song Downloaded!")
             
@@ -729,9 +743,9 @@ async def playlistProcess():
 
                         os.makedirs("Music")
             
-                    download = os.system(f'ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
+                    download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
-                    convert_to_mp3 = os.system(f'ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
+                    convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
 
                     print("Song Downloaded!")
             
@@ -935,9 +949,9 @@ Type 'RETURN' to return to main menu
 
                 os.makedirs("Music")
             
-            download = os.system(f'ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{selectedSong}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
+            download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{selectedSong}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
-            convert_to_mp3 = os.system(f'ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
+            convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
 
             print("Song Downloaded!")
             
@@ -1071,9 +1085,9 @@ Would you like to proceed downloading this album?
 
                         os.makedirs("Music")
             
-                    download = os.system(f'ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
+                    download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
-                    convert_to_mp3 = os.system(f'ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
+                    convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
 
                     print("Song Downloaded!")
             
@@ -1325,9 +1339,9 @@ Would you like to proceed downloading {artistName}'s top songs?
 
                             os.makedirs("Music")
             
-                        download = os.system(f'ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
+                        download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
-                        convert_to_mp3 = os.system(f'ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
+                        convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
 
                         print("Song Downloaded!")
             
@@ -1539,9 +1553,9 @@ Would you like to proceed downloading this album?
 
                             os.makedirs("Music")
             
-                        download = os.system(f'ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
+                        download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&stream&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
-                        convert_to_mp3 = os.system(f'ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
+                        convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
 
                         print("Song Downloaded!")
             
@@ -1649,6 +1663,7 @@ Select new bitrate for download:
             print("Invalid value!")
 
             bitrate = input("Input new bitrate (320kbps maximum)\n: ")
+
 
 if __name__ == "__main__":
 
