@@ -189,9 +189,7 @@ Option 8 - Exit
 
     if option == "8":
 
-        print(bitrate)
-
-        await main()
+        exit()
 
     
 async def singleTrackProcess():
@@ -1604,10 +1602,11 @@ Select new bitrate for download:
 2 - 128kbps
 3 - 192kbps
 4 - 320kbps (Highest Spotify Bitrate)
+5 - Custom
 : """
                     )
 
-    while not any(x in option for x in ["1", "2", "3", "4", "RETURN"]):
+    while not any(x in option for x in ["1", "2", "3", "4", "5", "RETURN"]):
 
         print("Invalid option!")
 
@@ -1617,6 +1616,7 @@ Select new bitrate for download:
 2 - 128kbps
 3 - 192kbps
 4 - 320kbps (Highest Spotify Bitrate)
+5 - Custom
 : """
                         )
 
@@ -1640,6 +1640,15 @@ Select new bitrate for download:
 
         bitrate = "320"
 
+    if option == "5":
+
+        bitrate = input("Input new bitrate (320kbps maximum)\n: ")
+
+        while not bitrate.isdigit():
+
+            print("Invalid value!")
+
+            bitrate = input("Input new bitrate (320kbps maximum)\n: ")
 
 if __name__ == "__main__":
 
