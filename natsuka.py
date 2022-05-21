@@ -296,7 +296,20 @@ async def singleTrackProcess():
 
                     imgData = await img.read()
 
-                audioFile = eyed3.load(f"Music/{fileName}.mp3")
+                try:
+
+                    audioFile = eyed3.load(f"Music/{fileName}.mp3")
+
+                except OSError:
+
+                    print("\n\nFailed to download track from Spotify.\n"
+                          "Feel free to retry.\n"
+                          "Returning to menu...\n"
+                          )
+
+                    await session.close()
+
+                    return
 
                 if (audioFile.tag == None):
 
@@ -431,7 +444,20 @@ async def multiTrackProcess():
 
                         imgData = await img.read()
 
-                    audioFile = eyed3.load(f"Music/{fileName}.mp3")
+                    try:
+
+                        audioFile = eyed3.load(f"Music/{fileName}.mp3")
+
+                    except OSError:
+
+                        print("\n\nFailed to download track from Spotify.\n"
+                              "Feel free to retry.\n"
+                              "Returning to menu...\n"
+                              )
+
+                        await session.close()
+
+                        return
 
                     if (audioFile.tag == None):
 
@@ -582,7 +608,20 @@ async def albumProcess():
 
                         imgData = await img.read()
 
-                    audioFile = eyed3.load(f"Music/{fileName}.mp3")
+                    try:
+
+                        audioFile = eyed3.load(f"Music/{fileName}.mp3")
+
+                    except OSError:
+
+                        print("\n\nFailed to download track from Spotify.\n"
+                              "Feel free to retry.\n"
+                              "Returning to menu...\n"
+                              )
+
+                        await session.close()
+
+                        return
 
                     if (audioFile.tag == None):
 
@@ -759,7 +798,20 @@ async def playlistProcess():
 
                         imgData = await img.read()
 
-                    audioFile = eyed3.load(f"Music/{fileName}.mp3")
+                    try:
+
+                        audioFile = eyed3.load(f"Music/{fileName}.mp3")
+
+                    except OSError:
+
+                        print("\n\nFailed to download track from Spotify.\n"
+                              "Feel free to retry.\n"
+                              "Returning to menu...\n"
+                              )
+
+                        await session.close()
+
+                        return
 
                     if (audioFile.tag == None):
 
@@ -965,7 +1017,20 @@ Type 'RETURN' to return to main menu
 
                 imgData = await img.read()
 
-            audioFile = eyed3.load(f"Music/{fileName}.mp3")
+            try:
+
+                audioFile = eyed3.load(f"Music/{fileName}.mp3")
+
+            except OSError:
+
+                print("\n\nFailed to download track from Spotify.\n"
+                      "Feel free to retry.\n"
+                      "Returning to menu...\n"
+                      )
+
+                await session.close()
+
+                return
 
             if (audioFile.tag == None):
 
@@ -1101,7 +1166,20 @@ Would you like to proceed downloading this album?
 
                         imgData = await img.read()
 
-                    audioFile = eyed3.load(f"Music/{fileName}.mp3")
+                    try:
+
+                        audioFile = eyed3.load(f"Music/{fileName}.mp3")
+
+                    except OSError:
+
+                        print("\n\nFailed to download track from Spotify.\n"
+                              "Feel free to retry.\n"
+                              "Returning to menu...\n"
+                              )
+
+                        await session.close()
+
+                        return
 
                     if (audioFile.tag == None):
 
@@ -1355,7 +1433,20 @@ Would you like to proceed downloading {artistName}'s top songs?
 
                             imgData = await img.read()
 
-                        audioFile = eyed3.load(f"Music/{fileName}.mp3")
+                        try:
+
+                            audioFile = eyed3.load(f"Music/{fileName}.mp3")
+
+                        except OSError:
+
+                            print("\n\nFailed to download track from Spotify.\n"
+                                  "Feel free to retry.\n"
+                                  "Returning to menu...\n"
+                                  )
+
+                            await session.close()
+
+                            return
 
                         if (audioFile.tag == None):
 
@@ -1569,7 +1660,20 @@ Would you like to proceed downloading this album?
 
                             imgData = await img.read()
 
-                        audioFile = eyed3.load(f"Music/{fileName}.mp3")
+                        try:
+
+                            audioFile = eyed3.load(f"Music/{fileName}.mp3")
+
+                        except OSError:
+
+                            print("\n\nFailed to download track from Spotify.\n"
+                                  "Feel free to retry.\n"
+                                  "Returning to menu...\n"
+                                  )
+
+                            await session.close()
+
+                            return
 
                         if (audioFile.tag == None):
 
