@@ -1522,7 +1522,7 @@ Would you like to proceed downloading {artistName}'s top songs?
 
                     print(f"Album Name: {albumName}")
 
-                    print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}\n")
+                    print(f"Album Release: {albumRelease['year']}\n")
             
             chosenAlbum = input(f"Select an album (1-{len(albumURIList)})\n\n"
                                  "Type 'RETURN' to return to main menu\n: "
