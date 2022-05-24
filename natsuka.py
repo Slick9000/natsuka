@@ -304,6 +304,14 @@ async def singleTrackProcess():
 
                     print("Attempting to grab link with formats...")
 
+                    print(f"\nTrack Name: {trackName}")
+
+                    print(f"Album Name: {trackAlbum}")
+
+                    print(f"Artist Name: {artistName}")
+
+                    print(f"Album Release: {albumRelease['year']}")
+
                     download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/bestmatch:{artistName} {trackName}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
                     convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
@@ -452,6 +460,14 @@ async def multiTrackProcess():
                     print("\nSong does not contain download formats.")
 
                     print("Attempting to grab link with formats...")
+
+                    print(f"\nTrack Name: {trackName}")
+
+                    print(f"Album Name: {trackAlbum}")
+
+                    print(f"Artist Name: {artistName}")
+
+                    print(f"Album Release: {albumRelease['year']}")
 
                     download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/bestmatch:{artistName} {trackName}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
@@ -617,6 +633,14 @@ async def albumProcess():
                         print("\nSong does not contain download formats.")
 
                         print("Attempting to grab link with formats...")
+
+                        print(f"\nTrack Name: {trackName}")
+
+                        print(f"Album Name: {trackAlbum}")
+
+                        print(f"Artist Name: {artistName}")
+
+                        print(f"Album Release: {albumRelease['year']}")
 
                         download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/bestmatch:{artistName} {trackName}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
@@ -808,6 +832,14 @@ async def playlistProcess():
                         print("\nSong does not contain download formats.")
 
                         print("Attempting to grab link with formats...")
+
+                        print(f"\nTrack Name: {trackName}")
+
+                        print(f"Album Name: {trackAlbum}")
+
+                        print(f"Artist Name: {artistName}")
+
+                        print(f"Album Release: {albumRelease['year']}")
 
                         download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/bestmatch:{artistName} {trackName}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
@@ -1029,6 +1061,14 @@ Type 'RETURN' to return to main menu
 
                 print("Attempting to grab link with formats...")
 
+                print(f"\nTrack Name: {trackName}")
+
+                print(f"Album Name: {trackAlbum}")
+
+                print(f"Artist Name: {artistName}")
+
+                print(f"Album Release: {albumRelease['year']}")
+
                 download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/bestmatch:{artistName} {trackName}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
                 convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
@@ -1178,6 +1218,14 @@ Would you like to proceed downloading this album?
                         print("\nSong does not contain download formats.")
 
                         print("Attempting to grab link with formats...")
+
+                        print(f"\nTrack Name: {trackName}")
+
+                        print(f"Album Name: {trackAlbum}")
+
+                        print(f"Artist Name: {artistName}")
+
+                        print(f"Album Release: {albumRelease['year']}")
 
                         download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/bestmatch:{artistName} {trackName}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
@@ -1440,6 +1488,14 @@ Would you like to proceed downloading {artistName}'s top songs?
 
                             print("Attempting to grab link with formats...")
 
+                            print(f"\nTrack Name: {trackName}")
+
+                            print(f"Album Name: {trackAlbum}")
+
+                            print(f"Artist Name: {artistName}")
+
+                            print(f"Album Release: {albumRelease['year']}")
+
                             download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/bestmatch:{artistName} {trackName}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
                             convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
@@ -1667,6 +1723,14 @@ Would you like to proceed downloading this album?
                             print("\nSong does not contain download formats.")
 
                             print("Attempting to grab link with formats...")
+
+                            print(f"\nTrack Name: {trackName}")
+
+                            print(f"Album Name: {trackAlbum}")
+
+                            print(f"Artist Name: {artistName}")
+
+                            print(f"Album Release: {albumRelease['year']}")
 
                             download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/bestmatch:{artistName} {trackName}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
