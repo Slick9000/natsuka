@@ -2,9 +2,9 @@
 # natsuka
 a single file application giving you the ability to download music from spotify with id3 metadata (track title, track number, artist, album, release date)
 
-initally made on **february 28th, 2021**, natsuka was made to download songs from spotify with metadata, a task other downloaders were not able to accomplish for me. on it's original creation, i was not very good at python. 
+initally made on **february 28th, 2021**, natsuka was made to download songs from spotify with metadata, a task other downloaders were not able to accomplish for me.
 
-since then, i have drastically improved, and in about 2 days i was able to fully accomplish this task. welcome to natsuka 2.0, with **single-track, multi-track, album, playlist, and search query downloading.**
+welcome to natsuka 2.0, with **single-track, multi-track, album, playlist, and search query downloading.**
 
 ## credits
 JoshuaDoes (for the API endpoint)
