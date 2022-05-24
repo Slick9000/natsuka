@@ -1,6 +1,6 @@
 
 # natsuka
-a single file application giving you the ability to download music from spotify with id3 metadata (track title, track number, artist, album, release date)
+a single file application giving you the ability to download music from spotify with id3 metadata (track title, track number, artist, album, cover art, release date)
 
 initally made on **february 28th, 2021**, natsuka was made to download songs from spotify with metadata, a task other downloaders were not able to accomplish for me.
 
