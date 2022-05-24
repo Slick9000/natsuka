@@ -58,7 +58,7 @@ while True:
         except Exception:
             print(f'[!] Error installing "{module}" module. Do you have pip installed?')
             
-            input(f'[!] Playlist generation failed. Press Ctrl+C to exit...')
+            input(f'[!] Failed to initialize natsuka. Press Ctrl+C to exit...')
             
             sys.exit()
 
@@ -203,9 +203,9 @@ Option 8 - Exit
 
     if option == "8":
 
-        sys.exit()
+        exit()
 
-    
+
 async def singleTrackProcess():
 
     URI = input("Enter the track's URL\n\n"
@@ -283,8 +283,6 @@ async def singleTrackProcess():
             download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{URI}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
             convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
-
-            print("Song Downloaded!")
             
             async with session.get(f"https://open.spotify.com/oembed?url=spotify:track:{URI}") as embedData:
 
@@ -302,14 +300,17 @@ async def singleTrackProcess():
 
                 except OSError:
 
-                    print("\n\nFailed to download track from Spotify.\n"
-                          "Feel free to retry.\n"
-                          "Returning to menu...\n"
-                          )
+                    print("\nSong does not contain download formats.")
 
-                    await session.close()
+                    print("Attempting to grab link with formats...")
 
-                    return
+                    download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/bestmatch:{artistName} {trackName}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
+
+                    convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
+
+                    audioFile = eyed3.load(f"Music/{fileName}.mp3")
+                    
+                print("Song Downloaded!")
 
                 if (audioFile.tag == None):
 
@@ -431,8 +432,6 @@ async def multiTrackProcess():
                 download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
                 convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
-
-                print("Song Downloaded!")
             
                 async with session.get(f"https://open.spotify.com/oembed?url=spotify:track:{i}") as embedData:
 
@@ -440,46 +439,49 @@ async def multiTrackProcess():
 
                     coverArt = embed['thumbnail_url']
 
-                    async with session.get(coverArt) as img:
+                async with session.get(coverArt) as img:
 
-                        imgData = await img.read()
+                    imgData = await img.read()
 
-                    try:
+                try:
 
-                        audioFile = eyed3.load(f"Music/{fileName}.mp3")
+                    audioFile = eyed3.load(f"Music/{fileName}.mp3")
 
-                    except OSError:
+                except OSError:
 
-                        print("\n\nFailed to download track from Spotify.\n"
-                              "Feel free to retry.\n"
-                              "Returning to menu...\n"
-                              )
+                    print("\nSong does not contain download formats.")
 
-                        await session.close()
+                    print("Attempting to grab link with formats...")
 
-                        return
+                    download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/bestmatch:{artistName} {trackName}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
-                    if (audioFile.tag == None):
+                    convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
 
-                        audioFile.initTag()
+                    audioFile = eyed3.load(f"Music/{fileName}.mp3")
+                    
+                print("Song Downloaded!")
 
-                    audioFile.tag.images.set(ImageFrame.FRONT_COVER, imgData, 'image/jpeg')
+                if (audioFile.tag == None):
 
-                    audioFile.tag.title = trackName
+                    audioFile.initTag()
+
+                audioFile.tag.images.set(ImageFrame.FRONT_COVER, imgData, 'image/jpeg')
+
+                audioFile.tag.title = trackName
                             
-                    audioFile.tag.album = trackAlbum
+                audioFile.tag.album = trackAlbum
                             
-                    audioFile.tag.track_num = trackNumber
+                audioFile.tag.track_num = trackNumber
                             
-                    audioFile.tag.artist = artistName
+                audioFile.tag.artist = artistName
 
-                    audioFile.tag.recording_date = Date(albumRelease['year'])
+                audioFile.tag.recording_date = Date(albumRelease['year'])
 
-                    audioFile.tag.save()
+                audioFile.tag.save()
 
-                    os.remove(f"Music/{fileName}.ogg")
+                os.remove(f"Music/{fileName}.ogg")
 
-                    print("Metadata Applied!\n\n")
+                print("Metadata Applied!\n\n")
         
     end_time = time.monotonic()
 
@@ -595,8 +597,6 @@ async def albumProcess():
                     download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
                     convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
-
-                    print("Song Downloaded!")
             
                     async with session.get(f"https://open.spotify.com/oembed?url=spotify:track:{i}") as embedData:
 
@@ -614,14 +614,17 @@ async def albumProcess():
 
                     except OSError:
 
-                        print("\n\nFailed to download track from Spotify.\n"
-                              "Feel free to retry.\n"
-                              "Returning to menu...\n"
-                              )
+                        print("\nSong does not contain download formats.")
 
-                        await session.close()
+                        print("Attempting to grab link with formats...")
 
-                        return
+                        download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/bestmatch:{artistName} {trackName}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
+
+                        convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
+
+                        audioFile = eyed3.load(f"Music/{fileName}.mp3")
+                    
+                    print("Song Downloaded!")
 
                     if (audioFile.tag == None):
 
@@ -785,8 +788,6 @@ async def playlistProcess():
                     download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
                     convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
-
-                    print("Song Downloaded!")
             
                     async with session.get(f"https://open.spotify.com/oembed?url=spotify:track:{i}") as embedData:
 
@@ -804,14 +805,17 @@ async def playlistProcess():
 
                     except OSError:
 
-                        print("\n\nFailed to download track from Spotify.\n"
-                              "Feel free to retry.\n"
-                              "Returning to menu...\n"
-                              )
+                        print("\nSong does not contain download formats.")
 
-                        await session.close()
+                        print("Attempting to grab link with formats...")
 
-                        return
+                        download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/bestmatch:{artistName} {trackName}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
+
+                        convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
+
+                        audioFile = eyed3.load(f"Music/{fileName}.mp3")
+                    
+                    print("Song Downloaded!")
 
                     if (audioFile.tag == None):
 
@@ -1004,8 +1008,6 @@ Type 'RETURN' to return to main menu
             download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{selectedSong}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
             convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
-
-            print("Song Downloaded!")
             
             async with session.get(f"https://open.spotify.com/oembed?url=spotify:track:{selectedSong}") as embedData:
 
@@ -1023,14 +1025,17 @@ Type 'RETURN' to return to main menu
 
             except OSError:
 
-                print("\n\nFailed to download track from Spotify.\n"
-                      "Feel free to retry.\n"
-                      "Returning to menu...\n"
-                      )
+                print("\nSong does not contain download formats.")
 
-                await session.close()
+                print("Attempting to grab link with formats...")
 
-                return
+                download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/bestmatch:{artistName} {trackName}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
+
+                convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
+
+                audioFile = eyed3.load(f"Music/{fileName}.mp3")
+                    
+            print("Song Downloaded!")
 
             if (audioFile.tag == None):
 
@@ -1153,8 +1158,6 @@ Would you like to proceed downloading this album?
                     download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
                     convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
-
-                    print("Song Downloaded!")
             
                     async with session.get(f"https://open.spotify.com/oembed?url=spotify:track:{i}") as embedData:
 
@@ -1172,14 +1175,17 @@ Would you like to proceed downloading this album?
 
                     except OSError:
 
-                        print("\n\nFailed to download track from Spotify.\n"
-                              "Feel free to retry.\n"
-                              "Returning to menu...\n"
-                              )
+                        print("\nSong does not contain download formats.")
 
-                        await session.close()
+                        print("Attempting to grab link with formats...")
 
-                        return
+                        download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/bestmatch:{artistName} {trackName}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
+
+                        convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
+
+                        audioFile = eyed3.load(f"Music/{fileName}.mp3")
+                    
+                    print("Song Downloaded!")
 
                     if (audioFile.tag == None):
 
@@ -1306,13 +1312,6 @@ async def artistSearch():
 
             artistData = await artistJSON.json()
 
-            #LATER PARSE THE RESPONSE DATA, TO BE ABLE TO DISPLAY THE ARTIST'S TOP SONGS (1)
-            #AS WELL AS ALL OF THE ARTIST'S ALBUMS (2)
-            #THEN USE THE CODE FROM THE MULTITRACK DOWNLOAD TO MAKE THE DOWNLOAD TOP SONGS OPTION (3)
-            #AND THEN USE THE CODE FROM THE ALBUM DOWNLOAD TO DOWNLOAD THE ALBUM SELECTED FROM THE LIST
-
-        
-
         downloadOption = input("""
 Option 1 - Download Artist's Top Songs
 Option 2 - Download Album from Artist
@@ -1420,10 +1419,8 @@ Would you like to proceed downloading {artistName}'s top songs?
                         download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
                         convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
-
-                        print("Song Downloaded!")
             
-                        async with session.get(f"https://open.spotify.com/oembed?url=spotify:track:{i}") as embedData:
+                        async with session.get(f"https://open.spotify.com/oembed?url=spotify:track:{URIi}") as embedData:
 
                             embed = await embedData.json()
 
@@ -1439,14 +1436,17 @@ Would you like to proceed downloading {artistName}'s top songs?
 
                         except OSError:
 
-                            print("\n\nFailed to download track from Spotify.\n"
-                                  "Feel free to retry.\n"
-                                  "Returning to menu...\n"
-                                  )
+                            print("\nSong does not contain download formats.")
 
-                            await session.close()
+                            print("Attempting to grab link with formats...")
 
-                            return
+                            download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/bestmatch:{artistName} {trackName}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
+
+                            convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
+
+                            audioFile = eyed3.load(f"Music/{fileName}.mp3")
+                    
+                        print("Song Downloaded!")
 
                         if (audioFile.tag == None):
 
@@ -1647,8 +1647,6 @@ Would you like to proceed downloading this album?
                         download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{i}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
                         convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
-
-                        print("Song Downloaded!")
             
                         async with session.get(f"https://open.spotify.com/oembed?url=spotify:track:{i}") as embedData:
 
@@ -1666,14 +1664,17 @@ Would you like to proceed downloading this album?
 
                         except OSError:
 
-                            print("\n\nFailed to download track from Spotify.\n"
-                                  "Feel free to retry.\n"
-                                  "Returning to menu...\n"
-                                  )
+                            print("\nSong does not contain download formats.")
 
-                            await session.close()
+                            print("Attempting to grab link with formats...")
 
-                            return
+                            download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/bestmatch:{artistName} {trackName}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
+
+                            convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
+
+                            audioFile = eyed3.load(f"Music/{fileName}.mp3")
+                    
+                        print("Song Downloaded!")
 
                         if (audioFile.tag == None):
 
