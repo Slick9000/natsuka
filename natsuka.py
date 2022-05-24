@@ -272,7 +272,7 @@ async def singleTrackProcess():
 
             print(f"Artist Name: {artistName}")
 
-            print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}")
+            print(f"Album Release: {albumRelease['year']}")
 
             fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
@@ -421,7 +421,7 @@ async def multiTrackProcess():
 
                 print(f"Artist Name: {artistName}")
 
-                print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}")
+                print(f"Album Release: {albumRelease['year']}")
 
                 fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
@@ -586,7 +586,7 @@ async def albumProcess():
 
                     print(f"Artist Name: {artistName}")
 
-                    print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}")
+                    print(f"Album Release: {albumRelease['year']}")
 
                     fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
@@ -777,7 +777,7 @@ async def playlistProcess():
 
                     print(f"Artist Name: {artistName}")
 
-                    print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}")
+                    print(f"Album Release: {albumRelease['year']}")
 
                     fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
@@ -997,7 +997,7 @@ Type 'RETURN' to return to main menu
 
             print(f"Artist Name: {artistName}")
 
-            print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}")
+            print(f"Album Release: {albumRelease['year']}")
 
             fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
@@ -1147,7 +1147,7 @@ Would you like to proceed downloading this album?
 
                     print(f"Artist Name: {artistName}")
 
-                    print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}\n")
+                    print(f"Album Release: {albumRelease['year']}\n")
 
                     fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
@@ -1408,7 +1408,7 @@ Would you like to proceed downloading {artistName}'s top songs?
 
                         print(f"Artist Name: {artistName}")
 
-                        print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}\n")
+                        print(f"Album Release: {albumRelease['year']}\n")
 
                         fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
@@ -1636,7 +1636,7 @@ Would you like to proceed downloading this album?
 
                         print(f"Artist Name: {artistName}")
 
-                        print(f"Album Release: {calendar.month_name[albumRelease['month']]} {albumRelease['day']}, {albumRelease['year']}")
+                        print(f"Album Release: {albumRelease['year']}")
 
                         fileName = re.sub('[\/:*?"<>|]', '', trackName)
 
