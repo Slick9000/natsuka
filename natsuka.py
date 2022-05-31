@@ -794,6 +794,14 @@ async def bestmatchProcess():
 
                 songData = await songJSON.json()
 
+                if len(songData) == 1:
+
+                    print("No results for query. Try being more specific with your search!\n")
+
+                    await session.close()
+
+                    return
+
                 URI = songData['object']['id']
 
                 async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{URI}?pass=pleasesparemyendpoints&quality=2") as trackJSON:
