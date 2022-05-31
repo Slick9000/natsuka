@@ -78,9 +78,9 @@ What would you like to do today?
 Option 1 - Download Track(s) by URL
 Option 2 - Download Album by URL
 Option 3 - Download Playlist by User ID and Playlist URL
-Option 4 - Search for Song/Album by Name
-Option 5 - Search for Artist
-Option 6 - Download Tracks(s) by Song Name and Artist Name (Bestmatch)
+Option 4 - Download Tracks(s) by Song Name and Artist Name (Bestmatch)
+Option 5 - Search for Song/Album by Name
+Option 6 - Search for Artist
 Option 7 - Change Audio Bitrate (Selected: {bitrate}kbps)
 Option 8 - Exit
 
@@ -97,9 +97,9 @@ What would you like to do today?
 Option 1 - Download Track(s) by URL
 Option 2 - Download Album by URL
 Option 3 - Download Playlist by User ID and Playlist URL
-Option 4 - Search for Song/Album by Name
-Option 5 - Search for Artist
-Option 6 - Download Tracks(s) by Song Name and Artist Name (Bestmatch)
+Option 4 - Download Tracks(s) by Song Name and Artist Name (Bestmatch)
+Option 5 - Search for Song/Album by Name
+Option 6 - Search for Artist
 Option 7 - Change Audio Bitrate (Selected: {bitrate}kbps)
 Option 8 - Exit
 
@@ -150,7 +150,7 @@ Option 8 - Exit
 
     if option == "4":
 
-        await songSearch()
+        await bestmatchProcess()
 
         try:
         
@@ -164,7 +164,7 @@ Option 8 - Exit
 
     if option == "5":
 
-        await artistSearch()
+        await songSearch()
 
         try:
         
@@ -178,7 +178,7 @@ Option 8 - Exit
 
     if option == "6":
 
-        await bestmatchProcess()
+        await artistSearch()
 
         try:
         
@@ -710,6 +710,149 @@ async def playlistProcess():
                         print(f"Artist Name: {artistName}")
 
                         print(f"Album Release: {albumRelease['year']}")
+
+                        download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/bestmatch:{artistName} {trackName}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
+
+                        convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
+
+                        audioFile = eyed3.load(f"Music/{fileName}.mp3")
+                    
+                    print("Song Downloaded!")
+
+                    if (audioFile.tag == None):
+
+                        audioFile.initTag()
+
+                    audioFile.tag.images.set(ImageFrame.FRONT_COVER, imgData, 'image/jpeg')
+
+                    audioFile.tag.title = trackName
+                            
+                    audioFile.tag.album = trackAlbum
+                            
+                    audioFile.tag.track_num = trackNumber
+                            
+                    audioFile.tag.artist = artistName
+
+                    audioFile.tag.recording_date = Date(albumRelease['year'])
+
+                    audioFile.tag.save()
+
+                    os.remove(f"Music/{fileName}.ogg")
+
+                    print("Metadata Applied!\n\n")
+        
+    end_time = time.monotonic()
+
+    print(f"Download time: {timedelta(seconds=end_time - start_time)}\n")
+
+    await session.close()
+
+
+async def bestmatchProcess():
+
+    songList = []
+
+    song = ""
+
+    while song != "START":
+
+        song = input(f"Enter songs (Current number of songs: {len(songList)})\n"
+                      "Type 'START' to begin download.\n"
+                      "Tip: For best results, use format: (Song Name) (Artist Name)\n\n"
+                      "Type 'RETURN' to return to main menu\n: "
+                     )
+        
+        if song == "RETURN":
+
+            return
+
+        while song == "":
+
+            print("Song name is empty!")
+
+            song = input(f"Enter songs (Current number of songs: {len(songList)})\n"
+                          "Type 'START' to begin download.\n"
+                          "Tip: For best results, use format: (Song Name) (Artist Name)\n\n"
+                          "Type 'RETURN' to return to main menu\n: "
+                         )
+
+        if song != "START":
+
+            songList.append(song)
+
+    start_time = time.monotonic()
+
+    print(f"Loading {len(songList)} songs...\n")
+
+    session = aiohttp.ClientSession()
+
+    for i in songList:
+
+        #fix aiohttp server disconnected by adding a retry on failure
+
+        async with session.get(f"https://music.joshuadoes.com/v1/bestmatch:{i}?pass=pleasesparemyendpoints&quality=2") as songJSON:
+
+                songData = await songJSON.json()
+
+                URI = songData['object']['id']
+
+                async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{URI}?pass=pleasesparemyendpoints&quality=2") as trackJSON:
+
+                    trackData = await trackJSON.json()
+
+                    trackName = trackData['name']
+
+                    trackAlbum = trackData['album']['name']
+
+                    trackNumber = trackData['number']
+
+                    artistName = trackData['album']['artist'][0]['name']
+
+                    albumRelease = trackData['album']['date']
+
+                    print(f"Track Name: {trackName}")
+
+                    print(f"Album Name: {trackAlbum}")
+
+                    print(f"Artist Name: {artistName}")
+
+                    print(f"Album Release: {albumRelease['year']}")
+
+                    fileName = re.sub('[\/:*?"<>|]', '', trackName)
+
+                    if not os.path.exists("Music"):
+
+                        os.makedirs("Music")
+            
+                    download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{URI}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
+
+                    convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
+                
+                    async with session.get(f"https://open.spotify.com/oembed?url=spotify:track:{URI}") as embedData:
+
+                        embed = await embedData.json()
+
+                        coverArt = embed['thumbnail_url']
+
+                    async with session.get(coverArt) as img:
+
+                        imgData = await img.read()
+
+                    try:
+
+                        audioFile = eyed3.load(f"Music/{fileName}.mp3")
+
+                    except OSError:
+
+                        print("\nSong does not contain download formats.")
+
+                        print("Attempting to grab link with formats...")
+
+                        print(f"\nTrack Name: {trackName}")
+
+                        print(f"Album Name: {trackAlbum}")
+
+                        print(f"Artist Name: {artistName}")
 
                         download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/bestmatch:{artistName} {trackName}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
 
@@ -1651,149 +1794,6 @@ Would you like to proceed downloading this album?
                 await session.close()
 
                 return
-
-
-async def bestmatchProcess():
-
-    songList = []
-
-    song = ""
-
-    while song != "START":
-
-        song = input(f"Enter songs (Current number of songs: {len(songList)})\n"
-                      "Type 'START' to begin download.\n"
-                      "Tip: For best results, use format: (Song Name) (Artist Name)\n\n"
-                      "Type 'RETURN' to return to main menu\n: "
-                     )
-        
-        if song == "RETURN":
-
-            return
-
-        while song == "":
-
-            print("Song name is empty!")
-
-            song = input(f"Enter songs (Current number of songs: {len(songList)})\n"
-                          "Type 'START' to begin download.\n"
-                          "Tip: For best results, use format: (Song Name) (Artist Name)\n\n"
-                          "Type 'RETURN' to return to main menu\n: "
-                         )
-
-        if song != "START":
-
-            songList.append(song)
-
-    start_time = time.monotonic()
-
-    print(f"Loading {len(songList)} songs...\n")
-
-    session = aiohttp.ClientSession()
-
-    for i in songList:
-
-        #fix aiohttp server disconnected by adding a retry on failure
-
-        async with session.get(f"https://music.joshuadoes.com/v1/bestmatch:{i}?pass=pleasesparemyendpoints&quality=2") as songJSON:
-
-                songData = await songJSON.json()
-
-                URI = songData['object']['id']
-
-                async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{URI}?pass=pleasesparemyendpoints&quality=2") as trackJSON:
-
-                    trackData = await trackJSON.json()
-
-                    trackName = trackData['name']
-
-                    trackAlbum = trackData['album']['name']
-
-                    trackNumber = trackData['number']
-
-                    artistName = trackData['album']['artist'][0]['name']
-
-                    albumRelease = trackData['album']['date']
-
-                    print(f"Track Name: {trackName}")
-
-                    print(f"Album Name: {trackAlbum}")
-
-                    print(f"Artist Name: {artistName}")
-
-                    print(f"Album Release: {albumRelease['year']}")
-
-                    fileName = re.sub('[\/:*?"<>|]', '', trackName)
-
-                    if not os.path.exists("Music"):
-
-                        os.makedirs("Music")
-            
-                    download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/spotify:track:{URI}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
-
-                    convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
-            
-                    async with session.get(f"https://open.spotify.com/oembed?url=spotify:track:{URI}") as embedData:
-
-                        embed = await embedData.json()
-
-                        coverArt = embed['thumbnail_url']
-
-                    async with session.get(coverArt) as img:
-
-                        imgData = await img.read()
-
-                    try:
-
-                        audioFile = eyed3.load(f"Music/{fileName}.mp3")
-
-                    except OSError:
-
-                        print("\nSong does not contain download formats.")
-
-                        print("Attempting to grab link with formats...")
-
-                        print(f"\nTrack Name: {trackName}")
-
-                        print(f"Album Name: {trackAlbum}")
-
-                        print(f"Artist Name: {artistName}")
-
-                        download = os.system(f'{basedir}ffmpeg -i "https://music.joshuadoes.com/v1/stream/bestmatch:{artistName} {trackName}?pass=pleasesparemyendpoints&quality=2" -c copy "Music/{fileName}.ogg" -v quiet')    
-
-                        convert_to_mp3 = os.system(f'{basedir}ffmpeg -i "Music/{fileName}.ogg" -f mp3 -b:a {bitrate}k "Music/{fileName}.mp3" -v quiet')
-
-                        audioFile = eyed3.load(f"Music/{fileName}.mp3")
-                    
-                        print("Song Downloaded!")
-
-                    if (audioFile.tag == None):
-
-                        audioFile.initTag()
-
-                    audioFile.tag.images.set(ImageFrame.FRONT_COVER, imgData, 'image/jpeg')
-
-                    audioFile.tag.title = trackName
-                            
-                    audioFile.tag.album = trackAlbum
-                            
-                    audioFile.tag.track_num = trackNumber
-                            
-                    audioFile.tag.artist = artistName
-
-                    audioFile.tag.recording_date = Date(albumRelease['year'])
-
-                    audioFile.tag.save()
-
-                    os.remove(f"Music/{fileName}.ogg")
-
-                    print("Metadata Applied!\n\n")
-        
-    end_time = time.monotonic()
-
-    print(f"Download time: {timedelta(seconds=end_time - start_time)}\n")
-
-    await session.close()
 
 
 async def changeBitrate():
