@@ -25,7 +25,8 @@ Skylar Bleed (for helping with several initial changes)
 **NOTE: users using the natsuka.exe from the download page won't need to download anything, as everything is already included in the executable. for all other users, you will need to install ffmpeg yourself.**
 
 ## features:
-**1: single song download support**
+
+**1: song(s) download support by url**
 ```
 [*] Checking for required dependencies...
 
@@ -34,65 +35,37 @@ Thanks to JoshuaDoes for making this possible.
 
 What would you like to do today?
 
-Option 1 - Download a single track by URL
-Option 2 - Download multiple tracks by URL
-Option 3 - Download Album by URL
-Option 4 - Download Playlist by User ID and Playlist URL
+Option 1 - Download Track(s) by URL
+Option 2 - Download Album by URL
+Option 3 - Download Playlist by User ID and Playlist URL
+Option 4 - Download Tracks(s) by Song Name and Artist Name (Bestmatch)
 Option 5 - Search for Song/Album by Name
 Option 6 - Search for Artist
 Option 7 - Change Audio Bitrate (Selected: 320kbps)
 Option 8 - Exit
 
 : 1
-Enter the track's URL
-: https://open.spotify.com/track/6O9PAqJLef4tyQNadjb40u?si=149102c06360475c
-Track Name: De roses et de colombes
-Album Name: How Are You
-Artist Name: Mounika.
-Album Release: June 24, 2017
-Song Downloaded!
-Metadata Applied!
-
-
-Press enter to continue.
-```
-
-<br/>
-
-**2: multiple song download support**
-```
-[*] Checking for required dependencies...
-
-natsuka - spotify downloader
-Thanks to JoshuaDoes for making this possible.
-
-What would you like to do today?
-
-Option 1 - Download a single track by URL
-Option 2 - Download multiple tracks by URL
-Option 3 - Download Album by URL
-Option 4 - Download Playlist by User ID and Playlist URL
-Option 5 - Search for Song/Album by Name
-Option 6 - Search for Artist
-Option 7 - Change Audio Bitrate (Selected: 320kbps)
-Option 8 - Exit
-
-: 2
-Enter songs (Current number of songs: 0
+Enter songs (Current number of songs: 0)
 Type 'START' to begin download.
+
+Type 'RETURN' to return to main menu
 : https://open.spotify.com/track/6O9PAqJLef4tyQNadjb40u?si=149102c06360475c
-Enter songs (Current number of songs: 1
+Enter songs (Current number of songs: 1)
 Type 'START' to begin download.
+
+Type 'RETURN' to return to main menu
 : https://open.spotify.com/track/3DYZKxjG8SZrWpVcoUilqQ?si=22dd2605a1834519
-Enter songs (Current number of songs: 2
+Enter songs (Current number of songs: 2)
 Type 'START' to begin download.
+
+Type 'RETURN' to return to main menu
 : START
 Loading 2 songs...
 
 Track Name: De roses et de colombes
 Album Name: How Are You
 Artist Name: Mounika.
-Album Release: June 24, 2017
+Album Release: 2017
 Song Downloaded!
 Metadata Applied!
 
@@ -100,12 +73,12 @@ Metadata Applied!
 Track Name: Cut My Hair
 Album Name: How Are You
 Artist Name: Mounika.
-Album Release: June 24, 2017
+Album Release: 2017
 Song Downloaded!
 Metadata Applied!
 
 
-Download time: 0:00:10.344000
+Download time: 0:00:38.593000
 
 Press enter to continue.
 
@@ -113,7 +86,7 @@ Press enter to continue.
 
 <br/>
 
-**3: album download support** (**NOTE: can download multi disc albums**)
+**2: album download support by url** (**NOTE: can download multi disc albums**)
 ```
 [*] Checking for required dependencies...
 
@@ -122,24 +95,26 @@ Thanks to JoshuaDoes for making this possible.
 
 What would you like to do today?
 
-Option 1 - Download a single track by URL
-Option 2 - Download multiple tracks by URL
-Option 3 - Download Album by URL
-Option 4 - Download Playlist by User ID and Playlist URL
+Option 1 - Download Track(s) by URL
+Option 2 - Download Album by URL
+Option 3 - Download Playlist by User ID and Playlist URL
+Option 4 - Download Tracks(s) by Song Name and Artist Name (Bestmatch)
 Option 5 - Search for Song/Album by Name
 Option 6 - Search for Artist
 Option 7 - Change Audio Bitrate (Selected: 320kbps)
 Option 8 - Exit
 
-: 3
+: 2
 Enter the album's URL
+
+Type 'RETURN' to return to main menu
 : https://open.spotify.com/album/5k1geNqLd4yHzyg5L6XF2z?si=i18yaK1cTESTw1zg3uBoqA
 Loading 5 songs...
 
 Track Name: HAZARD DUTY PAY!
 Album Name: OFFLINE!
 Artist Name: JPEGMAFIA
-Album Release: February 24, 2022
+Album Release: 2022
 Song Downloaded!
 Metadata Applied!
 
@@ -147,7 +122,7 @@ Metadata Applied!
 Track Name: DIKEMBE!
 Album Name: OFFLINE!
 Artist Name: JPEGMAFIA
-Album Release: February 24, 2022
+Album Release: 2022
 Song Downloaded!
 Metadata Applied!
 
@@ -155,7 +130,7 @@ Metadata Applied!
 Track Name: GOD DON'T LIKE UGLY!
 Album Name: OFFLINE!
 Artist Name: JPEGMAFIA
-Album Release: February 24, 2022
+Album Release: 2022
 Song Downloaded!
 Metadata Applied!
 
@@ -163,7 +138,7 @@ Metadata Applied!
 Track Name: UNTITLED
 Album Name: OFFLINE!
 Artist Name: JPEGMAFIA
-Album Release: February 24, 2022
+Album Release: 2022
 Song Downloaded!
 Metadata Applied!
 
@@ -171,19 +146,19 @@ Metadata Applied!
 Track Name: 100 EMOJI!
 Album Name: OFFLINE!
 Artist Name: JPEGMAFIA
-Album Release: February 24, 2022
+Album Release: 2022
 Song Downloaded!
 Metadata Applied!
 
 
-Download time: 0:00:25.859000
+Download time: 0:01:43.765000
 
 Press enter to continue.
 ```
 
 <br/>
 
-**4: playlist download support**
+**3: playlist download support by url**
 ```
 [*] Checking for required dependencies...
 
@@ -192,31 +167,33 @@ Thanks to JoshuaDoes for making this possible.
 
 What would you like to do today?
 
-Option 1 - Download a single track by URL
-Option 2 - Download multiple tracks by URL
-Option 3 - Download Album by URL
-Option 4 - Download Playlist by User ID and Playlist URL
+Option 1 - Download Track(s) by URL
+Option 2 - Download Album by URL
+Option 3 - Download Playlist by User ID and Playlist URL
+Option 4 - Download Tracks(s) by Song Name and Artist Name (Bestmatch)
 Option 5 - Search for Song/Album by Name
 Option 6 - Search for Artist
 Option 7 - Change Audio Bitrate (Selected: 320kbps)
 Option 8 - Exit
 
-: 4
+: 3
 Input user ID
 
 Type 'RETURN' to return to main menu
 : 1xcmyijwkhfsqb1v7pxmb4dlv
 Input the playlist's URL
-: https://open.spotify.com/playlist/1CMD2NjsEPSVAzrPugTSs8?si=1b6270f97cae490e
+
+Type 'RETURN' to return to main menu
+: https://open.spotify.com/playlist/3tOMpRplT8CA4HDQIrCPa2?si=f5aceed75edb4df5
 Playlist Name: Short Sample Playlist
-Description: None
+Description: Short sample playlist I made
 Playlist Length: 3 tracks
 Loading 3 songs...
 
 Track Name: Mirror
 Album Name: Mr. Morale & The Big Steppers
 Artist Name: Kendrick Lamar
-Album Release: May 13, 2022
+Album Release: 2022
 Song Downloaded!
 Metadata Applied!
 
@@ -224,7 +201,7 @@ Metadata Applied!
 Track Name: Mental [Feat. Saul Williams & Bridget Perez]
 Album Name: Melt My Eyez See Your Future
 Artist Name: Denzel Curry
-Album Release: March 25, 2022
+Album Release: 2022
 Song Downloaded!
 Metadata Applied!
 
@@ -232,19 +209,81 @@ Metadata Applied!
 Track Name: Savior
 Album Name: Mr. Morale & The Big Steppers
 Artist Name: Kendrick Lamar
-Album Release: May 13, 2022
+Album Release: 2022
 Song Downloaded!
 Metadata Applied!
 
 
-Download time: 0:00:20.266000
+Download time: 0:01:22.625000
 
 Press enter to continue.
 ```
 
 <br/>
 
-**5: downloading song/album by search query**
+**4: song(s) download support by search query (bestmatch, no menu)**
+```
+[*] Checking for required dependencies...
+
+natsuka - spotify downloader
+Thanks to JoshuaDoes for making this possible.
+
+What would you like to do today?
+
+Option 1 - Download Track(s) by URL
+Option 2 - Download Album by URL
+Option 3 - Download Playlist by User ID and Playlist URL
+Option 4 - Download Tracks(s) by Song Name and Artist Name (Bestmatch)
+Option 5 - Search for Song/Album by Name
+Option 6 - Search for Artist
+Option 7 - Change Audio Bitrate (Selected: 320kbps)
+Option 8 - Exit
+
+: 4
+Enter songs (Current number of songs: 0)
+Type 'START' to begin download.
+Tip: For best results, use format: (Song Name) (Artist Name)
+
+Type 'RETURN' to return to main menu
+: Nights Frank Ocean
+Enter songs (Current number of songs: 1)
+Type 'START' to begin download.
+Tip: For best results, use format: (Song Name) (Artist Name)
+
+Type 'RETURN' to return to main menu
+: Brambleton Pusha T
+Enter songs (Current number of songs: 2)
+Type 'START' to begin download.
+Tip: For best results, use format: (Song Name) (Artist Name)
+
+Type 'RETURN' to return to main menu
+: START
+Loading 2 songs...
+
+Track Name: Nights
+Album Name: Blonde
+Artist Name: Frank Ocean
+Album Release: 2016
+Song Downloaded!
+Metadata Applied!
+
+
+Track Name: Brambleton
+Album Name: It's Almost Dry
+Artist Name: Pusha T
+Album Release: 2022
+Song Downloaded!
+Metadata Applied!
+
+
+Download time: 0:01:03.516000
+
+Press enter to continue.
+```
+
+<br/>
+
+**5: song/album download support by search query**
 #### option 1: download song
 ```
 [*] Checking for required dependencies...
@@ -254,10 +293,10 @@ Thanks to JoshuaDoes for making this possible.
 
 What would you like to do today?
 
-Option 1 - Download a single track by URL
-Option 2 - Download multiple tracks by URL
-Option 3 - Download Album by URL
-Option 4 - Download Playlist by User ID and Playlist URL
+Option 1 - Download Track(s) by URL
+Option 2 - Download Album by URL
+Option 3 - Download Playlist by User ID and Playlist URL
+Option 4 - Download Tracks(s) by Song Name and Artist Name (Bestmatch)
 Option 5 - Search for Song/Album by Name
 Option 6 - Search for Artist
 Option 7 - Change Audio Bitrate (Selected: 320kbps)
@@ -320,10 +359,10 @@ Thanks to JoshuaDoes for making this possible.
 
 What would you like to do today?
 
-Option 1 - Download a single track by URL
-Option 2 - Download multiple tracks by URL
-Option 3 - Download Album by URL
-Option 4 - Download Playlist by User ID and Playlist URL
+Option 1 - Download Track(s) by URL
+Option 2 - Download Album by URL
+Option 3 - Download Playlist by User ID and Playlist URL
+Option 4 - Download Tracks(s) by Song Name and Artist Name (Bestmatch)
 Option 5 - Search for Song/Album by Name
 Option 6 - Search for Artist
 Option 7 - Change Audio Bitrate (Selected: 320kbps)
@@ -500,7 +539,7 @@ Press enter to continue.
 
 <br/>
 
-**note: the more specific your search query is, the better the chance of finding the song**
+**note: the more specific your search query is, the better the chance of finding the song (bestmatch)**
 ```
 [*] Checking for required dependencies...
 
@@ -509,10 +548,10 @@ Thanks to JoshuaDoes for making this possible.
 
 What would you like to do today?
 
-Option 1 - Download a single track by URL
-Option 2 - Download multiple tracks by URL
-Option 3 - Download Album by URL
-Option 4 - Download Playlist by User ID and Playlist URL
+Option 1 - Download Track(s) by URL
+Option 2 - Download Album by URL
+Option 3 - Download Playlist by User ID and Playlist URL
+Option 4 - Download Tracks(s) by Song Name and Artist Name (Bestmatch)
 Option 5 - Search for Song/Album by Name
 Option 6 - Search for Artist
 Option 7 - Change Audio Bitrate (Selected: 320kbps)
@@ -551,7 +590,7 @@ Press enter to continue.
 
 <br/>
 
-**6: downloading artist songs by search query**
+**6: artist top songs/album download support by search query**
 #### option 1: download artist's top songs
 ```
 [*] Checking for required dependencies...
@@ -561,10 +600,10 @@ Thanks to JoshuaDoes for making this possible.
 
 What would you like to do today?
 
-Option 1 - Download a single track by URL
-Option 2 - Download multiple tracks by URL
-Option 3 - Download Album by URL
-Option 4 - Download Playlist by User ID and Playlist URL
+Option 1 - Download Track(s) by URL
+Option 2 - Download Album by URL
+Option 3 - Download Playlist by User ID and Playlist URL
+Option 4 - Download Tracks(s) by Song Name and Artist Name (Bestmatch)
 Option 5 - Search for Song/Album by Name
 Option 6 - Search for Artist
 Option 7 - Change Audio Bitrate (Selected: 320kbps)
@@ -714,10 +753,10 @@ Thanks to JoshuaDoes for making this possible.
 
 What would you like to do today?
 
-Option 1 - Download a single track by URL
-Option 2 - Download multiple tracks by URL
-Option 3 - Download Album by URL
-Option 4 - Download Playlist by User ID and Playlist URL
+Option 1 - Download Track(s) by URL
+Option 2 - Download Album by URL
+Option 3 - Download Playlist by User ID and Playlist URL
+Option 4 - Download Tracks(s) by Song Name and Artist Name (Bestmatch)
 Option 5 - Search for Song/Album by Name
 Option 6 - Search for Artist
 Option 7 - Change Audio Bitrate (Selected: 320kbps)
@@ -909,10 +948,10 @@ Thanks to JoshuaDoes for making this possible.
 
 What would you like to do today?
 
-Option 1 - Download a single track by URL
-Option 2 - Download multiple tracks by URL
-Option 3 - Download Album by URL
-Option 4 - Download Playlist by User ID and Playlist URL
+Option 1 - Download Track(s) by URL
+Option 2 - Download Album by URL
+Option 3 - Download Playlist by User ID and Playlist URL
+Option 4 - Download Tracks(s) by Song Name and Artist Name (Bestmatch)
 Option 5 - Search for Song/Album by Name
 Option 6 - Search for Artist
 Option 7 - Change Audio Bitrate (Selected: 320kbps)
@@ -934,10 +973,10 @@ Thanks to JoshuaDoes for making this possible.
 
 What would you like to do today?
 
-Option 1 - Download a single track by URL
-Option 2 - Download multiple tracks by URL
-Option 3 - Download Album by URL
-Option 4 - Download Playlist by User ID and Playlist URL
+Option 1 - Download Track(s) by URL
+Option 2 - Download Album by URL
+Option 3 - Download Playlist by User ID and Playlist URL
+Option 4 - Download Tracks(s) by Song Name and Artist Name (Bestmatch)
 Option 5 - Search for Song/Album by Name
 Option 6 - Search for Artist
 Option 7 - Change Audio Bitrate (Selected: 96kbps)
@@ -958,10 +997,10 @@ Thanks to JoshuaDoes for making this possible.
 
 What would you like to do today?
 
-Option 1 - Download a single track by URL
-Option 2 - Download multiple tracks by URL
-Option 3 - Download Album by URL
-Option 4 - Download Playlist by User ID and Playlist URL
+Option 1 - Download Track(s) by URL
+Option 2 - Download Album by URL
+Option 3 - Download Playlist by User ID and Playlist URL
+Option 4 - Download Tracks(s) by Song Name and Artist Name (Bestmatch)
 Option 5 - Search for Song/Album by Name
 Option 6 - Search for Artist
 Option 7 - Change Audio Bitrate (Selected: 320kbps)
@@ -985,10 +1024,10 @@ Thanks to JoshuaDoes for making this possible.
 
 What would you like to do today?
 
-Option 1 - Download a single track by URL
-Option 2 - Download multiple tracks by URL
-Option 3 - Download Album by URL
-Option 4 - Download Playlist by User ID and Playlist URL
+Option 1 - Download Track(s) by URL
+Option 2 - Download Album by URL
+Option 3 - Download Playlist by User ID and Playlist URL
+Option 4 - Download Tracks(s) by Song Name and Artist Name (Bestmatch)
 Option 5 - Search for Song/Album by Name
 Option 6 - Search for Artist
 Option 7 - Change Audio Bitrate (Selected: 48kbps)
