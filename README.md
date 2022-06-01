@@ -340,7 +340,7 @@ Option 2 - Download Song's Album
 Track Name: 16
 Album Name: The Melodic Blue
 Artist Name: Baby Keem
-Album Release: September 10, 2021
+Album Release: 2021
 Song Downloaded!
 Metadata Applied!
 
@@ -404,10 +404,14 @@ Option 2 - Download Song's Album
 2
 Loading 16 songs...
 
+Would you like to proceed downloading this album?
+1 - Yes
+2 - No
+
 Track Name: trademark usa
 Album Name: The Melodic Blue
 Artist Name: Baby Keem
-Album Release: September 10, 2021
+Album Release: 2021
 Song Downloaded!
 Metadata Applied!
 
@@ -415,7 +419,7 @@ Metadata Applied!
 Track Name: pink panties
 Album Name: The Melodic Blue
 Artist Name: Baby Keem
-Album Release: September 10, 2021
+Album Release: 2021
 Song Downloaded!
 Metadata Applied!
 
@@ -423,7 +427,7 @@ Metadata Applied!
 Track Name: scapegoats
 Album Name: The Melodic Blue
 Artist Name: Baby Keem
-Album Release: September 10, 2021
+Album Release: 2021
 Song Downloaded!
 Metadata Applied!
 
@@ -431,7 +435,7 @@ Metadata Applied!
 Track Name: range brothers (with Kendrick Lamar)
 Album Name: The Melodic Blue
 Artist Name: Baby Keem
-Album Release: September 10, 2021
+Album Release: 2021
 Song Downloaded!
 Metadata Applied!
 
@@ -439,7 +443,7 @@ Metadata Applied!
 Track Name: issues
 Album Name: The Melodic Blue
 Artist Name: Baby Keem
-Album Release: September 10, 2021
+Album Release: 2021
 Song Downloaded!
 Metadata Applied!
 
@@ -447,7 +451,7 @@ Metadata Applied!
 Track Name: gorgeous
 Album Name: The Melodic Blue
 Artist Name: Baby Keem
-Album Release: September 10, 2021
+Album Release: 2021
 Song Downloaded!
 Metadata Applied!
 
@@ -455,7 +459,7 @@ Metadata Applied!
 Track Name: south africa
 Album Name: The Melodic Blue
 Artist Name: Baby Keem
-Album Release: September 10, 2021
+Album Release: 2021
 Song Downloaded!
 Metadata Applied!
 
@@ -463,7 +467,7 @@ Metadata Applied!
 Track Name: lost souls
 Album Name: The Melodic Blue
 Artist Name: Baby Keem
-Album Release: September 10, 2021
+Album Release: 2021
 Song Downloaded!
 Metadata Applied!
 
@@ -471,7 +475,7 @@ Metadata Applied!
 Track Name: cocoa (with Don Toliver)
 Album Name: The Melodic Blue
 Artist Name: Baby Keem
-Album Release: September 10, 2021
+Album Release: 2021
 Song Downloaded!
 Metadata Applied!
 
@@ -479,7 +483,7 @@ Metadata Applied!
 Track Name: family ties (with Kendrick Lamar)
 Album Name: The Melodic Blue
 Artist Name: Baby Keem
-Album Release: September 10, 2021
+Album Release: 2021
 Song Downloaded!
 Metadata Applied!
 
@@ -487,7 +491,7 @@ Metadata Applied!
 Track Name: scars
 Album Name: The Melodic Blue
 Artist Name: Baby Keem
-Album Release: September 10, 2021
+Album Release: 2021
 Song Downloaded!
 Metadata Applied!
 
@@ -495,7 +499,7 @@ Metadata Applied!
 Track Name: durag activity (with Travis Scott)
 Album Name: The Melodic Blue
 Artist Name: Baby Keem
-Album Release: September 10, 2021
+Album Release: 2021
 Song Downloaded!
 Metadata Applied!
 
@@ -503,7 +507,7 @@ Metadata Applied!
 Track Name: booman
 Album Name: The Melodic Blue
 Artist Name: Baby Keem
-Album Release: September 10, 2021
+Album Release: 2021
 Song Downloaded!
 Metadata Applied!
 
@@ -511,7 +515,7 @@ Metadata Applied!
 Track Name: first order of business
 Album Name: The Melodic Blue
 Artist Name: Baby Keem
-Album Release: September 10, 2021
+Album Release: 2021
 Song Downloaded!
 Metadata Applied!
 
@@ -519,7 +523,7 @@ Metadata Applied!
 Track Name: vent
 Album Name: The Melodic Blue
 Artist Name: Baby Keem
-Album Release: September 10, 2021
+Album Release: 2021
 Song Downloaded!
 Metadata Applied!
 
@@ -527,7 +531,7 @@ Metadata Applied!
 Track Name: 16
 Album Name: The Melodic Blue
 Artist Name: Baby Keem
-Album Release: September 10, 2021
+Album Release: 2021
 Song Downloaded!
 Metadata Applied!
 
@@ -580,7 +584,7 @@ Option 2 - Download Song's Album
 Track Name: 16
 Album Name: The Melodic Blue
 Artist Name: Baby Keem
-Album Release: September 10, 2021
+Album Release: 2021
 Song Downloaded!
 Metadata Applied!
 
@@ -650,7 +654,7 @@ Would you like to proceed downloading Saba's top songs?
 Track Name: Photosynthesis
 Album Name: Bucket List Project
 Artist Name: Saba
-Album Release: October 27, 2016
+Album Release: 2016
 
 Song Downloaded!
 Metadata Applied!
@@ -659,7 +663,7 @@ Metadata Applied!
 Track Name: Ziplock
 Album Name: Ziplock / Rich Don't Stop
 Artist Name: Saba
-Album Release: March 18, 2021
+Album Release: 2021
 
 Song Downloaded!
 Metadata Applied!
@@ -668,7 +672,7 @@ Metadata Applied!
 Track Name: Still (feat. 6LACK and Smino)
 Album Name: Few Good Things
 Artist Name: Saba
-Album Release: February 4, 2022
+Album Release: 2022
 
 Song Downloaded!
 Metadata Applied!
@@ -677,7 +681,7 @@ Metadata Applied!
 Track Name: an Interlude Called “Circus” (feat. Eryn Allen Kane)
 Album Name: Few Good Things
 Artist Name: Saba
-Album Release: February 4, 2022
+Album Release: 2022
 
 Song Downloaded!
 Metadata Applied!
@@ -686,7 +690,7 @@ Metadata Applied!
 Track Name: LIFE
 Album Name: CARE FOR ME
 Artist Name: Saba
-Album Release: April 5, 2018
+Album Release: 2018
 
 Song Downloaded!
 Metadata Applied!
@@ -695,7 +699,7 @@ Metadata Applied!
 Track Name: BUSY / SIRENS
 Album Name: CARE FOR ME
 Artist Name: Saba
-Album Release: April 5, 2018
+Album Release: 2018
 
 Song Downloaded!
 Metadata Applied!
@@ -704,7 +708,7 @@ Metadata Applied!
 Track Name: One Way or Every N***a With a Budget
 Album Name: Few Good Things
 Artist Name: Saba
-Album Release: February 4, 2022
+Album Release: 2022
 
 Song Downloaded!
 Metadata Applied!
@@ -713,7 +717,7 @@ Metadata Applied!
 Track Name: CALLIGRAPHY
 Album Name: CARE FOR ME
 Artist Name: Saba
-Album Release: April 5, 2018
+Album Release: 2018
 
 Song Downloaded!
 Metadata Applied!
@@ -722,7 +726,7 @@ Metadata Applied!
 Track Name: Come My Way (feat. Krayzie Bone)
 Album Name: Few Good Things
 Artist Name: Saba
-Album Release: February 4, 2022
+Album Release: 2022
 
 Song Downloaded!
 Metadata Applied!
@@ -731,7 +735,7 @@ Metadata Applied!
 Track Name: Lock It Up
 Album Name: Minus The Bullshit Life's Great
 Artist Name: Nascent
-Album Release: May 14, 2021
+Album Release: 2021
 
 Song Downloaded!
 Metadata Applied!
@@ -786,42 +790,42 @@ Loading 8 albums...
 
 Result number: 1
 Album Name: CALL ME IF YOU GET LOST
-Album Release: June 25, 2021
+Album Release: 2021
 
 
 Result number: 2
 Album Name: IGOR
-Album Release: May 17, 2019
+Album Release: 2019
 
 
 Result number: 3
 Album Name: Flower Boy
-Album Release: July 21, 2017
+Album Release: 2017
 
 
 Result number: 4
 Album Name: Cherry Bomb
-Album Release: April 13, 2015
+Album Release: 2015
 
 
 Result number: 5
 Album Name: Cherry Bomb + Instrumentals
-Album Release: April 13, 2015
+Album Release: 2015
 
 
 Result number: 6
 Album Name: Wolf
-Album Release: April 1, 2013
+Album Release: 2013
 
 
 Result number: 7
 Album Name: Goblin
-Album Release: May 9, 2011
+Album Release: 2011
 
 
 Result number: 8
 Album Name: Goblin
-Album Release: May 9, 2011
+Album Release: 2011
 
 Select an album (1-8)
 
@@ -837,7 +841,7 @@ Would you like to proceed downloading this album?
 Track Name: IGOR'S THEME
 Album Name: IGOR
 Artist Name: Tyler, The Creator
-Album Release: May 17, 2019
+Album Release: 2019
 Song Downloaded!
 Metadata Applied!
 
@@ -845,7 +849,7 @@ Metadata Applied!
 Track Name: EARFQUAKE
 Album Name: IGOR
 Artist Name: Tyler, The Creator
-Album Release: May 17, 2019
+Album Release: 2019
 Song Downloaded!
 Metadata Applied!
 
@@ -853,7 +857,7 @@ Metadata Applied!
 Track Name: I THINK
 Album Name: IGOR
 Artist Name: Tyler, The Creator
-Album Release: May 17, 2019
+Album Release: 2019
 Song Downloaded!
 Metadata Applied!
 
@@ -861,7 +865,7 @@ Metadata Applied!
 Track Name: EXACTLY WHAT YOU RUN FROM YOU END UP CHASING
 Album Name: IGOR
 Artist Name: Tyler, The Creator
-Album Release: May 17, 2019
+Album Release: 2019
 Song Downloaded!
 Metadata Applied!
 
@@ -869,7 +873,7 @@ Metadata Applied!
 Track Name: RUNNING OUT OF TIME
 Album Name: IGOR
 Artist Name: Tyler, The Creator
-Album Release: May 17, 2019
+Album Release: 2019
 Song Downloaded!
 Metadata Applied!
 
@@ -877,7 +881,7 @@ Metadata Applied!
 Track Name: NEW MAGIC WAND
 Album Name: IGOR
 Artist Name: Tyler, The Creator
-Album Release: May 17, 2019
+Album Release: 2019
 Song Downloaded!
 Metadata Applied!
 
@@ -885,7 +889,7 @@ Metadata Applied!
 Track Name: A BOY IS A GUN*
 Album Name: IGOR
 Artist Name: Tyler, The Creator
-Album Release: May 17, 2019
+Album Release: 2019
 Song Downloaded!
 Metadata Applied!
 
@@ -893,7 +897,7 @@ Metadata Applied!
 Track Name: PUPPET
 Album Name: IGOR
 Artist Name: Tyler, The Creator
-Album Release: May 17, 2019
+Album Release: 2019
 Song Downloaded!
 Metadata Applied!
 
@@ -901,7 +905,7 @@ Metadata Applied!
 Track Name: WHAT'S GOOD
 Album Name: IGOR
 Artist Name: Tyler, The Creator
-Album Release: May 17, 2019
+Album Release: 2019
 Song Downloaded!
 Metadata Applied!
 
@@ -909,7 +913,7 @@ Metadata Applied!
 Track Name: GONE, GONE / THANK YOU
 Album Name: IGOR
 Artist Name: Tyler, The Creator
-Album Release: May 17, 2019
+Album Release: 2019
 Song Downloaded!
 Metadata Applied!
 
@@ -917,7 +921,7 @@ Metadata Applied!
 Track Name: I DON'T LOVE YOU ANYMORE
 Album Name: IGOR
 Artist Name: Tyler, The Creator
-Album Release: May 17, 2019
+Album Release: 2019
 Song Downloaded!
 Metadata Applied!
 
@@ -925,7 +929,7 @@ Metadata Applied!
 Track Name: ARE WE STILL FRIENDS?
 Album Name: IGOR
 Artist Name: Tyler, The Creator
-Album Release: May 17, 2019
+Album Release: 2019
 Song Downloaded!
 Metadata Applied!
 
