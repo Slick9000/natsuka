@@ -980,17 +980,7 @@ async def songSearch():
 
         return
 
-    try:
-
-        selectedSong = songURIList[int(chosenSong)-1].split(":")[2]
-
-    except IndexError:
-
-            print("Song out of range! (No Result for selection)")
-
-            await session.close()
-
-            return
+    selectedSong = songURIList[int(chosenSong)-1].split(":")[2]
 
     downloadOption = input("""
 Option 1 - Download Song
@@ -1025,16 +1015,6 @@ Type 'RETURN' to return to main menu
         async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{selectedSong}?pass=pleasesparemyendpoints&quality=2") as trackJSON:
 
             trackData = await trackJSON.json()
-
-            if len(trackData) == 0:
-
-                print("Wrong URL input!\n"
-                      "Returning to main menu...\n"
-                      )
-
-                await session.close()
-
-                return
                     
             trackName = trackData['name']
 
@@ -1126,17 +1106,7 @@ Type 'RETURN' to return to main menu
 
     if downloadOption == "2":
 
-        try:
-
-            selectedAlbum = albumURIList[int(chosenSong)-1].split(":")[2]
-
-        except IndexError:
-
-            print("Album out of range! (No Result for selection)")
-
-            await session.close()
-
-            return
+        selectedAlbum = albumURIList[int(chosenSong)-1].split(":")[2]
         
         async with session.get(f"https://music.joshuadoes.com/album/spotify:album:{selectedAlbum}?pass=pleasesparemyendpoints&quality=2") as albumData:
 
@@ -1174,7 +1144,7 @@ Would you like to proceed downloading this album?
 : """
                              )
 
-        while not any(x in downloadOption for x in ["1", "2"]):
+        while not any(x in cont for x in ["1", "2"]):
 
             print("Invalid option!")
 
@@ -1369,17 +1339,7 @@ async def artistSearch():
 
             return
 
-        try:
-
-            selectedArtist = artistURIList[int(chosenArtist)-1].split(":")[2]
-
-        except IndexError:
-
-            print("Artist out of range! (No Result for selection)")
-
-            await session.close()
-
-            return
+        selectedArtist = artistURIList[int(chosenArtist)-1].split(":")[2]
 
         async with session.get(f"https://music.joshuadoes.com/artist/{selectedArtist}?pass=pleasesparemyendpoints&quality=2") as artistJSON:
 
@@ -1435,16 +1395,18 @@ Type 'RETURN' to return to main menu
 
                     trackURIS.append(trackID['id'])
 
+                    artistName = artists[int(chosenArtist)-1]['object']['name']
+
             print(f"Loading {len(trackURIS)} songs...\n")
 
             cont = input(f"""
-Would you like to proceed downloading {artists[int(chosenArtist)-1]['object']['name']}'s top songs?
+Would you like to proceed downloading {artistName}'s top songs?
 1 - Yes
 2 - No
 : """
                              )
 
-            while not any(x in downloadOption for x in ["1", "2"]):
+            while not any(x in cont for x in ["1", "2"]):
 
                 print("Invalid option!")
 
@@ -1627,17 +1589,7 @@ Would you like to proceed downloading {artistName}'s top songs?
 
                 return
 
-            try:
-
-                selectedAlbum = albumURIList[int(chosenAlbum)-1]
-
-            except IndexError:
-
-                print("Album out of range! (No Result for selection)")
-
-                await session.close()
-
-                return
+            selectedAlbum = albumURIList[int(chosenAlbum)-1]
 
             async with session.get(f"https://music.joshuadoes.com/album/spotify:album:{selectedAlbum}?pass=pleasesparemyendpoints&quality=2") as albumData:
 
@@ -1684,7 +1636,7 @@ Would you like to proceed downloading this album?
 : """
                              )
 
-            while not any(x in downloadOption for x in ["1", "2"]):
+            while not any(x in cont for x in ["1", "2"]):
 
                 print("Invalid option!")
 
