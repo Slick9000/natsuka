@@ -7,9 +7,9 @@ initally made on **february 28th, 2021**, natsuka was made to download songs fro
 welcome to natsuka 2.0, with **single-track, multi-track, album, playlist, and search query downloading.**
 
 ## credits
-JoshuaDoes (for the API endpoint)
+[JoshuaDoes](https://github.com/JoshuaDoes) (for the API endpoint)
 
-Skylar Bleed (for helping with several initial changes)
+[Skylar Bleed](https://git.sr.ht/~monarrk/) (for helping with several initial changes)
 
 ## [download](https://github.com/Slick9000/natsuka/releases/latest)
 
