@@ -59,7 +59,7 @@ while True:
             
         except Exception:
             
-            print(f'[!] Error installing "{module}" module. Do you have pip installed?')
+            print(f'[!] Error installing "{module}" module. Pip may not be installed or no WiFi connection may be available.')
             
             input(f'[!] Failed to initialize natsuka. Press Ctrl+C to exit...')
             
@@ -67,6 +67,34 @@ while True:
 
 
 async def main():
+
+    session = aiohttp.ClientSession()
+
+    try:
+
+        async with session.get("https://music.joshuadoes.com/", timeout=5):
+
+            print("[*] Connection established.\n")
+
+            await session.close()
+
+    except aiohttp.client_exceptions.ClientConnectorError:
+
+        print("No WiFi connection available. natsuka will now close...")
+
+        await session.close()
+
+        sys.exit()
+
+    except asyncio.exceptions.TimeoutError:
+
+        print("API is unavailable at the moment (Server is most likely down).\n"
+              "natsuka will now close..."
+              )
+
+        await session.close()
+
+        sys.exit()
     
     print("natsuka - spotify downloader\n"
           "Thanks to JoshuaDoes for making this possible."
