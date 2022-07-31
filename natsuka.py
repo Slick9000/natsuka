@@ -381,8 +381,7 @@ async def trackProcess():
 
                 if os.path.isfile(f"{download_location}/Music/{fileName}.mp3"):
 
-                    print("Song already downloaded to this directory. Skipping...
-")
+                    print("Song already downloaded to this directory. Skipping...\n")
 
                 else:
             
@@ -590,8 +589,7 @@ async def albumProcess():
                         
                     if os.path.isfile(f"{download_location}/Music/{fileName}.mp3"):
 
-                        print("Song already downloaded to this directory. Skipping...
-")
+                        print("Song already downloaded to this directory. Skipping...\n")
 
                     else:
             
@@ -825,8 +823,7 @@ async def playlistProcess():
                         
                     if os.path.isfile(f"{download_location}/Music/{fileName}.mp3"):
 
-                        print("Song already downloaded to this directory. Skipping...
-")
+                        print("Song already downloaded to this directory. Skipping...\n")
 
                     else:
             
@@ -1012,8 +1009,7 @@ async def bestmatchProcess():
                         
                     if os.path.isfile(f"{download_location}/Music/{fileName}.mp3"):
 
-                        print("Song already downloaded to this directory. Skipping...
-")
+                        print("Song already downloaded to this directory. Skipping...\n")
 
                     else:
             
@@ -1254,8 +1250,7 @@ Type 'RETURN' to return to main menu
                 
             if os.path.isfile(f"{download_location}/Music/{fileName}.mp3"):
 
-                print("Song already downloaded to this directory. Skipping...
-")
+                print("Song already downloaded to this directory. Skipping...\n")
 
             else:
             
@@ -1439,8 +1434,7 @@ Would you like to proceed downloading this album?
                         
                     if os.path.isfile(f"{download_location}/Music/{fileName}.mp3"):
 
-                        print("Song already downloaded to this directory. Skipping...
-")
+                        print("Song already downloaded to this directory. Skipping...\n")
 
                     else:
             
@@ -1736,8 +1730,7 @@ Would you like to proceed downloading {artistName}'s top songs?
                             
                         if os.path.isfile(f"{download_location}/Music/{fileName}.mp3"):
 
-                            print("Song already downloaded to this directory. Skipping...
-")
+                            print("Song already downloaded to this directory. Skipping...\n")
 
                         else:
             
@@ -1996,8 +1989,7 @@ Would you like to proceed downloading this album?
                             
                         if os.path.isfile(f"{download_location}/Music/{fileName}.mp3"):
 
-                            print("Song already downloaded to this directory. Skipping...
-")
+                            print("Song already downloaded to this directory. Skipping...\n")
 
                         else:
             
