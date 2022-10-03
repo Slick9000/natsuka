@@ -84,7 +84,7 @@ async def main():
 
     except aiohttp.client_exceptions.ClientConnectorError:
 
-        print("No WiFi connection available. natsuka will now close...")
+        print("[!] No WiFi connection available. natsuka will now close...")
 
         await session.close()
 
@@ -92,7 +92,7 @@ async def main():
 
     except asyncio.exceptions.TimeoutError:
 
-        print("API is unavailable at the moment (Server is most likely down).\n"
+        print("[!] API is unavailable at the moment (Server is most likely down).\n"
               "natsuka will now close..."
               )
 
@@ -1862,7 +1862,7 @@ Would you like to proceed downloading {artistName}'s top songs?
 
             validChoice = list(range(1, len(albumURIList)+1))
                                
-            while chosenAlbum != "RETURN" and not int(chosenAlbum) in validChoice:
+            while chosenAlbum != "RETURN" and not any(x in chosenAlbum for x in str(validChoice)):
 
                 print("Invalid option!")
 
