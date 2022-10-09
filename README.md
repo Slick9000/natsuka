@@ -45,7 +45,9 @@ python natsuka.py //runs program
 now, whenver you go to download a song, you will be prompted with this:
 
 ```
-[*] Android OS detected. Would you like to download selected tracks to storage/emulated/0/downloads folder? (This would allow you to access these songs from your music players, and not only through Termux.
+[*] Android OS detected. Would you like to download selected tracks to storage/emulated/0/downloads folder? 
+
+(This would allow you to access these songs from your music players, and not only through Termux.
 
 1 - Yes
 2 - No
