@@ -26,6 +26,33 @@ welcome to natsuka 2.0, with **single-track, multi-track, album, playlist, and s
 
 **NOTE: users using the natsuka.exe from the download page won't need to download anything, as everything is already included in the executable. for all other users, you will need to install ffmpeg yourself.**
 
+## android support 
+
+natsuka works on android with termux, and can download to your music folder so you can see the music in your music players. 
+
+just install termux's apk from [here](https://github.com/termux/termux-app/releases/latest), open it, and run the following commands:**
+
+```
+pkg update -y && pkg upgrade -y //updates packages for linux
+pkg install git -y //install git so you can download my program from github
+pkg install python -y //install python to run the program
+pkg install ffmpeg -y //install ffmpeg, handles downloading the music
+git clone https://github.com/Slick9000/natsuka.git //downloads the program
+cd natsuka/ //enters the directory that contains the program
+python natsuka.py //runs program
+```
+
+now, whenver you go to download a song, you will be prompted with this:
+
+```
+[*] Android OS detected. Would you like to download selected tracks to storage/emulated/0/downloads folder? (This would allow you to access these songs from your music players, and not only through Termux.
+
+1 - Yes
+2 - No
+```
+
+type `1` and it will download to your downloads folder. if you prefer to use a player in termux, type `2`, and it'll download in the termux environment (this will be inaccessible outside of termux, however!)
+
 ## features:
 
 **1: song(s) download support by url**
