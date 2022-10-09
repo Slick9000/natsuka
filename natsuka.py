@@ -374,8 +374,10 @@ async def trackProcess():
                 print(f"Artist Name: {artistName}")
 
                 print(f"Album Release: {albumRelease['year']}\n")
+                
+                fileName = re.sub('\$', 'S', trackName)
 
-                fileName = re.sub('[\/:*?"<>|]', '', trackName)
+                fileName = re.sub('[\/:*?"<>|]', '', fileName)
 
                 if not os.path.exists(f"{download_location}/Music"):
 
@@ -583,8 +585,9 @@ async def albumProcess():
 
                     print(f"Album Release: {albumRelease['year']}\n")
 
-                    fileName = re.sub('[\/:*?"<>|]', '', trackName)
-
+                    fileName = re.sub('\$', 'S', trackName)
+                    fileName = re.sub('[\/:*?"<>|]', '', fileName)
+                    
                     if not os.path.exists(f"{download_location}/Music"):
 
                         os.makedirs(f"{download_location}/Music")
@@ -817,7 +820,9 @@ async def playlistProcess():
 
                     print(f"Album Release: {albumRelease['year']}\n")
 
-                    fileName = re.sub('[\/:*?"<>|]', '', trackName)
+                    fileName = re.sub('\$', 'S', trackName)
+
+                    fileName = re.sub('[\/:*?"<>|]', '', fileName)
 
                     if not os.path.exists(f"{download_location}/Music"):
 
@@ -1003,7 +1008,9 @@ async def bestmatchProcess():
 
                     print(f"Album Release: {albumRelease['year']}\n")
 
-                    fileName = re.sub('[\/:*?"<>|]', '', trackName)
+                    fileName = re.sub('\$', 'S', trackName)
+
+                    fileName = re.sub('[\/:*?"<>|]', '', fileName)
 
                     if not os.path.exists(f"{download_location}/Music"):
 
@@ -1244,7 +1251,9 @@ Type 'RETURN' to return to main menu
 
             print(f"Album Release: {albumRelease['year']}\n")
 
-            fileName = re.sub('[\/:*?"<>|]', '', trackName)
+            fileName = re.sub('\$', 'S', trackName)
+
+            fileName = re.sub('[\/:*?"<>|]', '', fileName)
 
             if not os.path.exists(f"{download_location}/Music"):
 
@@ -1428,7 +1437,9 @@ Would you like to proceed downloading this album?
 
                     print(f"Album Release: {albumRelease['year']}\n")
 
-                    fileName = re.sub('[\/:*?"<>|]', '', trackName)
+                    fileName = re.sub('\$', 'S', trackName)
+
+                    fileName = re.sub('[\/:*?"<>|]', '', fileName)
 
                     if not os.path.exists(f"{download_location}/Music"):
 
@@ -1724,7 +1735,9 @@ Would you like to proceed downloading {artistName}'s top songs?
 
                         print(f"Album Release: {albumRelease['year']}\n")
 
-                        fileName = re.sub('[\/:*?"<>|]', '', trackName)
+                        fileName = re.sub('\$', 'S', trackName)
+
+                        fileName = re.sub('[\/:*?"<>|]', '', fileName)
 
                         if not os.path.exists(f"{download_location}/Music"):
 
@@ -1983,7 +1996,9 @@ Would you like to proceed downloading this album?
 
                         print(f"Album Release: {albumRelease['year']}\n")
 
-                        fileName = re.sub('[\/:*?"<>|]', '', trackName)
+                        fileName = re.sub('\$', 'S', trackName)
+
+                        fileName = re.sub('[\/:*?"<>|]', '', fileName)
 
                         if not os.path.exists(f"{download_location}/Music"):
 
