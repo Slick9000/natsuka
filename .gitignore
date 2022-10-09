@@ -130,3 +130,6 @@ dmypy.json
 
 # Ogg vorbis audio files
 *.ogg
+
+# mp3 audio files
+*.mp3
