@@ -30,17 +30,27 @@ welcome to natsuka 2.0, with **single-track, multi-track, album, playlist, and s
 
 natsuka works on android with termux, and automatically downloads to your system Downloads folder.
 
-just install termux's apk from [here](https://github.com/termux/termux-app/releases/latest), open it, and run the following commands:**
+just install termux's apk from [here](https://github.com/termux/termux-app/releases/latest), open it, and copy this command:** 
 
 ```
-pkg update -y && pkg upgrade -y //updates packages for linux
-pkg install git -y //install git so you can download my program from github
-pkg install python -y //install python to run the program
-pkg install ffmpeg -y //install ffmpeg, handles downloading the music
-git clone https://github.com/Slick9000/natsuka.git //downloads the program
-cd natsuka/ //enters the directory that contains the program
-python natsuka.py //runs program
-```
+pkg update -y && pkg upgrade -y && pkg install git -y && pkg install python -y && pkg install ffmpeg -y && git clone https://github.com/Slick9000/natsuka.git && cd natsuka/ && python natsuka.py
+``` 
+
+this command does the following:
+
+• updates packages for linux, 
+
+• installs git so you can download my program from github
+
+• installs python to run the program, 
+
+• installs ffmpeg which handles downloading the music
+
+• downloads the program from github
+
+• enters the directory that contains the program
+
+• runs the program
 
 now, whenver you go to download a song, you will be prompted with this:
 
