@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import asyncio
 import calendar
 from datetime import timedelta
@@ -315,9 +313,9 @@ async def trackProcess():
 
     if hasattr(sys, 'getandroidapilevel'):
 
-        print("[*] Android OS detected. Songs will be downloaded to storage/emulated/0/Downloads/Music folder.\n"))
+        print("[*] Android OS detected. Songs will be downloaded to storage/emulated/0/Downloads/Music folder.\n")
 
-            download_location = "storage/downloads"
+        download_location = "storage/downloads"
 
     start_time = time.monotonic()
 
@@ -523,9 +521,8 @@ async def albumProcess():
     if hasattr(sys, 'getandroidapilevel'):
 
         print("[*] Android OS detected. Songs will be downloaded to storage/emulated/0/Downloads/Music folder.\n")
-                       )
 
-            download_location = "storage/downloads"
+        download_location = "storage/downloads"
 
     start_time = time.monotonic()    
 
@@ -744,9 +741,9 @@ async def playlistProcess():
 
     if hasattr(sys, 'getandroidapilevel'):
 
-        print("[*] Android OS detected. Songs will be downloaded to storage/emulated/0/Downloads/Music folder.\n"))
+        print("[*] Android OS detected. Songs will be downloaded to storage/emulated/0/Downloads/Music folder.\n")
 
-            download_location = "storage/downloads"
+        download_location = "storage/downloads"
 
     start_time = time.monotonic()
 
@@ -901,9 +898,9 @@ async def bestmatchProcess():
 
     if hasattr(sys, 'getandroidapilevel'):
 
-        print("[*] Android OS detected. Songs will be downloaded to storage/emulated/0/Downloads/Music folder.\n"))
+        print("[*] Android OS detected. Songs will be downloaded to storage/emulated/0/Downloads/Music folder.\n")
 
-            download_location = "storage/downloads"
+        download_location = "storage/downloads"
 
     session = aiohttp.ClientSession()
 
@@ -1149,7 +1146,7 @@ Type 'RETURN' to return to main menu
 
         if hasattr(sys, 'getandroidapilevel'):
 
-            print("[*] Android OS detected. Songs will be downloaded to storage/emulated/0/Downloads/Music folder.\n"))
+            print("[*] Android OS detected. Songs will be downloaded to storage/emulated/0/Downloads/Music folder.\n")
 
             download_location = "storage/downloads"
 
@@ -1314,7 +1311,7 @@ Would you like to proceed downloading this album?
 
             if hasattr(sys, 'getandroidapilevel'):
 
-                print("[*] Android OS detected. Songs will be downloaded to storage/emulated/0/Downloads/Music folder.\n"))
+                print("[*] Android OS detected. Songs will be downloaded to storage/emulated/0/Downloads/Music folder.\n")
 
                 download_location = "storage/downloads"
 
@@ -1597,7 +1594,7 @@ Would you like to proceed downloading {artistName}'s top songs?
 
                 if hasattr(sys, 'getandroidapilevel'):
 
-                    print("[*] Android OS detected. Songs will be downloaded to storage/emulated/0/Downloads/Music folder.\n"))
+                    print("[*] Android OS detected. Songs will be downloaded to storage/emulated/0/Downloads/Music folder.\n")
 
                     download_location = "storage/downloads"
 
@@ -1843,7 +1840,7 @@ Would you like to proceed downloading this album?
 
                 if hasattr(sys, 'getandroidapilevel'):
 
-                    print("[*] Android OS detected. Songs will be downloaded to storage/emulated/0/Downloads/Music folder.\n"))
+                    print("[*] Android OS detected. Songs will be downloaded to storage/emulated/0/Downloads/Music folder.\n")
 
                     download_location = "storage/downloads"
 
