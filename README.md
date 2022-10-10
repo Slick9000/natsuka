@@ -33,8 +33,8 @@ natsuka works on android with termux, and automatically downloads to your system
 just install termux's apk from [here](https://github.com/termux/termux-app/releases/latest), open it, and copy this command:** 
 
 ```
-pkg update -y && pkg upgrade -y && pkg install git -y && pkg install python -y && pkg install ffmpeg -y && git clone https://github.com/Slick9000/natsuka.git && cd natsuka/ && python natsuka.py
-``` 
+pkg update -y && pkg upgrade -y && pkg install git -y && pkg install python -y && pkg install ffmpeg -y && git clone https://github.com/Slick9000/natsuka.git && cd natsuka/
+```
 
 this command does the following:
 
@@ -50,7 +50,13 @@ this command does the following:
 
 • enters the directory that contains the program
 
-• runs the program
+<br/>
+
+then run the program with:
+
+```
+python natsuka.py
+```
 
 now, whenver you go to download a song, you will be prompted with this:
 
