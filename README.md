@@ -58,7 +58,7 @@ then run the program with:
 python natsuka.py
 ```
 
-now, whenver you go to download a song, you will be prompted with this:
+now, whenever you go to download a song, you will be prompted with this:
 
 ```
 [*] Android OS detected. Songs will be downloaded to storage/emulated/0/Downloads/Music folder.
