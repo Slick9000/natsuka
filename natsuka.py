@@ -315,25 +315,9 @@ async def trackProcess():
 
     if hasattr(sys, 'getandroidapilevel'):
 
-        option = input("[*] Android OS detected. Would you like to download selected tracks to "
-                       "storage/downloads folder? (This would allow you to access these songs from "
-                       "your music players, and not only through Termux.\n\n"
-                       "1 - Yes\n"
-                       "2 - No\n: "
-                       )
-
-        while not any(x in option for x in ["1", "2"]):
-
-            print("Invalid option!")
-
-        if option == "1":
-
+        print("[*] Android OS detected. Songs will be downloaded to storage/emulated/0/Downloads/Music folder.\n"))
 
             download_location = "storage/downloads"
-
-        if option == "2":
-
-            pass
 
     start_time = time.monotonic()
 
@@ -538,24 +522,10 @@ async def albumProcess():
 
     if hasattr(sys, 'getandroidapilevel'):
 
-        option = input("[*] Android OS detected. Would you like to download selected tracks to "
-                       "storage/downloads folder? (This would allow you to access these songs from "
-                       "your music players, and not only through Termux.\n\n"
-                       "1 - Yes\n"
-                       "2 - No\n: "
+        print("[*] Android OS detected. Songs will be downloaded to storage/emulated/0/Downloads/Music folder.\n")
                        )
 
-        while not any(x in option for x in ["1", "2"]):
-
-            print("Invalid option!")
-
-        if option == "1":
-
             download_location = "storage/downloads"
-
-        if option == "2":
-
-            pass
 
     start_time = time.monotonic()    
 
@@ -586,6 +556,7 @@ async def albumProcess():
                     print(f"Album Release: {albumRelease['year']}\n")
 
                     fileName = re.sub('\$', 'S', trackName)
+                    
                     fileName = re.sub('[\/:*?"<>|]', '', fileName)
                     
                     if not os.path.exists(f"{download_location}/Music"):
@@ -773,24 +744,9 @@ async def playlistProcess():
 
     if hasattr(sys, 'getandroidapilevel'):
 
-        option = input("[*] Android OS detected. Would you like to download selected tracks to "
-                       "storage/downloads folder? (This would allow you to access these songs from "
-                       "your music players, and not only through Termux.\n\n"
-                       "1 - Yes\n"
-                       "2 - No\n: "
-                       )
-
-        while not any(x in option for x in ["1", "2"]):
-
-            print("Invalid option!")
-
-        if option == "1":
+        print("[*] Android OS detected. Songs will be downloaded to storage/emulated/0/Downloads/Music folder.\n"))
 
             download_location = "storage/downloads"
-
-        if option == "2":
-
-            pass
 
     start_time = time.monotonic()
 
@@ -945,24 +901,9 @@ async def bestmatchProcess():
 
     if hasattr(sys, 'getandroidapilevel'):
 
-        option = input("[*] Android OS detected. Would you like to download selected tracks to "
-                       "storage/downloads folder? (This would allow you to access these songs from "
-                       "your music players, and not only through Termux.\n\n"
-                       "1 - Yes\n"
-                       "2 - No\n: "
-                       )
-
-        while not any(x in option for x in ["1", "2"]):
-
-            print("Invalid option!")
-
-        if option == "1":
+        print("[*] Android OS detected. Songs will be downloaded to storage/emulated/0/Downloads/Music folder.\n"))
 
             download_location = "storage/downloads"
-
-        if option == "2":
-
-            pass
 
     session = aiohttp.ClientSession()
 
@@ -1208,26 +1149,9 @@ Type 'RETURN' to return to main menu
 
         if hasattr(sys, 'getandroidapilevel'):
 
-            option = input("[*] Android OS detected. Would you like to download selected tracks to "
-                           "storage/downloads folder? (This would allow you to access these songs from "
-                           "your music players, and not only through Termux.\n\n"
-                           "1 - Yes\n"
-                           "2 - No\n: "
-                           )
-
-        start_time = time.monotonic()
-
-        while not any(x in option for x in ["1", "2"]):
-
-            print("Invalid option!")
-
-        if option == "1":
+            print("[*] Android OS detected. Songs will be downloaded to storage/emulated/0/Downloads/Music folder.\n"))
 
             download_location = "storage/downloads"
-
-        if option == "2":
-
-            pass
 
         async with session.get(f"https://music.joshuadoes.com/track/spotify:track:{selectedSong}?pass=pleasesparemyendpoints&quality=2") as trackJSON:
 
@@ -1390,24 +1314,9 @@ Would you like to proceed downloading this album?
 
             if hasattr(sys, 'getandroidapilevel'):
 
-                option = input("[*] Android OS detected. Would you like to download selected tracks to "
-                               "storage/downloads folder? (This would allow you to access these songs from "
-                               "your music players, and not only through Termux.\n\n"
-                               "1 - Yes\n"
-                               "2 - No\n: "
-                               )
+                print("[*] Android OS detected. Songs will be downloaded to storage/emulated/0/Downloads/Music folder.\n"))
 
-                while not any(x in option for x in ["1", "2"]):
-
-                    print("Invalid option!")
-
-                if option == "1":
-
-                    download_location = "storage/downloads"
-
-                if option == "2":
-
-                    pass
+                download_location = "storage/downloads"
 
             start_time = time.monotonic()
 
@@ -1688,24 +1597,9 @@ Would you like to proceed downloading {artistName}'s top songs?
 
                 if hasattr(sys, 'getandroidapilevel'):
 
-                    option = input("[*] Android OS detected. Would you like to download selected tracks to "
-                                   "storage/downloads folder? (This would allow you to access these songs from "
-                                   "your music players, and not only through Termux.\n\n"
-                                   "1 - Yes\n"
-                                   "2 - No\n: "
-                                   )
+                    print("[*] Android OS detected. Songs will be downloaded to storage/emulated/0/Downloads/Music folder.\n"))
 
-                    while not any(x in option for x in ["1", "2"]):
-
-                        print("Invalid option!")
-
-                    if option == "1":
-
-                        download_location = "storage/downloads"
-
-                    if option == "2":
-
-                        pass
+                    download_location = "storage/downloads"
 
                 start_time = time.monotonic()
 
@@ -1949,24 +1843,9 @@ Would you like to proceed downloading this album?
 
                 if hasattr(sys, 'getandroidapilevel'):
 
-                    option = input("[*] Android OS detected. Would you like to download selected tracks to "
-                                   "storage/downloads folder? (This would allow you to access these songs from "
-                                   "your music players, and not only through Termux.\n\n"
-                                   "1 - Yes\n"
-                                   "2 - No\n: "
-                                   )
+                    print("[*] Android OS detected. Songs will be downloaded to storage/emulated/0/Downloads/Music folder.\n"))
 
-                    while not any(x in option for x in ["1", "2"]):
-
-                        print("Invalid option!")
-
-                    if option == "1":
-
-                        download_location = "storage/downloads"
-
-                    if option == "2":
-
-                        pass
+                    download_location = "storage/downloads"
 
                 start_time = time.monotonic()
 
