@@ -2,7 +2,7 @@
 # natsuka
 a single file application giving you the ability to download music from spotify with id3 metadata (track title, track number, artist, album, cover art, release date)
 
-named derived from japanese kanji, with natsu meaning "summer", combined with ka meaning "air".
+name derived from japanese kanji, with natsu meaning "summer", combined with ka meaning "air".
 
 initally made on **february 28th, 2021**, natsuka was made to download songs from spotify with metadata, a task other downloaders were not able to accomplish for me.
 
@@ -35,6 +35,8 @@ just install termux's apk from [here](https://github.com/termux/termux-app/relea
 ```
 pkg update -y && pkg upgrade -y && pkg install python -y && pkg install ffmpeg -y && pkg install git -y && git clone https://github.com/Slick9000/natsuka.git
 ```
+
+(for other linux distros, you would simply replace `pkg` with your package installer to install packages similarly)
 
 this command does the following:
 
